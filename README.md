@@ -1,7 +1,6 @@
 sample
 ======
-The index looks like this:
-|
+
 1. added bootstrap and font-awesome, support IE7+
 2. added foundation, support IE7+
 
