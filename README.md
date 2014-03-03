@@ -22,13 +22,13 @@ Font-awesome:
 </pre>
 
 
-II. To learn how to use Bootstrap, foundation and font-awesome, please go to their websites. <br>
+<h5>II. To learn how to use Bootstrap, foundation and font-awesome, please go to their websites.</h5> <br>
 <a href="http://getbootstrap.com/">Bootstrap</a> <br>
 <a href="http://foundation.zurb.com/docs/">Foundation</a> <br>
 <a href="http://fortawesome.github.io/Font-Awesome/icons/">Font-Awesome</a> <br>
 
 
-III. You can also change SASS or JS files if you want. <br>
+<h5>III. You can also change SASS or JS files if you want. </h5><br>
 css/bootstrap <br>
 css/foundation <br>
 css/font-awewome <br>
