@@ -1,0 +1,211 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000319}}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000328}}
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000336}}
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000346}}
+[hidden],
+template {
+  display: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000350}}
+script {
+  display: none !important; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000361}}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000370}}
+body {
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000379}}
+a {
+  background: transparent; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000386}}
+a:focus {
+  outline: thin dotted; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\0000394}}
+a:active,
+a:hover {
+  outline: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003104}}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003112}}
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003120}}
+b,
+strong {
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003127}}
+dfn {
+  font-style: italic; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003134}}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003143}}
+mark {
+  background: #ff0;
+  color: #000; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003154}}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003162}}
+pre {
+  white-space: pre-wrap; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003169}}
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003176}}
+small {
+  font-size: 80%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003184}}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003191}}
+sup {
+  top: -0.5em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003195}}
+sub {
+  bottom: -0.25em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003204}}
+img {
+  border: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003211}}
+svg:not(:root) {
+  overflow: hidden; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003220}}
+figure {
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003229}}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003239}}
+legend {
+  border: 0;
+  padding: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003252}}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003263}}
+button,
+input {
+  line-height: normal; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003274}}
+button,
+select {
+  text-transform: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003288}}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003297}}
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003306}}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003316}}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003328}}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003336}}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003345}}
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/coding\/css\/foundation\/components\/normalize\.scss}line{font-family:\00003355}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
