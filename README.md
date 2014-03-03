@@ -5,7 +5,7 @@ sample
 2. added foundation, support IE7+
 
 
-I. If you want to use them, directly add css and js files to your code. For example:
+<h3>I. If you want to use them, directly add css and js files to your code. For example:</h3>
 <pre>
 Foundation:
 &lt;link rel="stylesheet" href="css/lib/foundation.min.css"&gt;
