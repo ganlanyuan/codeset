@@ -1,0 +1,20 @@
+******************************* 2014 *****************************************
+
+/* 0130 */
+1. plugins.js 中加入 jquery.fitvids.js 使视频支持响应式设计
+2. script.js 中加入 iframe自适应code
+
+******************************* 2013 *****************************************
+
+/* 1230 */
+1. css文件编码方式：sublime text -〉File -〉Save with Encoding -〉 UTF8
+2. 如果css内含sass注释，ie中的媒体查询将失效
+3. 修复部分reset.sass: BaseFontSize, css3.sass:flex
+
+/* 1218 */
+sass core 移到css文件夹
+
+/* 0914 */
+1.嵌入sass core组件
+2.grid12.scss用BEM和css3 border-sizing属性完善
+

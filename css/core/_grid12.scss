@@ -1,0 +1,70 @@
+/* =====================================
+   simple 12 colums grid
+   =====================================*/
+$max-width: 1400px;
+$column_gap: 20px;
+$columns: 12;
+
+%inlineblock { display: inline-block; *display: inline; *zoom: 1; letter-spacing: 0; vertical-align: top; }
+.grid {
+  margin-left: auto; margin-right: auto; max-width: $max-width; padding-left: $column_gap/2; padding-right: $column_gap/2; *zoom: 1; letter-spacing: -5px;
+  &:after { clear: both; }
+  &:before,&:after { content: ""; display: block; overflow: hidden; visibility: hidden; font-size: 0; line-height: 0; width: 0; height: 0; }
+  }
+@for $i from 1 through 12 {
+  .grid__#{$i}--sm,.grid__#{$i}--md,.grid__#{$i}--lg {
+    @extend %inlineblock;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding : {
+      left: $column_gap/2;
+      right: $column_gap/2;
+    }
+    /* <IE7> */
+    *padding-left: 0;
+    *padding-right: 0;
+    > * { *margin-left:$column_gap/2; *margin-right:$column_gap/2; }
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 639px) {
+  @each $column in 12, 6 {
+    .grid__#{$column}--sm {
+      width: 100%;
+    }
+  }
+}
+@media only screen and (min-width: 640px) and (max-width: 767px) {
+  @each $column in 12, 6 {
+    .grid__#{$column}--sm {
+      width: $column/$columns *100%;
+      *width: $column/$columns *100% - 0.1%;
+    }
+  }
+  //.grid__6--sm { width: 50%; *width: 49.9%; }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  @each $column in 12, 6, 4, 3 {
+    .grid__#{$column}--md {
+      width: $column/$columns *100%;
+      *width: $column/$columns *100% - 0.1%;
+    }
+  }
+  //.grid__6--md { width: 50%; *width: 49.9%; }
+  //.grid__4--md { width: 33.33%; *width: 33.3%; }
+  //.grid__3--md { width: 25%; *width: 24.99%; }
+}
+@media only screen and (min-width: 1024px) {
+  @each $column in 12, 6, 5, 4, 3, 2, 1  {
+    .grid__#{$column}--lg {
+      width: $column/$columns *100%;
+      *width: $column/$columns *100% - 0.1%;
+    }
+  }
+  //.grid__6--lg { width: 50%; *width: 49.9%; }
+  //.grid__5--lg { width: 41.66%; *width: 41.6%; }
+  //.grid__4--lg { width: 33.33%; *width: 33.3%; }
+  //.grid__3--lg { width: 25%; *width: 24.99%; }
+  //.grid__2--lg { width: 16.66%; *width: 16.6%; }
+  //.grid__1--lg { width: 8.33%; *width: 8.3%; }
+}
