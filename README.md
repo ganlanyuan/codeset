@@ -11,6 +11,9 @@ Foundation:
 &lt;link rel="stylesheet" href="css/lib/foundation.min.css"&gt;
 &lt;script src="js/lib/foundation.min.js"&gt;&lt;/script&gt;
 &lt;!--[if lt IE 9]&gt;&lt;script src="js/lib/foundation.lte8.min.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+&lt;script&gt;
+	 $(document).foundation();
+&lt;/script&gt;
 
 Bootstrap:
 &lt;link rel="stylesheet" href="css/lib/bootstrap.min.css"&gt;
