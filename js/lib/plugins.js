@@ -1,4 +1,3 @@
-
 // usage: log('inside coolFunc', this, arguments);
 // paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
 window.log = function(){
@@ -51,6 +50,43 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 	 Include jQuery 1.7+ before this code
 	 ========================================================================= */
 !function(t){"use strict";t.fn.fitVids=function(e){var i={customSelector:null};if(!document.getElementById("fit-vids-style")){var r=document.createElement("div"),a=document.getElementsByTagName("base")[0]||document.getElementsByTagName("script")[0],o="&shy;<style>.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>";r.className="fit-vids-style",r.id="fit-vids-style",r.style.display="none",r.innerHTML=o,a.parentNode.insertBefore(r,a)}return e&&t.extend(i,e),this.each(function(){var e=["iframe[src*='player.vimeo.com']","iframe[src*='youtube.com']","iframe[src*='youtube-nocookie.com']","iframe[src*='kickstarter.com'][src*='video.html']","object","embed"];i.customSelector&&e.push(i.customSelector);var r=t(this).find(e.join(","));r=r.not("object object"),r.each(function(){var e=t(this);if(!("embed"===this.tagName.toLowerCase()&&e.parent("object").length||e.parent(".fluid-width-video-wrapper").length)){var i="object"===this.tagName.toLowerCase()||e.attr("height")&&!isNaN(parseInt(e.attr("height"),10))?parseInt(e.attr("height"),10):e.height(),r=isNaN(parseInt(e.attr("width"),10))?e.width():parseInt(e.attr("width"),10),a=i/r;if(!e.attr("id")){var o="fitvid"+Math.floor(999999*Math.random());e.attr("id",o)}e.wrap('<div class="fluid-width-video-wrapper"></div>').parent(".fluid-width-video-wrapper").css("padding-top",100*a+"%"),e.removeAttr("height").removeAttr("width")}})})}}(window.jQuery||window.Zepto);
+
+/* =========================================================================
+	 Scroll To
+	 ========================================================================= */
+// by zhangxinxu http://www.zhangxinxu.com/wordpress/2010/07/%E9%94%9A%E7%82%B9%E8%B7%B3%E8%BD%AC%E5%8F%8Ajquery%E4%B8%8B%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%8F%92%E4%BB%B6/
+// 2010-07-15 v1.0
+(function($){
+  $.fn.zxxAnchor = function(options){
+    var defaults = {
+      ieFreshFix: true,
+      anchorSmooth: true,
+      anchortag: "anchor",
+      animateTime: 1000
+    };
+    var sets = $.extend({}, defaults, options || {});
+    if(sets.ieFreshFix){
+      var url = window.location.toString();
+      var id = url.split("#")[1];
+      if(id){
+        var t = $("#"+id).offset().top;
+        $(window).scrollTop(t);
+      } 
+    }
+    $(this).each(function(){
+      $(this).click(function(){
+        var aim = $(this).attr(sets.anchortag).replace(/#/g,""); 
+        var pos = $("#"+aim).offset().top;
+        if(sets.anchorSmooth){
+          $("html,body").animate({scrollTop: pos}, sets.animateTime); 
+        }else{
+          $(window).scrollTop(pos);
+        }
+        return false;          
+      }); 
+    });
+  };
+})(jQuery);
 
 /* =========================================================================
 	 Author's script
