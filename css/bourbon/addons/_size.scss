@@ -1,3 +1,8 @@
+
+// @include size(25);        (width: 25px; height: 25px;)
+// @include size(30px 70px); (width: 30px; height: 70px;)
+// @include size(auto 80px); (width: auto; height: 80px;)
+
 @mixin size($size) {
   @if length($size) == 1 {
     @if $size == auto {
