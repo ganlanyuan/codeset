@@ -1,0 +1,1266 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pare",
+				"parents	.parents()"
+			],
+			[
+				"te",
+				"text	.text"
+			],
+			[
+				"toggleC",
+				"toggleClick"
+			],
+			[
+				"slide",
+				"slideDown	.slideDown()"
+			],
+			[
+				"css",
+				"css	.css() - single"
+			],
+			[
+				"bord",
+				"border-radius"
+			],
+			[
+				"lists",
+				"list-style"
+			],
+			[
+				"bg",
+				"bg+	background: ${1:#fff} url(${2}) ${3:0} ${4:0} ${5:no-repeat};"
+			],
+			[
+				"se",
+				"serif"
+			],
+			[
+				"di",
+				"d-i	display: inline;"
+			],
+			[
+				"rea",
+				"ready	$(document).ready"
+			],
+			[
+				"off",
+				"offset	.offset"
+			],
+			[
+				"attr",
+				"attr	.attr() - single"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"scr",
+				"scrollto"
+			],
+			[
+				"read",
+				"ready	$(document).ready"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"if",
+				"ife	if … else"
+			],
+			[
+				"ta",
+				"target	Attr"
+			],
+			[
+				"button-med",
+				"button-med-lte8"
+			],
+			[
+				"fad",
+				"fadeOut	.fadeOut()"
+			],
+			[
+				"paren",
+				"parent	.parent()"
+			],
+			[
+				"par",
+				"parent	.parent()"
+			],
+			[
+				"att",
+				"attr	.attr() - single"
+			],
+			[
+				"col",
+				"columns"
+			],
+			[
+				"scroll",
+				"scrollTop	.scrollTop()"
+			],
+			[
+				"sc",
+				"scrollTop	.scrollTop()"
+			],
+			[
+				"at",
+				"attr	.attr() - single"
+			],
+			[
+				"re",
+				"ready	jQuery(document).ready"
+			],
+			[
+				"th",
+				"this	$(this)"
+			],
+			[
+				"animate",
+				"animate	animate"
+			],
+			[
+				"an",
+				"animate	animate"
+			],
+			[
+				"row",
+				"row-width"
+			],
+			[
+				"padding",
+				"label-padding-lte8"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"btn",
+				"btn-group-vertical"
+			],
+			[
+				"ti",
+				"ti--	text-indent: -9999px;"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"text",
+				"text-transform"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 387.0,
+		"selected_items":
+		[
+			[
+				"sav",
+				"Project: Save As"
+			],
+			[
+				"clo",
+				"Project: Close"
+			],
+			[
+				"cl",
+				"Project: Close"
+			],
+			[
+				"text",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"fet",
+				"Fetch: Manage"
+			],
+			[
+				"sa",
+				"Project: Save As"
+			],
+			[
+				"clos",
+				"Project: Close"
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"liq",
+				"Set Syntax: HTML Liquid"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"copn",
+				"File: Copy Name"
+			],
+			[
+				"copy",
+				"File: Copy as Tag script"
+			],
+			[
+				"data",
+				"Emmet: Encode\\Decode Image to data:URL"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"f",
+				"Fetch: Manage"
+			],
+			[
+				"sidebar",
+				"View: Toggle Side Bar"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"liv",
+				"LiveReload: Enable/disable plug-ins"
+			],
+			[
+				"cop",
+				"File: Copy as Tag style"
+			],
+			[
+				"fetch",
+				"Fetch: Package"
+			],
+			[
+				"file",
+				"File: Delete"
+			],
+			[
+				"copy a",
+				"File: Copy Path as URI"
+			],
+			[
+				"live",
+				"LiveReload: Enable/disable plug-ins"
+			],
+			[
+				"livere",
+				"LiveReload: Self test"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"proj",
+				"Project: Close"
+			],
+			[
+				"pro",
+				"Project: Close"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"scss",
+				"Set Syntax: CSS"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"sava",
+				"Project: Save As"
+			],
+			[
+				"close",
+				"Project: Close"
+			]
+		],
+		"width": 521.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Volumes/Macintosh HD 2/william/coding/index.html",
+		"/Volumes/Macintosh HD 2/william/coding/README.md",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_size.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_rem.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_settings.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_side-nav.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/_common.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/index.scss",
+		"/Volumes/Macintosh HD 2/william/coding/README",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_clearfix.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/common.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/common.css",
+		"/Volumes/Macintosh HD 2/william/coding/js/foundation/components/foundation.interchange.js",
+		"/Volumes/Macintosh HD 2/william/coding/js/bootstrap/components/dropdown.js",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_directional-values.scss",
+		"/Volumes/Macintosh HD 2/william/coding/js/lib/plugins.js",
+		"/Volumes/Macintosh HD 2/william/coding/log.txt",
+		"/Volumes/Macintosh HD 2/william/coding/LICENSE",
+		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_global.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bootstrap/components/_close.scss",
+		"/Users/designer/.ssh/id_rsa.pub",
+		"/Users/designer/Desktop/CPTV/coding/css/_common.scss",
+		"/Volumes/Macintosh HD 2/FTP/CP-c/css/min.css",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_media-queries.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_message.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_mixin.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/test.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/test.css",
+		"/Users/designer/Desktop/CPTV/coding/test.html",
+		"/Users/designer/Desktop/CPTV/coding/css/bourbon/css3/_keyframes.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/bourbon/settings/_px-to-em.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_inline-lists.scss",
+		"/Users/designer/Desktop/CPTV/coding/index.html",
+		"/Users/designer/Desktop/CPTV/coding/css/bourbon/functions/_px-to-em.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_type.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/bourbon/css3/_backface-visibility.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/bourbon/css3/_background.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/bourbon/_bourbon.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/bourbon/addons/_rem.scss",
+		"/Volumes/Macintosh HD 2/FTP/GH/path.txt",
+		"/Users/designer/Desktop/index.html",
+		"/Volumes/Macintosh HD 2/FTP/GH/views/layout/layout.php",
+		"/Users/designer/Desktop/CPTV/coding/js/lib/respond.min.js",
+		"/Users/designer/Desktop/CPTV/coding/test.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/foundation.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/lib/test.css",
+		"/Users/designer/Desktop/CPTV/coding/js/foundation/foundation.js",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_clearing.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/foundation.css",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_accordion.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_settings.css",
+		"/Users/designer/Desktop/CPTV/coding/css/index.scss",
+		"/Users/designer/Desktop/CPTV/coding/js/script.js",
+		"/Users/designer/Desktop/CPTV/coding/js/lib/plugins.js",
+		"/Users/designer/Library/Application Support/Sublime Text 3/Packages/User/Fetch.sublime-settings",
+		"/Users/designer/Desktop/CPTV/coding/js/lib/OwlCarousel.min.js",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_offcanvas.scss",
+		"/Users/designer/Desktop/CPTV/coding/js/script.min.js",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_owl-carousel.css",
+		"/Users/designer/Desktop/CPTV/coding/js/foundation/components/foundation.accordion.js",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_settings.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_functions.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_global.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_grid.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_grids95.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_grids95.css",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_grid12.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/common.css.map",
+		"/Users/designer/Desktop/CPTV/coding/koala-config.json",
+		"/Users/designer/Desktop/CPTV/coding/CPTV.sublime-project",
+		"/Users/designer/Desktop/CPTV/coding/css/common.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/common.css",
+		"/Users/designer/Desktop/CPTV/coding/css/index.css",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_function.scss",
+		"/Users/designer/Desktop/CPTV/coding/fonts/MyFontsWebfontsKit.css",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_typography.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/core/_setting.scss",
+		"/Users/designer/Desktop/CPTV/coding/js/lib/selectivizr-min.js",
+		"/Users/designer/Desktop/CPTV/coding/css/bootstrap/components/_type.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/bootstrap/components/_normalize.scss",
+		"/Users/designer/Desktop/CPTV/coding/css/lib/normalize.css",
+		"/Users/designer/Desktop/CPTV/coding/css/foundation/components/_split-buttons.scss",
+		"/Users/designer/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/designer/Desktop/CPTV/coding/README",
+		"/Users/designer/Desktop/CPTV/coding/README.md",
+		"/Users/designer/Desktop/CPTV/coding/.gitignore",
+		"/Volumes/Macintosh HD 2/Design/GH/sevices/ad-CESNAC/文本.txt",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/CP store.sublime-project",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/page_overrides.css",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/index.html",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/base.css",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/MyFontsWebfontsKit/StartHere.html",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/detail.html",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/clothing.html",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/widgets_master.css",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/layouts.css",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/personalization.css",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/category.html",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/detail",
+		"/Volumes/Macintosh HD 2/william/chant/praise.txt",
+		"/Volumes/Macintosh HD 2/Design/CP/CP store/Amazon/coding/MyFontsWebfontsKit/webfonts/MyFontsWebfontsKit.css",
+		"/Users/designer/Desktop/MyFontsWebfontsKit/StartHere.html",
+		"/Volumes/Macintosh HD 2/FTP/GH_chinese/aboutus/index.html",
+		"/Users/designer/Desktop/subscribe/coding/templates.css",
+		"/Users/designer/Desktop/subscribe/coding/mediaquery.css",
+		"/Users/designer/Desktop/subscribe/coding/content.css",
+		"/Users/designer/Desktop/subscribe/coding/index.html",
+		"/Users/designer/Desktop/subscribe/coding/article.html",
+		"/Users/designer/Desktop/subscribe/index.html",
+		"/Users/designer/Desktop/subscribe/templates.css",
+		"/Users/designer/Desktop/m-gnli/article.html",
+		"/Users/designer/Desktop/m-gnli/index.html",
+		"/Volumes/Macintosh HD 2/william/praise.txt",
+		"/Users/designer/Desktop/m-gnli/test2_w.html",
+		"/Volumes/Macintosh HD 2/Design/CMCi/CMCigroup/coding/asset/js/lib/plugins0.js",
+		"/Volumes/Macintosh HD 2/Design/CMCi/CMCigroup/coding/1101/asset/js/lib/plugins.js",
+		"/Users/designer/Desktop/我软弱变为刚强",
+		"/Users/designer/Desktop/gnli-ads/index.html",
+		"/Users/designer/output.css",
+		"/Users/designer/Desktop/test/koala-config.json",
+		"/Users/designer/Desktop/test/test.css",
+		"/Users/designer/Desktop/test/test.scss",
+		"/Users/designer/Desktop/test/index.html",
+		"/Users/designer/Desktop/gnli-ads/test.scss",
+		"/Users/designer/Desktop/gnli-ads/test.css",
+		"/Users/designer/Library/Application Support/Sublime Text 3/Packages/AdvancedNewFile/README.md",
+		"/Users/designer/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/designer/Desktop/gnli-fix/v2_common.css"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 108.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"h5",
+			"bourbon",
+			"76",
+			"32",
+			"?m=1391240679g",
+			"http://s2.wp.com/wp-content/themes/vip/time2014/",
+			"=\"/",
+			"js",
+			"// jquery.bxslider.min.js\n!function(t){var e={},s={mode:\"horizontal\",slideSelector:\"\",infiniteLoop:!0,hideControlOnEnd:!1,speed:500,easing:null,slideMargin:0,startSlide:0,randomStart:!1,captions:!1,ticker:!1,tickerHover:!1,adaptiveHeight:!1,adaptiveHeightSpeed:500,video:!1,useCSS:!0,preloadImages:\"visible\",responsive:!0,touchEnabled:!0,swipeThreshold:50,oneToOneTouch:!0,preventDefaultSwipeX:!0,preventDefaultSwipeY:!1,pager:!0,pagerType:\"full\",pagerShortSeparator:\" / \",pagerSelector:null,buildPager:null,pagerCustom:null,controls:!0,nextText:\"\",prevText:\"\",",
+			"7",
+			"10",
+			"39",
+			" 0",
+			"margin",
+			"//",
+			"favicon_",
+			"cplogo",
+			" $('.",
+			"18",
+			"toggleClick",
+			"*",
+			"hide-for-small-only",
+			"$(\"",
+			"		return false;\n",
+			"r",
+			"		return false;\n",
+			"comments",
+			"filter ul",
+			"400",
+			"$off-canvas-width",
+			"dl",
+			"	// .logo-footer { display: inline-block; *display: inline; *zoom: 1; }\n",
+			"3",
+			"4",
+			"Light",
+			"5",
+			"<div><a href=\"\">",
+			"</a></li>",
+			"<li><a hr",
+			"<div><a href=\"\">",
+			"</a></div>",
+			"<div><a",
+			"owl-carousel",
+			"0/f2f2f2",
+			"{ ",
+			"background: url() 0 0 no-repeat;",
+			"grid-row",
+			"rem",
+			"body",
+			"body-font-family",
+			"$anchor-font-color",
+			"primary-color",
+			"anchor-font-color",
+			"a (",
+			"a:hover",
+			"a:hover, a:focus",
+			"src=\"images/",
+			"owl-carousel",
+			"images",
+			"		\n",
+			"?language=en_US&isDebugJS=0",
+			"http://a2u8i8qeg5c8oi-a2dttwjsmxity9-w-en-us.webstore-images.com/media/",
+			"?language=en_US&isDebugJS=0",
+			"http://a2u8i8qeg5c8oi-a36c61svwlp7gz-w-en-us.webstore-images.com/media/",
+			".css",
+			"http://a2u8i8qeg5c8oi-a34jyzoss34f7p-w-en-us.webstore-images.com/media/",
+			"?language=en_US&isDebugJS=0",
+			".css",
+			"?language=en_US&isDebugJS=0",
+			"http://a2u8i8qeg5c8oi-a1raihsfv7pk5v-w-en-us.webstore-images.com/media/",
+			"?language=en_US&isDebugJS=0",
+			"mainContentWrapper",
+			"header-10",
+			"header-8",
+			"body #wrapper #innerWrapper div ul#globalNav li.navigationGroup a.mainNode",
+			".css",
+			"\">",
+			"<div class=\"x-combo-list-item \">",
+			"<div class=\"x-combo-list-item\">",
+			"</div>",
+			"url('",
+			"webfonts/",
+			"http://graphic.christianpost.com/store/MyFontsWebfontsKit/",
+			" \n  \n",
+			"webfonts/",
+			"Larsseit, sans-serif;",
+			"font-family: Larsseit, sans-serif;",
+			"}",
+			"20",
+			"header-3",
+			".css",
+			"#header-3",
+			"8",
+			"href=\"",
+			"          ",
+			"2483 Old Middlefield Way, Suite 202-204\nMountain View, CA 94043",
+			"2483 Old Middlefield Way, Suite 202-204\nMountain View, CA 94043\n",
+			"5em",
+			"account fr",
+			"/views",
+			".css",
+			"></",
+			"pop",
+			"header__nav__box",
+			"header__nav__con",
+			"软弱的我变刚强",
+			".js",
+			"like_wp",
+			".css",
+			"靈",
+			"讚",
+			"   ",
+			"    ",
+			" ",
+			"裡",
+			"，",
+			"　　　",
+			"    ",
+			"讚",
+			"祂",
+			"雖",
+			"祂",
+			", ",
+			"合:",
+			"马:",
+			"李:",
+			"v2_",
+			".js"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Lorem",
+			"p",
+			"dummyimage.com/400x300"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 172.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 154.0
+	},
+	"project": "coding.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"rem",
+				"css/bourbon/addons/_rem.scss"
+			],
+			[
+				"siz",
+				"css/bourbon/addons/_size.scss"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"comm",
+				"css/_common.scss"
+			],
+			[
+				"inds",
+				"css/index.scss"
+			],
+			[
+				"ind",
+				"index.html"
+			],
+			[
+				"plu",
+				"js/lib/plugins.js"
+			],
+			[
+				"log",
+				"log.txt"
+			],
+			[
+				"glo",
+				"css/foundation/components/_global.scss"
+			],
+			[
+				"cle",
+				"css/bourbon/addons/_clearfix.scss"
+			],
+			[
+				"insc",
+				"css/index.scss"
+			],
+			[
+				"com",
+				"css/_common.scss"
+			],
+			[
+				"inlli",
+				"css/bourbon/css3/_inline-block.scss"
+			],
+			[
+				"te",
+				"test.html"
+			],
+			[
+				"backf",
+				"css/bourbon/css3/_backface-visibility.scss"
+			],
+			[
+				"testcss",
+				"css/test.css"
+			],
+			[
+				"testcs",
+				"test.scss"
+			],
+			[
+				"fousc",
+				"css/foundation/foundation.scss"
+			],
+			[
+				"foucsc",
+				"css/foundation/components/_clearing.scss"
+			],
+			[
+				"testc",
+				"test.scss"
+			],
+			[
+				"ow",
+				"js/lib/OwlCarousel.min.js"
+			],
+			[
+				"pl",
+				"js/lib/plugins.js"
+			],
+			[
+				"sc",
+				"js/script.min.js"
+			],
+			[
+				"fou",
+				"js/foundation/foundation.js"
+			],
+			[
+				"foujs",
+				"js/foundation/foundation.js"
+			],
+			[
+				"p",
+				"js/lib/plugins.js"
+			],
+			[
+				"off",
+				"css/foundation/components/_offcanvas.scss"
+			],
+			[
+				"ty",
+				"css/foundation/components/_type.scss"
+			],
+			[
+				"scr",
+				"js/script.js"
+			],
+			[
+				"grid",
+				"css/foundation/components/_grid.scss"
+			],
+			[
+				"se",
+				"css/foundation/components/_settings.scss"
+			],
+			[
+				"coms",
+				"css/_common.scss"
+			],
+			[
+				"co",
+				"css/common.css"
+			],
+			[
+				"ins",
+				"css/index.scss"
+			],
+			[
+				"inc",
+				"css/index.css"
+			],
+			[
+				"fun",
+				"css/foundation/components/_functions.scss"
+			],
+			[
+				"m",
+				"css/core/_mixin.scss"
+			],
+			[
+				"mix",
+				"css/core/_mixin.scss"
+			],
+			[
+				"type",
+				"css/foundation/components/_type.scss"
+			],
+			[
+				"sett",
+				"css/foundation/components/_settings.scss"
+			],
+			[
+				"incss",
+				"css/index.css"
+			],
+			[
+				"ib",
+				"css/foundation/components/_split-buttons.scss"
+			],
+			[
+				"base",
+				"base.css"
+			],
+			[
+				"wi",
+				"widgets_master.css"
+			],
+			[
+				"de",
+				"detail.html"
+			],
+			[
+				"page",
+				"page_overrides.css"
+			],
+			[
+				"ba",
+				"base.css"
+			],
+			[
+				"bas",
+				"base.css"
+			],
+			[
+				"pa",
+				"page_overrides.css"
+			],
+			[
+				"wid",
+				"widgets_master.css"
+			],
+			[
+				"ide",
+				"index.html"
+			],
+			[
+				"ar",
+				"coding/article.html"
+			],
+			[
+				"i",
+				"index.html"
+			],
+			[
+				"css",
+				"test.css"
+			],
+			[
+				"lay",
+				"layouts.css"
+			],
+			[
+				"",
+				"page_overrides.css"
+			],
+			[
+				"med",
+				"mediaquery.css"
+			],
+			[
+				"cont",
+				"content.css"
+			],
+			[
+				"snap",
+				"snap.svg-min.js"
+			],
+			[
+				"indexs",
+				"css/index.scss"
+			],
+			[
+				"magejs",
+				"css/foundation/js/foundation/foundation.magellan.js"
+			],
+			[
+				"indcss",
+				"css/index.css"
+			],
+			[
+				"pannel",
+				"css/foundation/doc/includes/panels/examples_panels_advanced.html"
+			],
+			[
+				"indsc",
+				"css/index.scss"
+			],
+			[
+				"foucss",
+				"css/foundation/scss/foundation.css"
+			],
+			[
+				"vi",
+				"css/foundation/scss/foundation/components/_visibility.scss"
+			],
+			[
+				"top",
+				"css/foundation/scss/foundation/components/_top-bar.scss"
+			],
+			[
+				"tool",
+				"css/foundation/scss/foundation/components/_tooltips.scss"
+			],
+			[
+				"thu",
+				"css/foundation/scss/foundation/components/_thumbs.scss"
+			],
+			[
+				"swi",
+				"css/foundation/scss/foundation/components/_switch.scss"
+			],
+			[
+				"sub",
+				"css/foundation/scss/foundation/components/_sub-nav.scss"
+			],
+			[
+				"side",
+				"css/foundation/scss/foundation/components/_side-nav.scss"
+			],
+			[
+				"re",
+				"css/foundation/scss/foundation/components/_reveal.scss"
+			],
+			[
+				"range",
+				"css/foundation/scss/foundation/components/_range-slider.scss"
+			],
+			[
+				"pro",
+				"css/foundation/scss/foundation/components/_progress-bars.scss"
+			],
+			[
+				"pri",
+				"css/foundation/scss/foundation/components/_pricing-tables.scss"
+			],
+			[
+				"pan",
+				"css/foundation/scss/foundation/components/_panels.scss"
+			],
+			[
+				"pagi",
+				"css/foundation/scss/foundation/components/_pagination.scss"
+			],
+			[
+				"orb",
+				"css/foundation/scss/foundation/components/_orbit.scss"
+			],
+			[
+				"ma",
+				"css/foundation/scss/foundation/components/_magellan.scss"
+			],
+			[
+				"lab",
+				"css/foundation/scss/foundation/components/_labels.scss"
+			],
+			[
+				"key",
+				"css/foundation/scss/foundation/components/_keystrokes.scss"
+			],
+			[
+				"joy",
+				"css/foundation/scss/foundation/components/_joyride.scss"
+			],
+			[
+				"inli",
+				"css/foundation/scss/foundation/components/_inline-lists.scss"
+			],
+			[
+				"gri",
+				"css/foundation/scss/foundation/components/_grid.scss"
+			],
+			[
+				"form",
+				"css/foundation/scss/foundation/components/_forms.scss"
+			],
+			[
+				"flex",
+				"css/foundation/scss/foundation/components/_flex-video.scss"
+			],
+			[
+				"drop",
+				"css/foundation/scss/foundation/components/_dropdown-buttons.scss"
+			],
+			[
+				"dr",
+				"css/foundation/scss/foundation/components/_dropdown.scss"
+			],
+			[
+				"clea",
+				"css/foundation/scss/foundation/components/_clearing.scss"
+			],
+			[
+				"bu",
+				"css/foundation/scss/foundation/components/_buttons.scss"
+			],
+			[
+				"butt",
+				"css/foundation/scss/foundation/components/_button-groups.scss"
+			],
+			[
+				"bread",
+				"css/foundation/scss/foundation/components/_breadcrumbs.scss"
+			],
+			[
+				"bl",
+				"css/foundation/scss/foundation/components/_block-grid.scss"
+			],
+			[
+				"aler",
+				"css/foundation/scss/foundation/components/_alert-boxes.scss"
+			],
+			[
+				"foun",
+				"css/foundation/scss/foundation.scss"
+			],
+			[
+				"tabs",
+				"css/foundation/scss/foundation/components/_tabs.scss"
+			],
+			[
+				"tab",
+				"css/foundation/scss/foundation/components/_tables.scss"
+			],
+			[
+				"acc",
+				"css/foundation/scss/foundation/components/_accordion.scss"
+			],
+			[
+				"ta",
+				"css/foundation/scss/foundation/components/_tables.scss"
+			],
+			[
+				"alerjs",
+				"css/foundation/js/foundation/foundation.alert.js"
+			],
+			[
+				"rev",
+				"css/foundation/scss/foundation/components/_reveal.scss"
+			],
+			[
+				"revjs",
+				"css/foundation/js/foundation/foundation.reveal.js"
+			],
+			[
+				"inl",
+				"css/foundation/scss/foundation/components/_inline-lists.scss"
+			],
+			[
+				"gl",
+				"css/foundation/scss/foundation/components/_global.scss"
+			],
+			[
+				"drp",
+				"css/foundation/scss/foundation/components/_dropdown.scss"
+			],
+			[
+				"but",
+				"css/foundation/scss/foundation/components/_buttons.scss"
+			],
+			[
+				"split",
+				"css/foundation/scss/foundation/components/_split-buttons.scss"
+			],
+			[
+				"foundajs",
+				"css/foundation/js/foundation/foundation.js"
+			],
+			[
+				"abi",
+				"css/foundation/js/foundation/foundation.abide.js"
+			],
+			[
+				"abide",
+				"css/foundation/js/foundation/foundation.abide.js"
+			],
+			[
+				"indecs",
+				"css/index.css"
+			],
+			[
+				"brea",
+				"css/foundation/scss/foundation/components/_breadcrumbs.scss"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"majs",
+				"css/foundation/js/foundation/foundation.magellan.js"
+			],
+			[
+				"ie7",
+				"css/foundation/js/foundation/foundation.offcanvas.ie7.js"
+			],
+			[
+				"ie",
+				"css/glyphicons-ie7.css"
+			],
+			[
+				"label",
+				"css/foundation/scss/foundation/components/_labels.scss"
+			],
+			[
+				"progre",
+				"css/foundation/scss/foundation/components/_progress-bars.scss"
+			],
+			[
+				"alert",
+				"css/foundation/scss/foundation/components/_alert-boxes.scss"
+			],
+			[
+				"butto",
+				"css/foundation/scss/foundation/components/_buttons.scss"
+			],
+			[
+				"func",
+				"css/foundation/scss/foundation/_functions.scss"
+			],
+			[
+				"founsc",
+				"css/foundation/scss/foundation.scss"
+			],
+			[
+				"foundacss",
+				"css/foundation/scss/foundation.css"
+			],
+			[
+				"typ",
+				"css/foundation/scss/foundation/components/_type.scss"
+			],
+			[
+				"set",
+				"css/foundation/scss/foundation/_settings.scss"
+			],
+			[
+				"foundscss",
+				"css/foundation/scss/foundation.scss"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Applications/XAMPP/xamppfiles/htdocs/coding/BC-new.sublime-project"
+			],
+			[
+				"\\",
+				"~/Desktop/learn/learn.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 283.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
