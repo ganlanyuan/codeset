@@ -17,6 +17,9 @@
   &:after { clear: both; }
 }
 
+%clearfix {
+	@include clearfix;
+}
 // @mixin clearfix {
 //   &:after {
 //     content:"";
