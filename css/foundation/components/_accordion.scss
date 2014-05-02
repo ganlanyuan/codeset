@@ -1,26 +1,6 @@
-@import "global";
-@import "grid";
-
-//
-// @variables
-//
-
-$include-html-accordion-classes: $include-html-classes !default;
-
-$accordion-navigation-padding: rem-calc(16) !default;
-$accordion-navigation-bg-color: #efefef !default;
-$accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%) !default;
-$accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%) !default;
-$accordion-navigation-font-color: #222 !default;
-$accordion-navigation-font-size: rem-calc(16) !default;
-$accordion-navigation-font-family: $body-font-family !default;
-
-$accordion-navigation-padding-lte8: 16px !default;
-$accordion-navigation-font-size-lte8: 16px !default;
-
-$accordion-content-padding: $column-gutter/2 !default;
-$accordion-content-padding-lte8: $column-gutter-lte8/2 !default;
-$accordion-content-active-bg-color: #fff !default;
+@import 
+  "global",
+  "grid";
 
 @include exports("accordion") {
   @if $include-html-accordion-classes {

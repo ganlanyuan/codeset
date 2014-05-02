@@ -1,3 +1,10 @@
+// This mixin is mostly used as a helper for others. 
+// See border-color, border-style, border-width, margin, and padding.
+// @include directional-property(border, width, 10px null 4px 3px);
+// border-top-width: 10px;
+// border-bottom-width: 4px;
+// border-left-width: 3px;
+
 // directional-property mixins are shorthands
 // for writing properties like the following
 //

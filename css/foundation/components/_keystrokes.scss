@@ -1,28 +1,5 @@
 @import "global";
 
-//
-// @variables
-//
-$include-html-type-classes: $include-html-classes !default;
-
-// We use these to control text styles.
-$keystroke-font: "Consolas", "Menlo", "Courier", monospace !default;
-$keystroke-font-size: rem-calc(14) !default;
-$keystroke-font-size-lte8: 14px !default;
-$keystroke-font-color: #222 !default;
-$keystroke-font-color-alt: #fff !default;
-$keystroke-function-factor: -7% !default;
-
-// We use this to control keystroke padding.
-$keystroke-padding: rem-calc(2 4 0) !default;
-$keystroke-padding-lte8: 2px 4px 0 !default;
-
-// We use these to control background and border styles.
-$keystroke-bg: scale-color(#fff, $lightness: $keystroke-function-factor) !default;
-$keystroke-border-style: solid !default;
-$keystroke-border-width: 1px !default;
-$keystroke-border-color: scale-color($keystroke-bg, $lightness: $keystroke-function-factor) !default;
-$keystroke-radius: $global-radius !default;
 
 //
 // @mixins

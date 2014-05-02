@@ -1,3 +1,8 @@
+// style and  color:
+// @include button;
+// @include button(pill);
+// @include button(shiny, #ff0000);
+
 @mixin button ($style: simple, $base-color: #4294f0) {
 
   @if type-of($style) == color {

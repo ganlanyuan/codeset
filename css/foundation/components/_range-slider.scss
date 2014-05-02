@@ -1,53 +1,6 @@
 @import "global";
 
 //
-// @name _range-slider.scss
-// @dependencies _global.scss
-//
-
-//
-// @variables
-//
-
-$include-html-range-slider-classes: $include-html-classes !default;
-
-// These variabels define the slider bar styles
-$range-slider-bar-width: 100% !default;
-$range-slider-bar-height: rem-calc(16) !default;
-$range-slider-bar-height-lte8: 16px !default;
-
-$range-slider-bar-border-width: 1px !default;
-$range-slider-bar-border-style: solid !default;
-$range-slider-bar-border-color: #ddd !default; 
-$range-slider-radius: $global-radius !default;
-$range-slider-bar-bg-color: #fafafa !default;
-
-// Vertical bar styles
-$range-slider-vertical-bar-width: rem-calc(16) !default;
-$range-slider-vertical-bar-height: rem-calc(200) !default;
-
-$range-slider-vertical-bar-width-lte8: 16px !default;
-$range-slider-vertical-bar-height-lte8: 200px !default;
-
-// These variabels define the slider handle styles
-$range-slider-handle-width: rem-calc(32) !default;
-$range-slider-handle-height: $range-slider-handle-width !default;
-$range-slider-handle-margin-top: rem-calc(-10) !default;
-
-$range-slider-handle-width-lte8: 32px !default;
-$range-slider-handle-height-lte8: $range-slider-handle-width-lte8 !default;
-$range-slider-handle-margin-top-lte8: -10px !default;
-
-$range-slider-handle-bg-color: $primary-color !default;
-$range-slider-handle-border-width: 1px !default;
-$range-slider-handle-border-style: solid !default;
-$range-slider-handle-border-color: scale-color($range-slider-handle-bg-color, $lightness: -10%) !default;
-$range-slider-handle-radius: $global-radius !default;
-$range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%) !default;
-$range-slider-handle-cursor: pointer !default;
-
-
-//
 // @mixins
 //
 

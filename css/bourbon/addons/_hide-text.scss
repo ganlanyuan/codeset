@@ -1,3 +1,7 @@
+// div {
+//   @include hide-text;
+//   background-image: url(logo.png);
+// }
 @mixin hide-text {
   overflow: hidden;
 

@@ -1,20 +1,5 @@
 @import "global";
 
-//
-// @variables
-//
-$include-html-media-classes: $include-html-classes !default;
-
-// We use these to control video container padding and margins
-$flex-video-padding-top: rem-calc(25) !default;
-$flex-video-padding-bottom: 67.5% !default;
-$flex-video-margin-bottom: rem-calc(16) !default;
-
-$flex-video-padding-top-lte8: 25px !default;
-$flex-video-margin-bottom-lte8: 16px !default;
-
-// We use this to control widescreen bottom padding
-$flex-video-widescreen-padding-bottom: 56.55% !default;
 
 //
 // @mixins

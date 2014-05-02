@@ -1,5 +1,8 @@
 @charset "UTF-8";
-// add bourbon.scss
-@import "bourbon/bourbon";
+// add bourbon and foundation
+@import 
+	"bourbon/bourbon",
+	"foundation/components/settings",
+	"foundation/components/global";
 
 // css goes here

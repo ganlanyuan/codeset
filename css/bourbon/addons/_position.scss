@@ -1,3 +1,8 @@
+// @include position(relative, 0px null null 100px);
+// position: relative;
+// top: 0px;
+// left: 100px;
+
 @mixin position ($position: relative, $coordinates: 0 0 0 0) {
 
   @if type-of($position) == list {
