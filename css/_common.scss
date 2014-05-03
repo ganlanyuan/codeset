@@ -1,6 +1,7 @@
 @charset "UTF-8";
 // add bourbon and foundation
 @import 
+	"mysettings",
 	"bourbon/bourbon",
 	"foundation/components/settings",
 	"foundation/components/global";

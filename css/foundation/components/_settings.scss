@@ -33,25 +33,26 @@ $include-html-grid-classes: $include-html-classes;
 $include-xl-html-grid-classes: false;
 
 $row-width: rem-calc(1000);
-$column-gutter: rem-calc(30), 30px;
+$column-gutter: rem-calc(30);
+$column-gutter-lte8: 30px;
 $total-columns: 12;
 
-We use these to control various global styles
+// We use these to control various global styles
 $body-bg: #fff;
 $body-font-color: #222;
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $body-font-weight: normal;
 $body-font-style: normal;
 
-We use this to control font-smoothing
+// We use this to control font-smoothing
 $font-smoothing: antialiased;
 
-We use these to control text direction settings
+// We use these to control text direction settings
 $text-direction: ltr;
 $opposite-direction: right;
 $default-float: left;
 
-We use these as default colors throughout
+// We use these as default colors throughout
 $primary-color: #008CBA;
 $secondary-color: #e7e7e7;
 $alert-color: #f04124;
@@ -59,16 +60,16 @@ $success-color: #43AC6A;
 $warning-color: #f08a24;
 $info-color: #a0d3e8;
 
-We use these to make sure border radius matches unless we want it different.
+// We use these to make sure border radius matches unless we want it different.
 $global-radius: 3px;
 $global-rounded: 1000px;
 
-We use these to control inset shadow shiny edges and depressions.
+// We use these to control inset shadow shiny edges and depressions.
 $shiny-edge-size: 0 1px 0;
 $shiny-edge-color: rgba(#fff, .5);
 $shiny-edge-active-color: rgba(#000, .2);
 
-Media Query Ranges
+// Media Query Ranges
 $small-range: (0em, 40em);			// 0 - 640
 $medium-range: (40.063em, 64em);	// 641 - 1024
 $large-range: (64.063em, 90em);	// 1025 - 1440
@@ -95,12 +96,12 @@ $xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
 $xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})";
 $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})";
 
-Legacy
+// Legacy
 $small: $medium-up;
 $medium: $medium-up;
 $large: $large-up;
 
-We use this as cursors values for enabling the option of having custom cursors in the whole site's stylesheet
+// We use this as cursors values for enabling the option of having custom cursors in the whole site's stylesheet
 $cursor-crosshair-value: crosshair;
 $cursor-default-value: default;
 $cursor-pointer-value: pointer;
