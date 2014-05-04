@@ -1,9 +1,19 @@
 @charset "UTF-8";
 // add bourbon and foundation
 @import 
-	"mysettings",
-	"bourbon/bourbon",
-	"foundation/components/settings",
-	"foundation/components/global";
+  "mysettings",
+  "bourbon/bourbon",
+  "foundation/components/settings";
 
 // css goes here
+.b-lazy {
+	-webkit-transition: opacity 500ms ease-in-out;
+	 -moz-transition: opacity 500ms ease-in-out;
+		-o-transition: opacity 500ms ease-in-out;
+			transition: opacity 500ms ease-in-out;
+			 max-width: 100%;
+				opacity: 0;
+}
+.b-lazy.b-loaded {
+				opacity: 1;
+}

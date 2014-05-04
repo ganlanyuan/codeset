@@ -1,5 +1,3 @@
-@import "global";
-
 
 @include exports("tooltip") {
   @if $include-html-tooltip-classes {

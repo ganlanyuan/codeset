@@ -1,5 +1,3 @@
-@import "global";
-
 
 @include exports("orbit") {
   @if $include-html-orbit-classes {

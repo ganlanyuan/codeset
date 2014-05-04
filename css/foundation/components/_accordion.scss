@@ -1,6 +1,4 @@
-@import 
-  "global",
-  "grid";
+@import "grid";
 
 @include exports("accordion") {
   @if $include-html-accordion-classes {
