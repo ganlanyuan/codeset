@@ -175,16 +175,16 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 387.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
-				"sav",
-				"Project: Save As"
-			],
-			[
 				"clo",
 				"Project: Close"
+			],
+			[
+				"sav",
+				"Project: Save As"
 			],
 			[
 				"cl",
@@ -339,7 +339,7 @@
 				"Project: Close"
 			]
 		],
-		"width": 521.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -360,16 +360,19 @@
 	},
 	"file_history":
 	[
+		"/Volumes/Macintosh HD 2/william/coding/js/script.js",
 		"/Volumes/Macintosh HD 2/william/coding/index.html",
+		"/Volumes/Macintosh HD 2/william/coding/css/index.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/_common.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_clearfix.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/mysettings.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bootstrap/components/_scaffolding.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_settings.scss",
 		"/Volumes/Macintosh HD 2/william/coding/README.md",
 		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_size.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_rem.scss",
-		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_settings.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_side-nav.scss",
-		"/Volumes/Macintosh HD 2/william/coding/css/_common.scss",
-		"/Volumes/Macintosh HD 2/william/coding/css/index.scss",
 		"/Volumes/Macintosh HD 2/william/coding/README",
-		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_clearfix.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/common.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/common.css",
 		"/Volumes/Macintosh HD 2/william/coding/js/foundation/components/foundation.interchange.js",
@@ -484,10 +487,7 @@
 		"/Users/designer/Desktop/test/test.scss",
 		"/Users/designer/Desktop/test/index.html",
 		"/Users/designer/Desktop/gnli-ads/test.scss",
-		"/Users/designer/Desktop/gnli-ads/test.css",
-		"/Users/designer/Library/Application Support/Sublime Text 3/Packages/AdvancedNewFile/README.md",
-		"/Users/designer/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/designer/Desktop/gnli-fix/v2_common.css"
+		"/Users/designer/Desktop/gnli-ads/test.css"
 	],
 	"find":
 	{
@@ -713,16 +713,28 @@
 		"selected_items":
 		[
 			[
+				"com",
+				"css/_common.scss"
+			],
+			[
+				"scss",
+				"css/index.scss"
+			],
+			[
+				"sc",
+				"js/script.js"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
 				"rem",
 				"css/bourbon/addons/_rem.scss"
 			],
 			[
 				"siz",
 				"css/bourbon/addons/_size.scss"
-			],
-			[
-				"in",
-				"index.html"
 			],
 			[
 				"read",
@@ -759,10 +771,6 @@
 			[
 				"insc",
 				"css/index.scss"
-			],
-			[
-				"com",
-				"css/_common.scss"
 			],
 			[
 				"inlli",
@@ -803,10 +811,6 @@
 			[
 				"pl",
 				"js/lib/plugins.js"
-			],
-			[
-				"sc",
-				"js/script.min.js"
 			],
 			[
 				"fou",
@@ -1219,10 +1223,6 @@
 			[
 				"set",
 				"css/foundation/scss/foundation/_settings.scss"
-			],
-			[
-				"foundscss",
-				"css/foundation/scss/foundation.scss"
 			]
 		],
 		"width": 0.0
@@ -1258,7 +1258,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 283.0,
+	"side_bar_width": 229.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
