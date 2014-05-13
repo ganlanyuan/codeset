@@ -6,3 +6,7 @@
   *display: inline;
   *vertical-align: auto;
 }
+
+%inline-block {
+  @include inline-block;
+}

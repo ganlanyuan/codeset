@@ -24,7 +24,7 @@ sample
 
 <b>Font-awesome:</b>
 &lt;link rel="stylesheet" href="css/lib/font-awesome.min.css"&gt;
-&lt;!--[if IE 7]&gt;&lt;link src="css/lib/font-awesome-ie7.min.css"&gt;&lt;/link&gt;&lt;![endif]--&gt;
+&lt;!--[if IE 7]&gt;&lt;link href="css/lib/font-awesome-ie7.min.css"&gt;&lt;/link&gt;&lt;![endif]--&gt;
 </pre>
 
 <h3>Websites</h3>

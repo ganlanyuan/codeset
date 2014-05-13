@@ -175,7 +175,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 5444,
+				"buffer_size": 5323,
 				"line_ending": "Unix"
 			}
 		}
@@ -369,15 +369,23 @@
 	"file_history":
 	[
 		"/Volumes/Macintosh HD 2/william/coding/js/script.js",
-		"/Volumes/Macintosh HD 2/william/coding/index.html",
-		"/Volumes/Macintosh HD 2/william/coding/css/index.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/css3/_columns.scss",
+		"/Volumes/Macintosh HD 2/william/coding/js/bootstrap/components/collapse.js",
 		"/Volumes/Macintosh HD 2/william/coding/css/_common.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_clearfix.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_size.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_font-family.scss",
+		"/Volumes/Macintosh HD 2/william/coding/fonts/FontAwesome.otf",
+		"/Volumes/Macintosh HD 2/william/coding/fonts/fontawesome-webfont.svg",
+		"/Volumes/Macintosh HD 2/william/coding/js/foundation/foundation.js",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_ellipsis.scss",
+		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/css3/_inline-block.scss",
+		"/Volumes/Macintosh HD 2/william/coding/index.html",
+		"/Volumes/Macintosh HD 2/william/coding/css/index.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/mysettings.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/bootstrap/components/_scaffolding.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_settings.scss",
 		"/Volumes/Macintosh HD 2/william/coding/README.md",
-		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_size.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_rem.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_side-nav.scss",
 		"/Volumes/Macintosh HD 2/william/coding/README",
@@ -487,15 +495,7 @@
 		"/Users/designer/Desktop/m-gnli/test2_w.html",
 		"/Volumes/Macintosh HD 2/Design/CMCi/CMCigroup/coding/asset/js/lib/plugins0.js",
 		"/Volumes/Macintosh HD 2/Design/CMCi/CMCigroup/coding/1101/asset/js/lib/plugins.js",
-		"/Users/designer/Desktop/我软弱变为刚强",
-		"/Users/designer/Desktop/gnli-ads/index.html",
-		"/Users/designer/output.css",
-		"/Users/designer/Desktop/test/koala-config.json",
-		"/Users/designer/Desktop/test/test.css",
-		"/Users/designer/Desktop/test/test.scss",
-		"/Users/designer/Desktop/test/index.html",
-		"/Users/designer/Desktop/gnli-ads/test.scss",
-		"/Users/designer/Desktop/gnli-ads/test.css"
+		"/Users/designer/Desktop/我软弱变为刚强"
 	],
 	"find":
 	{
@@ -513,6 +513,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"src",
 			"h5",
 			"bourbon",
 			"76",
@@ -639,8 +640,7 @@
 			"合:",
 			"马:",
 			"李:",
-			"v2_",
-			".js"
+			"v2_"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -670,15 +670,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5444,
+						"buffer_size": 5323,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								993,
-								993
+								1632,
+								1632
 							]
 						],
 						"settings":
@@ -686,38 +686,38 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
@@ -733,7 +733,7 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 555.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -797,6 +797,38 @@
 		"selected_items":
 		[
 			[
+				"sc",
+				"js/script.js"
+			],
+			[
+				"ind",
+				"index.html"
+			],
+			[
+				"colu",
+				"css/bourbon/css3/_columns.scss"
+			],
+			[
+				"siz",
+				"css/bourbon/addons/_size.scss"
+			],
+			[
+				"fontf",
+				"css/bourbon/addons/_font-family.scss"
+			],
+			[
+				"ell",
+				"css/bourbon/addons/_ellipsis.scss"
+			],
+			[
+				"inl",
+				"css/bourbon/css3/_inline-block.scss"
+			],
+			[
+				"cl",
+				"css/bourbon/addons/_clearfix.scss"
+			],
+			[
 				"in",
 				"index.html"
 			],
@@ -809,16 +841,8 @@
 				"css/index.scss"
 			],
 			[
-				"sc",
-				"js/script.js"
-			],
-			[
 				"rem",
 				"css/bourbon/addons/_rem.scss"
-			],
-			[
-				"siz",
-				"css/bourbon/addons/_size.scss"
 			],
 			[
 				"read",
@@ -831,10 +855,6 @@
 			[
 				"inds",
 				"css/index.scss"
-			],
-			[
-				"ind",
-				"index.html"
 			],
 			[
 				"plu",
@@ -1217,10 +1237,6 @@
 				"css/foundation/js/foundation/foundation.reveal.js"
 			],
 			[
-				"inl",
-				"css/foundation/scss/foundation/components/_inline-lists.scss"
-			],
-			[
 				"gl",
 				"css/foundation/scss/foundation/components/_global.scss"
 			],
@@ -1291,22 +1307,6 @@
 			[
 				"func",
 				"css/foundation/scss/foundation/_functions.scss"
-			],
-			[
-				"founsc",
-				"css/foundation/scss/foundation.scss"
-			],
-			[
-				"foundacss",
-				"css/foundation/scss/foundation.css"
-			],
-			[
-				"typ",
-				"css/foundation/scss/foundation/components/_type.scss"
-			],
-			[
-				"set",
-				"css/foundation/scss/foundation/_settings.scss"
 			]
 		],
 		"width": 0.0
