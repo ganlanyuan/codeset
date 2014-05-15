@@ -63,6 +63,10 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
     });
   };
 })(jQuery);
+// <a href="#bottom" class="smooth">滑到底部</a>
+// $(".smooth").zxxAnchor({
+//     anchortag: "href"					   
+// });
 
 // Author's script
 // for page
