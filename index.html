@@ -5,7 +5,8 @@
 <!--[if (IE 9)&!(IEMobile)]><html class="no-js lt-ie10" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta http-equiv="Content-Type" charset="utf-8">
+	<meta charset="utf-8">
+  <meta http-equiv="refresh" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 	<meta http-equiv="cleartype" content="on">
 
@@ -29,20 +30,10 @@
 	<link rel="apple-touch-icon" sizes="152x152" href="img/touch_icon_152.png">
 
 	<link rel="stylesheet" href="css/index.css">
-	<noscript>
-		<link rel="stylesheet" href="css/foundation/foundation.css">
-	</noscript>
-	<script>
-		var ADAPT_CONFIG = {
-		  path: 'css/',
-		  dynamic: true,
-		  range: [
-		    '640 = foundation/foundation.css'
-		  ]
-		};
-	</script>
-	<!--[if (lt IE 9) & (!IEMobile)]><script src="js/lib/respond.min.js"></script><script src="js/lib/html5.js"></script><![endif]-->
-	<script src="js/lib/jquery-1.9.1.min.js"></script>
+	<link rel="stylesheet" href="css/foundation/foundation.css">
+  
+	<!--[if (lt IE 9) & (!IEMobile)]><script src="js/lib/ie.js"></script><![endif]-->
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<!--[if lt IE 9]><script type="text/javascript" src="js/lib/selectivizr-min.js"></script><![endif]--><!-- jquery needed -->
 	<script src="js/lib/modernizr.2.7.1.min.js"></script>
 </head>
@@ -50,16 +41,18 @@
 
 <!-- no-js-box start -->
 <noscript>
-  <div style=" padding: 20px; z-index: 10000; background-color: #fff; text-align: center; border-bottom: 1px solid #ccc;">
-    <p>To enjoy breathecast.christianpost.com, you'll need to enable JavaScript in your web browser. Please <a href="http://enable-javascript.com/" target="_blank" style="color:#0d6ee7">click here</a> to learn how.</p>
-    <!-- <div id="noscript-logo" style="padding: 15px 20px; max-width: 353px; margin: 0 auto; background-color: #110829;"><img src="http://designdev.christianpost.com/BC/new/images/logo.png" alt="BreatheCast"></div> -->
+  <div class="nojs-cover">
+    <div style=" padding: 20px; background-color: #fff; text-align: center; border-bottom: 1px solid #ccc;">
+      <p style="max-width: none; line-height: 1.4;">To enjoy breathecast.christianpost.com, you'll need to enable JavaScript in your web browser. Please <a href="http://enable-javascript.com/" target="_blank" style="color:#0d6ee7">click here</a> to learn how.</p>
+      <!-- <div id="noscript-logo" style="padding: 15px 20px; max-width: 353px; margin: 0 auto; background-color: #110829;"><img src="http://designdev.christianpost.com/BC/new/images/logo.png" alt="BreatheCast"></div> -->
+    </div>
   </div>
 </noscript>
 <!-- no-js-box end -->
 
 <!--[if lte IE 7]>
 <div id="lte-ie7-cover" style="filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#4C000000', endColorstr='#4C000000');background:rgba(0,0,0,0.3); width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 999999;"></div>
-<div id="lte-ie7" style="position: fixed; z-index: 999999; left: 50%; top: 50px; margin-left: -270px; width: 500px; padding: 20px; background-color: #fff; border: 1px solid  #ccc;">
+<div id="lte-ie7" style="position: fixed; z-index: 999999; left: 50%; top: 50%; margin-left: -270px; margin-top: -157px; width: 500px; height: 275px; padding: 20px; background-color: #fff;">
   <h1 style="font-size: 1.3em; line-height: 1.2; font-weight: bold; font-family: Arial, sans-serif; text-transform: none;">Sorry, we no longer support your version of Internet Explorer.</h1>
   <p>Internet Explorer 6, 7 is no longer supported. To get the best possible experience on our website we recommend that you upgrade your browser.</p>
   <p><span class="btn-close" style="display: inline-block; *display: inline; *zoom: 1; float: right; font-size: .75em; padding: .4em 1em; background-color: #333; color: #f2f2f2; cursor: pointer;">close</span>Just click on an icon to get to the download page. 
