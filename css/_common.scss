@@ -1,19 +1,11 @@
 @charset "UTF-8";
-// add bourbon and foundation
-@import 
-  "mysettings",
-  "bourbon/bourbon",
-  "foundation/components/settings";
+// add bourbon and foundation setting
+@import "bourbon/bourbon";
+@import "foundation/components/settings";
+@import "mysetting";
+
+/* Lazy Load XT 1.0.2 | MIT License */
+.lazy-hidden{opacity:0}.lazy-loaded{-webkit-transition:opacity .3s;-moz-transition:opacity .3s;-ms-transition:opacity .3s;-o-transition:opacity .3s;transition:opacity .3s;opacity:1}
+.no-js img.lazy {display: none;}
 
 // css goes here
-.b-lazy {
-	-webkit-transition: opacity 500ms ease-in-out;
-	 -moz-transition: opacity 500ms ease-in-out;
-		-o-transition: opacity 500ms ease-in-out;
-			transition: opacity 500ms ease-in-out;
-			 max-width: 100%;
-				opacity: 0;
-}
-.b-lazy.b-loaded {
-				opacity: 1;
-}

@@ -1,13 +1,17 @@
 html, body {
   height: 100%; }
 
-.b-lazy {
-  -webkit-transition: opacity 500ms ease-in-out;
-  -moz-transition: opacity 500ms ease-in-out;
-  -o-transition: opacity 500ms ease-in-out;
-  transition: opacity 500ms ease-in-out;
-  max-width: 100%;
+/* Lazy Load XT 1.0.2 | MIT License */
+.lazy-hidden {
   opacity: 0; }
 
-.b-lazy.b-loaded {
+.lazy-loaded {
+  -webkit-transition: opacity .3s;
+  -moz-transition: opacity .3s;
+  -ms-transition: opacity .3s;
+  -o-transition: opacity .3s;
+  transition: opacity .3s;
   opacity: 1; }
+
+.no-js img.lazy {
+  display: none; }
