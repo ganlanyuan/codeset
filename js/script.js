@@ -36,3 +36,5 @@ $(function() {
 		});
 	}).resize();
 });
+
+// @koala-prepend "foundation/foundation.js"
