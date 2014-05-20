@@ -199,20 +199,12 @@
 				"Project: Close"
 			],
 			[
-				"cl",
-				"Project: Close"
-			],
-			[
-				"c",
-				"Project: Close"
-			],
-			[
-				"pro",
-				"Project: Close"
-			],
-			[
 				"sav",
 				"Project: Save As"
+			],
+			[
+				"cl",
+				"Project: Close"
 			],
 			[
 				"text",
@@ -331,6 +323,10 @@
 				"Project: Close"
 			],
 			[
+				"pro",
+				"Project: Close"
+			],
+			[
 				"sass",
 				"Set Syntax: Sass"
 			],
@@ -380,10 +376,7 @@
 	},
 	"file_history":
 	[
-		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_block-grid.scss",
-		"/Volumes/Macintosh HD 2/william/coding/css/animate/components/_bounceInLeft.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/css3/_backface-visibility.scss",
-		"/Volumes/Macintosh HD 2/william/coding/README.md",
 		"/Volumes/Macintosh HD 2/william/coding/js/script.js",
 		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/css3/_columns.scss",
 		"/Volumes/Macintosh HD 2/william/coding/js/bootstrap/components/collapse.js",
@@ -401,6 +394,7 @@
 		"/Volumes/Macintosh HD 2/william/coding/css/mysettings.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/bootstrap/components/_scaffolding.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_settings.scss",
+		"/Volumes/Macintosh HD 2/william/coding/README.md",
 		"/Volumes/Macintosh HD 2/william/coding/css/bourbon/addons/_rem.scss",
 		"/Volumes/Macintosh HD 2/william/coding/css/foundation/components/_side-nav.scss",
 		"/Volumes/Macintosh HD 2/william/coding/README",
@@ -507,7 +501,9 @@
 		"/Users/designer/Desktop/m-gnli/article.html",
 		"/Users/designer/Desktop/m-gnli/index.html",
 		"/Volumes/Macintosh HD 2/william/praise.txt",
-		"/Users/designer/Desktop/m-gnli/test2_w.html"
+		"/Users/designer/Desktop/m-gnli/test2_w.html",
+		"/Volumes/Macintosh HD 2/Design/CMCi/CMCigroup/coding/asset/js/lib/plugins0.js",
+		"/Volumes/Macintosh HD 2/Design/CMCi/CMCigroup/coding/1101/asset/js/lib/plugins.js"
 	],
 	"find":
 	{
@@ -689,8 +685,8 @@
 						"selection":
 						[
 							[
-								3447,
-								3447
+								2374,
+								2374
 							]
 						],
 						"settings":
@@ -745,7 +741,7 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 555.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -764,8 +760,8 @@
 						"selection":
 						[
 							[
-								905,
-								905
+								0,
+								2282
 							]
 						],
 						"settings":
@@ -818,10 +814,11 @@
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 275.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -886,10 +883,6 @@
 		[
 			[
 				"bl",
-				"css/foundation/components/_block-grid.scss"
-			],
-			[
-				"block",
 				"css/foundation/components/_block-grid.scss"
 			],
 			[
@@ -1395,6 +1388,10 @@
 			[
 				"butto",
 				"css/foundation/scss/foundation/components/_buttons.scss"
+			],
+			[
+				"func",
+				"css/foundation/scss/foundation/_functions.scss"
 			]
 		],
 		"width": 0.0
@@ -1404,10 +1401,6 @@
 		"height": 500.0,
 		"selected_items":
 		[
-			[
-				"mg",
-				"~/Desktop/mgnli/coding-mgnli/mgnli.sublime-project"
-			],
 			[
 				"",
 				"/Applications/XAMPP/xamppfiles/htdocs/coding/BC-new.sublime-project"
