@@ -9,52 +9,66 @@
 // $spacing - # of ems to use as padding on each block item. Default: rem-calc(20).
 // $base-style - Apply a base style to block grid. Default: true.
 @mixin block-grid(
-  $per-row:false, 
-  $spacing:$block-grid-default-spacing, 
-  $spacing-lte8:$block-grid-default-spacing-lte8, 
-  $include-spacing:true,
-  $base-style:true) {
+	$per-row:false, 
+	$spacing:$block-grid-default-spacing, 
+	$spacing-lte8:$block-grid-default-spacing-lte8, 
+	$include-spacing:true,
+	$base-style:true) {
 
-  @if $base-style {
-    display: block;
-    padding: 0;
-    @if $lte8 {margin: 0 (-$spacing-lte8/2); *margin: 0;}
-    margin: 0 (-$spacing/2);
-    @include clearfix;
+	@if $base-style {
+		@if $lte8 {
+			margin: 0 (-$spacing-lte8/2); 
+			*margin: 0;
+			letter-spacing: -5px;
+		}
+		display: block;
+		padding: 0;
+		margin: 0 (-$spacing/2);
+		@include clearfix;
 
-    &>li {
-      display: block;
-      height: auto;
-      float: $default-float;
-      @if $include-spacing {
-        @if $lte8 {
-          padding: 0 ($spacing-lte8/2) $spacing-lte8;
-          *padding: 0;
-          > * {
-            *margin: 0 ($spacing-lte8/2) $spacing-lte8;
-          }
-        }
-        padding: 0 ($spacing/2) $spacing;
-      }
-    }
-  }
+		&>li {
+			@if $lte8 {
+				.lt-ie9 & {
+					display: inline-block;
+					*display: inline;
+					*zoom: 1;
+					float: none;
+					vertical-align: top;
+					letter-spacing: 0;
+				}
+			}
+			display: block;
+			height: auto;
+			float: $default-float;
+			@if $include-spacing {
+				@if $lte8 {
+					padding: 0 ($spacing-lte8/2) $spacing-lte8;
+					*padding: 0;
+					> * {
+						*margin: 0 ($spacing-lte8/2) $spacing-lte8;
+					}
+				}
+				padding: 0 ($spacing/2) $spacing;
+			}
+		}
+	}
 
-  @if $per-row {
-    &>li {
-      width: 100%/$per-row;
-      *width: 100%/$per-row - 0.04%;
-      @if $include-spacing {
-        @if $lte8 {
-          padding: 0 ($spacing-lte8/2) $spacing-lte8;
-        }
-        padding: 0 ($spacing/2) $spacing;
-      }
-      list-style: none;
+	@if $per-row {
+		&>li {
+			width: 100%/$per-row;
+			*width: 100%/$per-row - 0.04%;
+			@if $include-spacing {
+				@if $lte8 {
+					padding: 0 ($spacing-lte8/2) $spacing-lte8;
+				}
+				padding: 0 ($spacing/2) $spacing;
+			}
+			list-style: none;
 
-      &:nth-of-type(n) { clear: none; }
-      &:nth-of-type(#{$per-row}n+1) { clear: both; }
-    }
-  }
+			&:nth-of-type(n) { clear: none; }
+			&:nth-of-type(#{$per-row}n+1) { clear: both; }
+		}
+	}
 
 }
 
@@ -62,28 +76,28 @@
 //
 // $size - Name of class to use, i.e. "large" will generate .large-block-grid-1, .large-block-grid-2, etc.
 @mixin block-grid-html-classes($size,$include-spacing) {
-  @for $i from 1 through $block-grid-elements {
-    .#{$size}-block-grid-#{($i)} {
-      @include block-grid($i,$block-grid-default-spacing,$include-spacing:false);
-    }
-  }
+	@for $i from 1 through $block-grid-elements {
+		.#{$size}-block-grid-#{($i)} {
+			@include block-grid($i,$block-grid-default-spacing,$include-spacing:false);
+		}
+	}
 }
 
 @include exports("block-grid") {
-  @if $include-html-grid-classes {
-    
-    [class*="block-grid-"] { @include block-grid; }
+	@if $include-html-grid-classes {
+		
+		[class*="block-grid-"] { @include block-grid; }
 
-    @media #{$small-up} {
-      @include block-grid-html-classes($size:small,$include-spacing:false);
-    }
+		@media #{$small-up} {
+			@include block-grid-html-classes($size:small,$include-spacing:false);
+		}
 
-    @media #{$medium-up} {
-      @include block-grid-html-classes($size:medium,$include-spacing:false);
-    }
+		@media #{$medium-up} {
+			@include block-grid-html-classes($size:medium,$include-spacing:false);
+		}
 
-    @media #{$large-up} {
-      @include block-grid-html-classes($size:large,$include-spacing:false);
-    }
-  }
+		@media #{$large-up} {
+			@include block-grid-html-classes($size:large,$include-spacing:false);
+		}
+	}
 }

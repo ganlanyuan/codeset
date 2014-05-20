@@ -1,6 +1,7 @@
 @charset "UTF-8";
 // add bourbon and foundation
 @import "bourbon/bourbon";
+@import "foundation/components/normalize"; // css reset
 @import "foundation/foundation";
 @import "mysetting";
 
