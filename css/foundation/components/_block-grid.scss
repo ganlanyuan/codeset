@@ -17,9 +17,11 @@
 
 	@if $base-style {
 		@if $lte8 {
-			margin: 0 (-$spacing-lte8/2); 
-			*margin: 0;
-			letter-spacing: -5px;
+			.lt-ie9 & {
+				margin: 0 (-$spacing-lte8/2); 
+				*margin: 0;
+				letter-spacing: -5px;
+			}
 		}
 		display: block;
 		padding: 0;
