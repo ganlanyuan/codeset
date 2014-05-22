@@ -222,10 +222,12 @@ meta.foundation-data-attribute-namespace {
     // Grid Defaults to get images and embeds to work properly
     img,
     object,
-    embed { max-width: 100%; height: auto; }
+    embed { max-width: 100%; }
+    img,
+    object { height: auto; }
 
-    object,
-    embed { height: 100%; }
+    // object,
+    // embed { height: 100%; }
     img { -ms-interpolation-mode: bicubic; }
 
     #map_canvas,
