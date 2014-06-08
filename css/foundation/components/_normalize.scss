@@ -200,13 +200,14 @@ sub {
 
 // Remove border when inside `a` element in IE 8/9.
 
-
+img, svg { height: auto; }
 img {
     border: 0;
 }
-
 // Correct overflow displayed oddly in IE 9.
 
+@media \0screen {img, svg { width: auto; }}
+// fix IE8 to support img height:auto;
 
 svg:not(:root) {
     overflow: hidden;
