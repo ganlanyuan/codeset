@@ -1,8 +1,8 @@
 @charset "UTF-8";
-// add bourbon and foundation
-@import "bourbon/bourbon";
-@import "foundation/components/normalize"; // css reset
+@import "normalize/normalize"; // css reset
 @import "foundation/foundation";
+
+@import "bourbon/bourbon";
 @import "mysetting";
 
 /* Lazy Load XT 1.0.2 | MIT License */

@@ -30,35 +30,35 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 // by zhangxinxu http://www.zhangxinxu.com/wordpress/2010/07/%E9%94%9A%E7%82%B9%E8%B7%B3%E8%BD%AC%E5%8F%8Ajquery%E4%B8%8B%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%8F%92%E4%BB%B6/
 // 2010-07-15 v1.0
 (function($){
-  $.fn.zxxAnchor = function(options){
-    var defaults = {
-      ieFreshFix: true,
-      anchorSmooth: true,
-      anchortag: "anchor",
-      animateTime: 1000
-    };
-    var sets = $.extend({}, defaults, options || {});
-    if(sets.ieFreshFix){
-      var url = window.location.toString();
-      var id = url.split("#")[1];
-      if(id){
-        var t = $("#"+id).offset().top;
-        $(window).scrollTop(t);
-      } 
-    }
-    $(this).each(function(){
-      $(this).click(function(){
-        var aim = $(this).attr(sets.anchortag).replace(/#/g,""); 
-        var pos = $("#"+aim).offset().top;
-        if(sets.anchorSmooth){
-          $("html,body").animate({scrollTop: pos}, sets.animateTime); 
-        }else{
-          $(window).scrollTop(pos);
-        }
-        return false;          
-      }); 
-    });
-  };
+	$.fn.zxxAnchor = function(options){
+		var defaults = {
+			ieFreshFix: true,
+			anchorSmooth: true,
+			anchortag: "anchor",
+			animateTime: 1000
+		};
+		var sets = $.extend({}, defaults, options || {});
+		if(sets.ieFreshFix){
+			var url = window.location.toString();
+			var id = url.split("#")[1];
+			if(id){
+				var t = $("#"+id).offset().top;
+				$(window).scrollTop(t);
+			} 
+		}
+		$(this).each(function(){
+			$(this).click(function(){
+				var aim = $(this).attr(sets.anchortag).replace(/#/g,""); 
+				var pos = $("#"+aim).offset().top;
+				if(sets.anchorSmooth){
+					$("html,body").animate({scrollTop: pos}, sets.animateTime); 
+				}else{
+					$(window).scrollTop(pos);
+				}
+				return false;          
+			}); 
+		});
+	};
 })(jQuery);
 // <a href="#bottom" class="smooth">滑到底部</a>
 // $(".smooth").zxxAnchor({
@@ -68,6 +68,28 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 // Author's script
 // for page
 
+/* make iframe responsible 
+ * change .video to your iframe container class
+ */
+function fluidVideo () {
+	var container = document.querySelectorAll('.fluid-video');
+	for (var q = 0; q < container.length; q++) {
+		var newW = container[q].offsetWidth;
+		var ifr = container[q].childNodes;
+		for (var i = 0; i < ifr.length; i++) {
+			if ( ifr[i].nodeType == '1' ){
+				var ratio = ifr[i].height / ifr[i].width;
+				// ifr[i].width = '';
+				// ifr[i].height = '';
+
+				ifr[i].width = newW;
+				ifr[i].height = newW * ratio;
+			}
+		}
+	}
+}
+window.onload = fluidVideo;
+window.onresize = fluidVideo;
 
 
 // for plugins
