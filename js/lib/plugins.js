@@ -92,4 +92,104 @@ window.onload = fluidVideo;
 window.onresize = fluidVideo;
 
 
+// document.ready
+(function () {
+  var ie = !!(window.attachEvent && !window.opera);
+  var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
+  var fn = [];
+  var run = function () { for (var i = 0; i < fn.length; i++) fn[i](); };
+  var d = document;
+  d.ready = function (f) {
+    if (!ie && !wk && d.addEventListener)
+      return d.addEventListener('DOMContentLoaded', f, false);
+    if (fn.push(f) > 1) return;
+    if (ie)
+      (function () {
+        try { d.documentElement.doScroll('left'); run(); }
+        catch (err) { setTimeout(arguments.callee, 0); }
+      })();
+    else if (wk)
+      var t = setInterval(function () {
+        if (/^(loaded|complete)$/.test(d.readyState))
+          clearInterval(t), run();
+      }, 0);
+  };
+})();
+
+// classList(Object)   [= Object.classList]
+function classList(e) {
+  if (e.classList) {return e.classList;} 
+  else {return new CSSClassList(e);} 
+}
+function CSSClassList(e) { this.e = e; }
+CSSClassList.prototype.contains = function(c) { 
+  if (c.length === 0 || c.indexOf(" ") != -1) {
+    throw new Error("Invalid class name: '" + c + "'");
+  }
+  var classes = this.e.className;
+  if (!classes) {return false; }
+  if (classes === c) {return true;} 
+  return classes.search("\\b" + c + "\\b") != -1;
+};
+CSSClassList.prototype.add = function(c) {
+  if (this.contains(c)) {return}; 
+  var classes = this.e.className;
+  if (classes && classes[classes.length-1] != " ") {
+    c = " " + c; 
+    this.e.className += c;
+  } 
+};
+CSSClassList.prototype.remove = function(c) {
+  if (c.length === 0 || c.indexOf(" ") != -1){
+      throw new Error("Invalid class name: '" + c + "'");}
+  var pattern = new RegExp("\\b" + c + "\\b\\s*", "g");
+  this.e.className = this.e.className.replace(pattern, "");
+};
+CSSClassList.prototype.toggle = function(c) {
+  if (this.contains(c)) { 
+    this.remove(c); 
+    return false;
+  }
+  else { 
+    this.add(c); 
+    return true;
+  }
+};
+CSSClassList.prototype.toString = function() { return this.e.className; };
+CSSClassList.prototype.toArray = function() {
+  return this.e.className.match(/\b\w+\b/g) || [];
+};
+
+// toggleClass(Object, className)
+function toggleClass(myObject,myClass) {
+  var c = myClass,
+      o = myObject;
+
+  if (o.classList) {
+    o.classList.toggle(c);
+  } else{
+    var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
+    if ( o.className.search(pattern) != -1 ) {
+      o.className = o.className.replace(pattern, '');
+    } else{
+      o.className += ' ' + c;
+    };
+  };
+  return false;
+};
+
+// document.ready(function () {
+//  var menu = document.querySelector('.menu a'),
+//      bodyWrap = document.querySelector('.body-wrap')
+//      red = document.querySelector('.togglered');
+//  menu.onclick = function () {
+//    classList(bodyWrap).toggle('shownav');
+//    return false;
+//  };
+//  red.onclick = function () {
+//    classList(this).toggle('red');
+//    return false;
+//  }
+// });
+
 // for plugins
