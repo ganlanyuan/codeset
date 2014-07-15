@@ -192,4 +192,47 @@ function toggleClass(myObject,myClass) {
 //  }
 // });
 
-// for plugins
+// get index from parent element
+function index(current, obj){
+  for (var i = 0;i < obj.length; i++) {
+    if (obj[i] == current) {
+      return i;
+    }
+  }
+}
+
+// get window width
+var d = document,
+    w = window,
+    e = d.documentElement,
+    g = d.querySelector('body'),
+    x = w.innerWidth || e.clientWidth || g.clientWidth;
+
+// get document height
+var b = d.body,
+    h = d.documentElement,
+    bh = Math.max( b.scrollHeight, b.offsetHeight, h.clientHeight, h.scrollHeight, h.offsetHeight );
+
+// get window scrollTop
+if (window.pageYOffset != null) {
+  st = window.pageYOffset;
+} else if(d.compatMode == 'CSS1Compat'){
+  st = d.documentElement.scrollTop;
+} else {
+  st = d.body.scrollTop;
+}
+
+// get window height
+if (w.innerWidth != null) {
+  wh = w.innerHeight;
+} else if(d.compatMode == 'CSS1Compat'){
+  wh = d.documentElement.clientHeight;
+} else {
+  wh = d.body.clientHeight;
+};
+
+// get element size
+var box = element.getBoundingClientRect(),
+    elw = box.width || (box.right - box.left),
+    elh = box.height || (box.bottom - box.top);
+
