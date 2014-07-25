@@ -5,12 +5,6 @@
 $include-html-grid-classes: $include-html-classes !default;
 $include-xl-html-grid-classes: false !default;
 
-$row-width: rem-calc(1000) !default;
-$column-gutter: rem-calc(30) !default;
-$row-width-lte8: 1000px !default;
-$column-gutter-lte8: 30px !default;
-$total-columns: 12 !default;
-
 //
 // Grid Functions
 //

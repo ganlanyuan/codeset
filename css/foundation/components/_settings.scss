@@ -115,10 +115,11 @@ $cursor-text-value: text !default;
 $include-html-grid-classes: $include-html-classes;
 $include-xl-html-grid-classes: false;
 
-$row-width: rem-calc(1000);
-$column-gutter: rem-calc(30);
-$column-gutter-lte8: 30px;
-$total-columns: 12;
+$row-width: rem-calc(1200) !default;
+$row-width-lte8: 1200px !default;
+$column-gutter: rem-calc(30) !default;
+$column-gutter-lte8: 30px !default;
+$total-columns: 12 !default;
 
 //
 // TYPOGRAPHY
