@@ -12,4 +12,111 @@
 <noscript><img src="lazy.jpg" width="100" height="100"></noscript>
 */
 
-// @koala-prepend "foundation/foundation.js"
+// document.ready
+(function () {
+  var ie = !!(window.attachEvent && !window.opera);
+  var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
+  var fn = [];
+  var run = function () { for (var i = 0; i < fn.length; i++) fn[i](); };
+  var d = document;
+  d.ready = function (f) {
+    if (!ie && !wk && d.addEventListener)
+      return d.addEventListener('DOMContentLoaded', f, false);
+    if (fn.push(f) > 1) return;
+    if (ie)
+      (function () {
+        try { d.documentElement.doScroll('left'); run(); }
+        catch (err) { setTimeout(arguments.callee, 0); }
+      })();
+    else if (wk)
+      var t = setInterval(function () {
+        if (/^(loaded|complete)$/.test(d.readyState))
+          clearInterval(t), run();
+      }, 0);
+  };
+})();
+
+// get window height
+function getWindowHeight () {
+  var wh, d = document, w = window;
+  if (w.innerWidth !== null) {
+    wh = w.innerHeight;
+  } else if(d.compatMode === 'CSS1Compat'){
+    wh = d.documentElement.clientHeight;
+  } else {
+    wh = d.body.clientHeight;
+  } 
+  return wh;
+}
+
+// get window width
+function getWindowWidth () {
+  var d = document, w = window, e = d.documentElement, b = d.querySelector('body'), x = w.innerWidth || e.clientWidth || b.clientWidth;
+  return x;
+}
+
+// get object width
+function getObjectWidth (myObject) {
+  var box = myObject.getBoundingClientRect();
+  var obw = box.width || (box.right - box.left);
+  return obw;
+}
+
+// get object height
+function getObjectHeight (myObject) {
+  var box = myObject.getBoundingClientRect();
+  var obh = box.height || (box.bottom - box.top);
+  return obh;
+}
+
+// get document scroll top
+function getDocumentScrollTop () {
+  var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+  return scrollTop;
+}
+
+// addClass, removeClass, toggleClass(Object, className)
+function addClass (myObject,myClass) {
+  var c = myClass, o = myObject;
+  var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
+  if ( o.className.search(pattern) === -1 ) {
+    o.className += ' ' + c;
+  } 
+}
+function removeClass (myObject,myClass) {
+  var c = myClass, o = myObject;
+  var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
+  if ( o.className.search(pattern) !== -1 ) {
+    o.className = o.className.replace(pattern, '');
+  } 
+}
+function toggleClass(myObject,myClass) {
+  var c = myClass, o = myObject;
+  if (o.classList) {
+    o.classList.toggle(c);
+  } else{
+    var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
+    if ( o.className.search(pattern) !== -1 ) {
+      o.className = o.className.replace(pattern, '');
+    } else{
+      o.className += ' ' + c;
+    }
+  }
+  return false;
+}
+
+// scroll to
+function scrollTo(element, to, duration) {
+  if (duration < 0) return;
+  var difference = to - element.scrollTop;
+  var perTick = difference / duration * 10;
+
+  setTimeout(function() {
+    element.scrollTop = element.scrollTop + perTick;
+    if (element.scrollTop == to) return;
+    scrollTo(element, to, duration - 10);
+  }, 10);
+}
+
+// my script goes here
+

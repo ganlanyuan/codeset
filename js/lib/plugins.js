@@ -91,31 +91,6 @@ function fluidVideo () {
 window.onload = fluidVideo;
 window.onresize = fluidVideo;
 
-
-// document.ready
-(function () {
-  var ie = !!(window.attachEvent && !window.opera);
-  var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
-  var fn = [];
-  var run = function () { for (var i = 0; i < fn.length; i++) fn[i](); };
-  var d = document;
-  d.ready = function (f) {
-    if (!ie && !wk && d.addEventListener)
-      return d.addEventListener('DOMContentLoaded', f, false);
-    if (fn.push(f) > 1) return;
-    if (ie)
-      (function () {
-        try { d.documentElement.doScroll('left'); run(); }
-        catch (err) { setTimeout(arguments.callee, 0); }
-      })();
-    else if (wk)
-      var t = setInterval(function () {
-        if (/^(loaded|complete)$/.test(d.readyState))
-          clearInterval(t), run();
-      }, 0);
-  };
-})();
-
 // classList(Object)   [= Object.classList]
 function classList(e) {
   if (e.classList) {return e.classList;} 
@@ -160,38 +135,6 @@ CSSClassList.prototype.toArray = function() {
   return this.e.className.match(/\b\w+\b/g) || [];
 };
 
-// toggleClass(Object, className)
-function toggleClass(myObject,myClass) {
-  var c = myClass,
-      o = myObject;
-
-  if (o.classList) {
-    o.classList.toggle(c);
-  } else{
-    var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
-    if ( o.className.search(pattern) != -1 ) {
-      o.className = o.className.replace(pattern, '');
-    } else{
-      o.className += ' ' + c;
-    };
-  };
-  return false;
-};
-
-// document.ready(function () {
-//  var menu = document.querySelector('.menu a'),
-//      bodyWrap = document.querySelector('.body-wrap')
-//      red = document.querySelector('.togglered');
-//  menu.onclick = function () {
-//    classList(bodyWrap).toggle('shownav');
-//    return false;
-//  };
-//  red.onclick = function () {
-//    classList(this).toggle('red');
-//    return false;
-//  }
-// });
-
 // get index from parent element
 function index(current, obj){
   for (var i = 0;i < obj.length; i++) {
@@ -200,39 +143,4 @@ function index(current, obj){
     }
   }
 }
-
-// get window width
-var d = document,
-    w = window,
-    e = d.documentElement,
-    g = d.querySelector('body'),
-    x = w.innerWidth || e.clientWidth || g.clientWidth;
-
-// get document height
-var b = d.body,
-    h = d.documentElement,
-    bh = Math.max( b.scrollHeight, b.offsetHeight, h.clientHeight, h.scrollHeight, h.offsetHeight );
-
-// get window scrollTop
-if (window.pageYOffset != null) {
-  st = window.pageYOffset;
-} else if(d.compatMode == 'CSS1Compat'){
-  st = d.documentElement.scrollTop;
-} else {
-  st = d.body.scrollTop;
-}
-
-// get window height
-if (w.innerWidth != null) {
-  wh = w.innerHeight;
-} else if(d.compatMode == 'CSS1Compat'){
-  wh = d.documentElement.clientHeight;
-} else {
-  wh = d.body.clientHeight;
-};
-
-// get element size
-var box = element.getBoundingClientRect(),
-    elw = box.width || (box.right - box.left),
-    elh = box.height || (box.bottom - box.top);
 

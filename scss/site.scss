@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@import "normalize/normalize"; // css reset
+@import "foundation/foundation";
+
+@import "bourbon/bourbon";
+@import "mysetting";
+
+// add css files
+@import "common";
+@import "index";
+@import "mq";
+
