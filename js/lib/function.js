@@ -95,35 +95,51 @@ function getDocumentScrollTop () {
 	return scrollTop;
 }
 
-// addClass, removeClass, toggleClass(Object, className)
-function addClass (myObject,myClass) {
-	var c = myClass, o = myObject;
-	var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
-	if ( o.className.search(pattern) === -1 ) {
-		o.className += ' ' + c;
-	} 
+// classList(Object)   [= Object.classList]
+function classList(e) {
+  if (e.classList) {return e.classList;} 
+  else {return new CSSClassList(e);} 
 }
-function removeClass (myObject,myClass) {
-	var c = myClass, o = myObject;
-	var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
-	if ( o.className.search(pattern) !== -1 ) {
-		o.className = o.className.replace(pattern, '');
-	} 
-}
-function toggleClass(myObject,myClass) {
-	var c = myClass, o = myObject;
-	if (o.classList) {
-		o.classList.toggle(c);
-	} else{
-		var pattern = new RegExp('\\s+\\b' + c + '\\b', 'g');
-		if ( o.className.search(pattern) !== -1 ) {
-			o.className = o.className.replace(pattern, '');
-		} else{
-			o.className += ' ' + c;
-		}
-	}
-	return false;
-}
+function CSSClassList(e) { this.e = e; }
+CSSClassList.prototype.contains = function(c) { 
+  if (c.length === 0 || c.indexOf(" ") != -1) {
+    throw new Error("Invalid class name: '" + c + "'");
+  }
+  var classes = this.e.className;
+  if (!classes) {return false; }
+  if (classes === c) {return true;} 
+  return classes.search("\\b" + c + "\\b") != -1;
+};
+CSSClassList.prototype.add = function(c) {
+  if (this.contains(c)) {return}; 
+  var classes = this.e.className;
+  if (!classes){
+  	this.e.className = c;
+  } else {
+    c = " " + c; 
+    this.e.className += c;
+  } 
+};
+CSSClassList.prototype.remove = function(c) {
+  if (c.length === 0 || c.indexOf(" ") != -1){
+      throw new Error("Invalid class name: '" + c + "'");}
+  var pattern = new RegExp("\\s*\\b" + c + "\\b", "g");
+  this.e.className = this.e.className.replace(pattern, "");
+};
+CSSClassList.prototype.toggle = function(c) {
+  if (this.contains(c)) { 
+    this.remove(c); 
+    return false;
+  }
+  else { 
+    this.add(c); 
+    return true;
+  }
+};
+CSSClassList.prototype.toString = function() { return this.e.className; };
+CSSClassList.prototype.toArray = function() {
+  return this.e.className.match(/\b\w+\b/g) || [];
+};
 
 // scroll to
 function scrollTo(element, to, duration) {
