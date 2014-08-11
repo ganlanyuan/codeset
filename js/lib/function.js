@@ -1,86 +1,115 @@
 // document.ready
-(function () {var ie = !!(window.attachEvent && !window.opera); var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525); var fn = []; var run = function () { for (var i = 0; i < fn.length; i++) {fn[i]();} }; var d = document; d.ready = function (f) {if (!ie && !wk && d.addEventListener){return d.addEventListener('DOMContentLoaded', f, false); } if (fn.push(f) > 1) {return;} if (ie){(function () {try { d.documentElement.doScroll('left'); run(); } catch (err) { setTimeout(arguments.callee, 0); } })(); } else if (wk){var t = setInterval(function () {if (/^(loaded|complete)$/.test(d.readyState)){clearInterval(t), run(); } }, 0); } }; })();
+(function () {
+  var ie = !!(window.attachEvent && !window.opera);
+  var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
+  var fn = [];
+  var run = function () { for (var i = 0; i < fn.length; i++){fn[i]();} };
+  var d = document;
+  d.ready = function (f) {
+    if (!ie && !wk && d.addEventListener){
+      return d.addEventListener('DOMContentLoaded', f, false);
+    }
+    if (fn.push(f) > 1) {return;}
+    if (ie){
+      (function () {
+        try { d.documentElement.doScroll('left'); run(); }
+        catch (err) { setTimeout(arguments.callee, 0); }
+      })();
+    }else if (wk){
+      var t = setInterval(function () {
+        if (/^(loaded|complete)$/.test(d.readyState)){
+          clearInterval(t), run();
+        }
+      }, 0);
+    }
+  };
+})();
 
 // get window width, height, scrolltop
 // var a = new MyWindow(); a.getWidth || getHeight || getScrollTop
 var MyWindow = function () {};
 MyWindow.prototype.getWidth = function  () {
-	var d = document, w = window, e = d.documentElement, b = d.querySelector('body'), ww = w.innerWidth || e.clientWidth || b.clientWidth;
-	return ww;	
+  var d = document, w = window,
+  winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
+  return winW;  
 };
 MyWindow.prototype.getHeight = function () {
-	var wh, d = document, w = window;
-	if (w.innerWidth !== null) { wh = w.innerHeight; } 
-	else if(d.compatMode === 'CSS1Compat'){ wh = d.documentElement.clientHeight;
-	} 
-	else { wh = d.body.clientHeight; }
-	return wh;
+  var winH, d = document, w = window;
+  if(w.innerHeight) { // all except IE
+    winH = w.innerHeight;
+  } else if (d.documentElement && d.documentElement.clientHeight) {
+    // IE 6 Strict Mode
+    winH = d.documentElement.clientHeight;
+  } else if (d.body) { // other
+    winH = d.body.clientHeight;
+  }
+  return winH;
 };
 MyWindow.prototype.getScrollTop = function () {
-	var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-	return scrollTop;
-}
+  var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+  return scrollTop;
+};
 
 // get element width, height, actual top, actual left
 // var a = new Element(Object); a.getWidth
-var Element = function (myObject) {
-	this.o = myObject;
-	this.box = this.o.getBoundingClientRect();
+var myElement = function (myObject) {
+  this.o = myObject;
+  this.box = this.o.getBoundingClientRect();
 };
-Element.prototype.getWidth = function () {
-	var ow = this.box.width || (this.box.right - this.box.left);
-	return ow;
+myElement.prototype.getWidth = function () {
+  var ow = this.box.width || (this.box.right - this.box.left);
+  return ow;
 };
-Element.prototype.getHeight = function () {
-	var oh = this.box.height || (this.box.bottom - this.box.top);
-	return oh;
+myElement.prototype.getHeight = function () {
+  var oh = this.box.height || (this.box.bottom - this.box.top);
+  return oh;
 };
-Element.prototype.getTop = function () {
-	var actualTop = this.o.offsetTop, current = this.o.offsetParent;
-	while (current !== null){
-		actualTop += current.offsetTop;
-		current = current.offsetParent;
-	}
-	return actualTop;
+myElement.prototype.getTop = function () {
+  var actualTop = this.o.offsetTop, current = this.o.offsetParent;
+  while (current !== null){
+    actualTop += current.offsetTop;
+    current = current.offsetParent;
+  }
+  return actualTop;
 };
-Element.prototype.getLeft = function () {
-	var actualLeft = this.o.offsetLeft, current = this.o.offsetParent;
-	while (current !== null){
-		actualLeft += current.offsetLeft;
-		current = current.offsetParent;
-	}
-	return actualLeft;
+myElement.prototype.getLeft = function () {
+  var actualLeft = this.o.offsetLeft, current = this.o.offsetParent;
+  while (current !== null){
+    actualLeft += current.offsetLeft;
+    current = current.offsetParent;
+  }
+  return actualLeft;
 };
 
 
 // classList(Object)   [= Object.classList]
 // var a = classList(Object); a.add('class');
+function CSSClassList(e) { this.e = e; }
 function classList(e) {
   if (e.classList) {return e.classList;} 
   else {return new CSSClassList(e);} 
 }
-function CSSClassList(e) { this.e = e; }
 CSSClassList.prototype.contains = function(c) { 
-  if (c.length === 0 || c.indexOf(" ") != -1) {
+  if (c.length === 0 || c.indexOf(" ") !== -1) {
     throw new Error("Invalid class name: '" + c + "'");
   }
   var classes = this.e.className;
   if (!classes) {return false; }
   if (classes === c) {return true;} 
-  return classes.search("\\b" + c + "\\b") != -1;
+  return classes.search("\\b" + c + "\\b") !== -1;
 };
 CSSClassList.prototype.add = function(c) {
-  if (this.contains(c)) {return}; 
+  if (this.contains(c)) {return;} 
   var classes = this.e.className;
   if (!classes){
-  	this.e.className = c;
+    this.e.className = c;
   } else {
     c = " " + c; 
     this.e.className += c;
   } 
 };
 CSSClassList.prototype.remove = function(c) {
-  if (c.length === 0 || c.indexOf(" ") != -1){
+  if (c.length === 0 || c.indexOf(" ") !== -1){
       throw new Error("Invalid class name: '" + c + "'");}
   var pattern = new RegExp("\\s*\\b" + c + "\\b", "g");
   this.e.className = this.e.className.replace(pattern, "");
@@ -103,15 +132,15 @@ CSSClassList.prototype.toArray = function() {
 
 // scroll to
 function scrollTo(element, to, duration) {
-	if (duration < 0) {return;}
-	var difference = to - element.scrollTop;
-	var perTick = difference / duration * 10;
+  if (duration < 0) {return;}
+  var difference = to - element.scrollTop;
+  var perTick = difference / duration * 10;
 
-	setTimeout(function() {
-		element.scrollTop = element.scrollTop + perTick;
-		if (element.scrollTop === to) {return;}
-		scrollTo(element, to, duration - 10);
-	}, 10);
+  setTimeout(function() {
+    element.scrollTop = element.scrollTop + perTick;
+    if (element.scrollTop === to) {return;}
+    scrollTo(element, to, duration - 10);
+  }, 10);
 }
 
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
