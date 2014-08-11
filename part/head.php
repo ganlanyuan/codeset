@@ -25,9 +25,17 @@
 		<link rel="stylesheet" href="css/font.css" />
 	<!--<![endif]-->
 	<link rel="stylesheet" href="css/site.css">
+	
 	<!--[if (lt IE 9)]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="js/lib/ie.js"></script>
 	<![endif]-->
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="js/script.min.js"></script>
+	<!--[if lt IE 9]>
+	  <script src="js/foundation/foundation.lte8.min.js"></script>
+	<![endif]-->
+	<script>
+	  $(document).foundation();
+	</script>
 </head>

@@ -5,6 +5,5 @@
 	
 	<?php include 'part/footer.php'; ?>
 	<?php include 'part/old-ie.php'; ?>
-	<?php include 'part/footer-js.php'; ?>
 </body>
 </html>
