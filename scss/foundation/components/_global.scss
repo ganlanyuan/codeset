@@ -194,11 +194,11 @@ meta.foundation-data-attribute-namespace {
 	@if $include-html-global-classes {
 
 		// Set box-sizing globally to handle padding and border widths
-		// *,
-		// *:before,
-		// *:after {
-		//   @include box-sizing(border-box);
-		// }
+		*,
+		*:before,
+		*:after {
+		  @include box-sizing(border-box);
+		}
 
 		html,
 		body { font-size: $base-font-size; }
@@ -238,8 +238,8 @@ meta.foundation-data-attribute-namespace {
 		}
 
 		// Miscellaneous useful HTML classes
-		.left   { float: left !important; }
-		.right  { float: right !important; }
+		// .left   { float: left !important; }
+		// .right  { float: right !important; }
 		.clearfix     { @include clearfix; }
 		.hide         { display: none; }
 

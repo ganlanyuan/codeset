@@ -2,12 +2,13 @@
 
 @import "normalize/normalize"; // css reset
 @import "foundation/foundation";
+@import "semantic-ui/semantic-ui";
 
 @import "bourbon/bourbon";
-@import "mysetting";
+@import "site/mysetting";
 
 // add css files
-@import "common";
-@import "index";
-@import "mq";
+@import "site/common";
+@import "site/index";
+@import "site/mq";
 
