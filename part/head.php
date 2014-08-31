@@ -14,26 +14,23 @@
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
 
-	<link rel="shortcut icon" href="favicon.ico"> <!-- 16x16 -->
-	<link rel="shortcut icon" href="favicon.png"> <!-- 32x32 -->
+	<link rel="shortcut icon" href="img/favicon.ico"> <!-- 16x16 -->
+	<link rel="shortcut icon" href="img/favicon.png"> <!-- 32x32 -->
 	<link rel="apple-touch-icon" href="img/touch_icon_60.png"> <!-- 60x60 -->
 	<link rel="apple-touch-icon" sizes="76x76" href="img/touch_icon_76.png"> <!-- 76x76 -->
 	<link rel="apple-touch-icon" sizes="120x120" href="img/touch_icon_120.png"> <!-- 120x120 -->
 	<link rel="apple-touch-icon" sizes="152x152" href="img/touch_icon_152.png"> <!-- 152x152 -->
 
-	<!--[if (!IE 8)&(!IE 7)]><!-->
-		<link rel="stylesheet" href="css/font.css" />
-	<!--<![endif]-->
-	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="asset/css/site.css">
 	
 	<!--[if (lt IE 9)]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="js/lib/ie.js"></script>
+		<script src="asset/js/lib/ie.js"></script>
 	<![endif]-->
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="js/script.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="asset/js/script.min.js"></script>
 	<!--[if lt IE 9]>
-	  <script src="js/foundation/foundation.lte8.min.js"></script>
+	  <script src="asset/js/foundation/foundation.lte8.min.js"></script>
 	<![endif]-->
 	<script>
 	  $(document).foundation();

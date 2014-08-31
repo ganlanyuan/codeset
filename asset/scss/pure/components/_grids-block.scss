@@ -1,0 +1,40 @@
+// mixin ul { @include block(3); }
+@mixin block($block-number) {
+	@at-root (without: media) {
+		@extend %row-common;
+	}
+	> li {
+		@include col(1, $block-number);
+		margin-bottom: $block-gutter-w;
+		> :last-child { margin-bottom: 0; }
+	}
+}
+
+// generate css
+@if $generate-grid-block {
+	@for $i from 1 through $block-grid-number {
+		.block-#{$i} {
+			@include block($i);
+		}
+		@media screen and (min-width: $sm) {
+			.block-sm-#{$i} {
+				@include block($i);
+			}
+		}
+		@media screen and (min-width: $md) {
+			.block-md-#{$i} {
+				@include block($i);
+			}
+		}
+		@media screen and (min-width: $lg) {
+			.block-lg-#{$i} {
+				@include block($i);
+			}
+		}
+		@media screen and (min-width: $xl) {
+			.block-xl-#{$i} {
+				@include block($i);
+			}
+		}
+	}
+}

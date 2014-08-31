@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+// setting for pure ======================
+// generate css
+$generate-grid: true !default;
+$generate-grid-block: false !default;
+$generate-checkbox: false !default;
+// support IE7
+$IE7: false !default;
+// grid
+$row-w: em(1200) !default;
+$gutter-w: em(20) !default;
+$block-gutter-w: $gutter-w;
+$block-grid-number: 8 !default;
+$sm: em(568) !default;
+$md: em(768) !default;
+$lg: em(1024) !default;
+$xl: em(1280) !default;
+// form
+$focus-border-color: #129FEA !default;
+$focus-invalid-color: #b94a48 !default;
+$focus-invalid-border-color: #ee5f5b !default;
+// button
+$basic-color: #e6e6e6 !default;
+$simply-border-color: #ddd !default;
+$social: (
+  facebook: #4462B1, 
+  twitter: #4E9EDB, 
+  google: #567EF0, 
+  google-plus: #DA4835, 
+  linkedin: #005987, 
+  rss: #EF922F, 
+  email: #1D90DD, 
+  primary: #0078E7
+) !default;
+
+// site setting ============================
+// color
+
+
+
+// font-family
+
+
+
+// font-size
+
+// z-index
+$z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
+// transition
+%globle-transition {
+  @include transition(all .3s $ease-out-quart);
+}

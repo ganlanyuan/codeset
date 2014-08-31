@@ -1,0 +1,42 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Behold, here are all the Foundation foundation.
+@import "components/settings";
+@import	"components/global";
+// @import	"components/type";
+// @import	"components/visibility";
+// @import	"components/grid";
+// @import	"components/block-grid";
+// @import	"components/forms";
+// @import	"components/tables";
+// @import	"components/side-nav";	// side nav
+// @import	"components/top-bar";	// top nav
+// @import	"components/offcanvas";	// mobile nav
+// @import	"components/sub-nav";	// filter
+// @import	"components/breadcrumbs";	// breadcrumbs
+// @import	"components/pagination";
+// @import	"components/buttons";
+// @import	"components/button-groups";
+// @import	"components/dropdown";
+// @import	"components/dropdown-buttons";
+// @import	"components/split-buttons"; // similar with dropdown btn
+// @import	"components/thumbs";	// thumbnail image
+// @import	"components/inline-lists";
+// @import	"components/alert-boxes";
+// @import	"components/tooltips";
+// @import	"components/labels";
+// @import	"components/tabs";
+// @import	"components/accordion";	// similar with tab
+// @import	"components/panels";
+// @import	"components/pricing-tables";
+// @import	"components/progress-bars";
+// @import	"components/range-slider";
+// @import	"components/clearing";	// Lightbox
+// @import	"components/flex-video";	// make video flexble with css
+// @import	"components/joyride";	// jump to next step
+// @import	"components/keystrokes";	// keyboard affordances
+// @import	"components/magellan";	// fixed on top when touch the window top
+// @import	"components/orbit";	// simple slideshow
+// @import	"components/reveal";	// pop-up
+// @import	"components/switch";
