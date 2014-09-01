@@ -1,0 +1,86 @@
+%button-basic {
+	display: inline-block;
+	@if $IE7 {
+		*display: inline; //IE 6/7
+		*zoom: 1;
+		*font-size: 90%; //IE 6/7 - To reduce IE's oversized button text
+		*overflow: visible; //IE 6/7 - Because of IE's overly large left/right padding on buttons
+	}
+	padding: 0.6em 1.1em;
+	color: #444;  
+	color: rgba(0, 0, 0, .8); 
+	border-radius: .3em;
+	border: 1px solid $basic-color;
+	background-color: $basic-color;
+	line-height: 1;
+	white-space: nowrap;
+	// vertical-align: middle;
+	text-align: center;
+	cursor: pointer;
+	// -webkit-user-drag: none;
+	// -webkit-user-select: none;
+	// -moz-user-select: none;
+	// -ms-user-select: none;
+	// user-select: none;
+	text-decoration: none;
+	&:hover { text-decoration: none; }
+	&:focus { outline: 0; }
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease;
+	// Firefox: Get rid of the inner focus border 
+	&::-moz-focus-inner { padding: 0; border: 0; }
+}
+%color-white { color: #fff; }
+@mixin button (
+	$color: false,
+	$thin: false,
+	$bold: false,
+	$fluid: false,
+	$simple: false,
+	$disabled: false
+	){
+	@extend %button-basic;
+	@if $color {
+		border-color: $color;
+		background-color: $color;
+		color: #fff;
+		&:hover {
+			border-color: lighten($color, 7%);
+			background-color: lighten($color, 7%);
+		}
+		&:focus {
+			box-shadow: inset 0px 3px 3px rgba(0,0,0,.1);
+		}
+	}
+	@if $thin {
+		padding: .5em 1em;
+	}
+	@if $bold {
+		padding: .7em 1em;
+	}
+	@if $fluid {
+		width: 100%;
+	}
+	@if $simple {
+		border-color: $simply-border-color;
+		background-color: #fff;
+	}
+	@if $disabled {
+		&, 
+		&:hover,
+		&:focus,
+		&:active {
+			border-color: $basic-color;
+			background-color: $basic-color;
+			filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+			filter: "alpha(opacity=40)";
+			-khtml-opacity: 0.40;
+			-moz-opacity: 0.40;
+			opacity: 0.40;
+			cursor: not-allowed;
+			box-shadow: none;
+		}
+	}
+}

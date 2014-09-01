@@ -1,0 +1,46 @@
+@media only screen and (max-width : em(480)) {
+	[type="text"],
+	[type="password"],
+	[type="email"],
+	[type="url"],
+	[type="date"],
+	[type="month"],
+	[type="time"],
+	[type="datetime"],
+	[type="datetime-local"],
+	[type="week"],
+	[type="number"],
+	[type="search"],
+	[type="tel"],
+	[type="color"],
+	label {
+		margin-bottom: 0.3em;
+		// display: block;
+	}
+	button[type="submit"] {
+		margin: 0.7em 0 0;
+	}
+
+	// form-aligned
+	.form-aligned {
+		.form-aligned-group {
+			label {
+				margin-bottom: 0.3em;
+				text-align: left;
+				display: block;
+				width: 100%;
+			}
+		}
+		.form-control {
+			margin: 1em 0 0 0;
+		}
+	}
+
+	.form-message-inline,
+	.form-message {
+		display: block;
+		font-size: 80%;
+		/* Increased bottom padding to make it group with its related input element. */
+		padding: 0.2em 0 0.8em;
+	}
+}
