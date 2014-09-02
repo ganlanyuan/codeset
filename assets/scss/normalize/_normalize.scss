@@ -192,14 +192,11 @@ sub {
 
 // Remove border when inside `a` element in IE 8/9.
 
-<<<<<<< HEAD:css/foundation/components/_normalize.scss
-img, svg { height: auto; }
-=======
 img, svg { 
 	max-width: 100%; 
 	height: auto; 
 }
->>>>>>> develop:assets/scss/normalize/_normalize.scss
+
 img {
 	border: 0;
 }
