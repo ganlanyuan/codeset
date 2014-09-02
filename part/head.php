@@ -21,16 +21,16 @@
 	<link rel="apple-touch-icon" sizes="120x120" href="img/touch_icon_120.png"> <!-- 120x120 -->
 	<link rel="apple-touch-icon" sizes="152x152" href="img/touch_icon_152.png"> <!-- 152x152 -->
 
-	<link rel="stylesheet" href="asset/css/site.css">
+	<link rel="stylesheet" href="assets/css/site.css">
 	
 	<!--[if (lt IE 9)]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="asset/js/lib/ie.js"></script>
+		<script src="assets/js/lib/ie.js"></script>
 	<![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="asset/js/script.min.js"></script>
+	<script src="assets/js/script.min.js"></script>
 	<!--[if lt IE 9]>
-	  <script src="asset/js/foundation/foundation.lte8.min.js"></script>
+	  <script src="assets/js/foundation/foundation.lte8.min.js"></script>
 	<![endif]-->
 	<script>
 	  $(document).foundation();
