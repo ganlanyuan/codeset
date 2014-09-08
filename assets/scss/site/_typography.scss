@@ -1,3 +1,13 @@
+/* typography
+-----------------------------
+basic typography
+base size
+lists 
+tables
+margins & padding
+text classes
+*/
+
 // basic typography
 cite, em, dfn { font-style: italic; }
 del { text-decoration: line-through; color: #666; }
@@ -7,29 +17,36 @@ a abbr, a acronym { border: none; }
 abbr[title], acronym[title], dfn[title] { cursor: help; border-bottom: 1px solid #ccc; }
 sup { vertical-align: super; }
 sub { vertical-align: sub; }
-
-// quote
-blockquote { 
-	color: #666; 
-	:first-child {
-		&:before { content: "\201c"; }
-		&:after { content: "\201d"; }
+a {
+	text-decoration: none;
+	color: #212121;
+	&:hover { 
+		text-decoration: underline; 
 	}
+}
+// code, pre { color: #c33; } // very optional, but still useful. w3c uses about the same colors for codes
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0;
 }
 
 // base size
 h1 { @include rem(font-size, 36); }
-h2 { @include rem(font-size, 32); }
-h3 { @include rem(font-size, 28); }
-h4 { @include rem(font-size, 25); }
+h2 { @include rem(font-size, 25); }
+h3 { @include rem(font-size, 19); }
+h4 { @include rem(font-size, 14); }
 h5 { @include rem(font-size, 23); }
 h6 { @include rem(font-size, 19); }
 p { @include rem(font-size, 13); }
 
 h1 { line-height: 1.2; }
-h2 { line-height: 1.3; }
-h3 { line-height: 1.3; }
-h4 { line-height: 1.3; }
+h2 { line-height: 1.2; }
+h3 { line-height: (24/19); }
+h4 { line-height: (18/14); }
 h5 { line-height: 1.2; }
 h6 { line-height: 1.3; }
 p { line-height: 1.4; }
@@ -44,106 +61,38 @@ p { line-height: 1.4; }
 
 // tables
 // table { border-top: 1px solid #ccc;  border-left: 1px solid #ccc; }
-// th, td { border-bottom: 1px solid #ddd; border-right: 1px solid #ccc; }
+// th, td { border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; }
 
-// margins & padding =================================================
-blockquote *:first-child { margin: .8em 0; }
-hr, p, pre, blockquote, address, table, form { margin-bottom: 1.6em; }
-// note: calulate header margins: top: 1.6em/size, bottom: 1.6em/size/2
-h1 { margin: .5em 0 1em;  }
-h2 { margin: .535em 0 1.07em; }
-h3 { margin: .57em 0 1.14em; }
-h4 { margin: .615em 0 1.23em; }
-h5 { margin: .5em 0 .5em; }
-h6 { margin: .8em 0 1.6em; }
+// margins & padding 
+hr, p, pre, address, table, form { margin-bottom: 1.6em; margin-top: 0; }
+h1 { margin-bottom: 1em;  }
+h2 { margin-bottom: .5em; }
+h3 { margin-bottom: 1.14em; }
+h4 { margin-bottom: 1.23em; }
+h5 { margin-bottom: .5em; }
+h6 { margin-bottom: 1.6em; }
 th, td { padding: .8em; }
 caption { padding-bottom: .8em; } // padding instead of margin for ie
-blockquote { padding: 0 1em; margin: 1.6em 0; }
-fieldset { padding: 0 1em 1em 1em; margin: 1.6em 0; } // padding-top is margin-top for fieldsets in opera
-// legend { padding-left: .8em; padding-right: .8em; }
-// legend+* { margin-top: 1em; } // compensates for the opera margin bug
-// textarea, input { padding: .3em .4em .15em .4em; }
-// select { padding: .1em .2em 0 .2em; }
-// option { padding: 0 .4em; }
-// a { position: relative; padding: 0.3em 0 .1em 0; } // for larger click-area
-dt { margin-top: .8em; margin-bottom: .4em; }
-// ul { margin-left: 1.5em; }
-// ol { margin-left: 2.35em; }
-// ol ol, ul ol { margin-left: 2.5em; }
-// form div { margin-bottom: .8em; }
-
-// colors
-a {
-	text-decoration: none;
-	color: #212121;
-	&:hover { 
-		text-decoration: underline; 
-	}
-}
-// code, pre { color: #c33; } // very optional, but still useful. w3c uses about the same colors for codes
-
-// fancy serif
-.fancy { 
-	color: #666; 
-	font-family: "warnock pro", "goudy old style","palatino","book antiqua", georgia, serif; 
-	font-style: italic; 
-	font-weight: normal; 
+fieldset { 
+	padding: 0 1em 1em 1em; 
+	margin: 1.6em 0; 
+} // padding-top is margin-top for fieldsets in opera
+dt { 
+	margin-top: .8em; 
+	margin-bottom: .4em; 
 }
 
-// small caps
+
+// text classes
 .caps { 
-	// font-variant: small-caps; 
+	font-variant: small-caps; // small caps 
 	letter-spacing: 1px; 
 	text-transform: uppercase; 
 	@include rem(font-size, 14); 
 	font-weight: normal; 
 	padding: 0 2px; 
 }
-
-// no link icon (use class="noicon" to remove the link icon from a specific link)
-// body a.noicon { background:none !important; padding:0 !important; margin:0 !important; }
-
-// link padding for icons
-// a[href^="http:"],
-// a[href^="mailto:"],
-// a[href$=".pdf"],
-// a[href$=".doc"],
-// a[href$=".xls"],
-// a[href$=".rss"],
-// a[href$=".rdf"],
-// a[href^="aim:"] { 
-// 	padding:2px 22px 2px 0; 
-// 	margin:-2px 0; 
-// 	background-repeat: no-repeat; 
-// 	background-position: right center; 
-// }
-
-// external link icons
-// a {
-// 	&[href^="http:"] { background-image: url(../images/icons/external.png); padding-right: 14px; }
-// 	&[href^="mailto:"] { background-image: url(../images/icons/email.png); }
-// 	&[href^="http:"]:visited { background-image: url(../images/icons/visited.png);}
-// }
-
-// file link icons
-// a {
-// 	&[href$=".pdf"] { background-image: url(../images/icons/pdf.png); }
-// 	&[href$=".doc"] { background-image: url(../images/icons/doc.png); }
-// 	&[href$=".xls"] { background-image: url(../images/icons/xls.png); }
-// }
-
-// miscellaneous link icons
-// a {
-// 	&[href$=".rss"],
-// 	&[href$=".rdf"] { background-image: url(../images/icons/feed.png); }
-// 	&[href^="aim:"] { background-image: url(../images/icons/im.png); }
-// 	&[href^="http://yourwebsite.com"] { background:none; padding:0; margin:0; }
-// }
-
-// text classes
-.small {
-	font-size:.8em;
-}
+.small { font-size:.8em; }
 .large {
 	font-size:1.2em;
 	line-height:2.5em;
@@ -161,45 +110,6 @@ a {
 	margin-bottom:0;
 	padding-bottom:0;
 }
+.light-header { font-weight: normal; }
 .thin { font-weight: lighter; }
-// .error, .notice, .success {
-// 	padding:.8em;
-// 	margin-bottom:1.6em;
-// 	border:2px solid #ddd;
-// }
-// .error {
-// 	background:#fbe3e4;
-// 	color:#8a1f11;
-// 	border-color:#fbc2c4;
-// }
-// .notice {
-// 	background:#fff6bf;
-// 	color:#514721;
-// 	border-color:#ffd324;
-// }
-// .success {
-// 	background:#e6efc2;
-// 	color:#264409;
-// 	border-color:#c6d880;
-// }
-// .error a {
-// 	color:#8a1f11;
-// 	 background:none;
-// 	 padding:0;
-// 	 margin:0;
-// }
-// .notice a {
-// 	color:#514721;
-// 	 background:none;
-// 	 padding:0;
-// 	 margin:0;
-// }
-// .success a {
-// 	color:#264409;
-// 	 background:none;
-// 	 padding:0;
-// 	 margin:0;
-// }
-.center {
-	text-align: center;
-}
+.center { text-align: center; }

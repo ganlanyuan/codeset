@@ -55,3 +55,14 @@ $social: (
   @return percentage(($a/$b));
 }
 
+@mixin clearfix {
+  &:after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+}
+
+%clearfix {
+  @include clearfix;
+}

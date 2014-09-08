@@ -1,0 +1,251 @@
+/* module
+-----------------------------
+flex video
+ad
+article
+sidebar 
+*/
+
+body { overflow-x: hidden; }
+img.full { width: 100%; display: block; }
+
+// flex video
+@function ratio($width, $height) {
+	@return percentage($height/$width);
+}
+.flex-video {
+	position: relative;
+	padding-bottom: ratio(16,9);
+	height: 0;
+	overflow: hidden;
+	margin-bottom: em(30);
+	iframe, 
+	object, 
+	embed, 
+	video {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+	}
+}
+.fixed-video {
+	text-align: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-color: #222;
+}
+
+// ad
+.ad {
+	text-align: center;
+	margin-top: em(20);
+	margin-bottom: em(20);
+	&250,&300,&320,&400,&468,&728,&970 { margin-left: auto; margin-right: auto; }
+	&250 {width: 250px; }
+	&300 {width: 300px; }
+	&320 {width: 320px; }
+	&400 {width: 400px; }
+	&468 {width: 468px; }
+	&728 {width: 728px; }
+	&970 {width: 970px; }
+	&-bg { 
+		padding-top: 1px;
+		background-color: #eee;
+		@extend %clearfix;
+	}
+	&-group {
+		text-align: center;
+		display: none;
+		> * {
+			display: inline-block;
+			margin-left: 3px;
+			margin-right: 3px;
+		}
+	}
+	&top { margin-bottom: 0; }
+	&-combined { 
+		background-color: #f2f2f2; 
+		margin-bottom: em(20);
+		@extend %clearfix;
+	}
+}
+// article
+$img-gutter: em(20);
+$link-color: #0C97D2;
+.article-content {
+	figure {
+		margin-bottom: $img-gutter;
+		&.centered {
+			max-width: 640px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+	figcaption,
+	.article-info {
+		@include rem(font-size, 13);
+		line-height: 1.4;
+		margin: .5em 0;
+		color: #8d8d8d;
+	}
+	.credit:before {
+		content: '|';
+		display: inline-block;
+		width: 1.2em;
+		text-align: center;
+		color: #969696;
+	}
+	p {
+		@include rem(font-size, 16);
+		line-height: 1.7;
+		margin-bottom: 1.8em;
+	}
+	blockquote {
+		margin: 1.6em;
+		margin-top: 0;
+		line-height: 1.4;
+		font-family: Georgia, serif;
+		font-style: italic;
+		color: #888;
+		.fa {
+			font-size: 2em;
+			position: relative;
+			text-indent: -1em;
+		}
+	}
+	p,
+	figcaption,
+	.article-info {
+		a { 
+			color: $link-color;
+			&:hover {
+				color: darken($link-color, 10%);
+				text-decoration: none;
+			}
+		}
+	}
+	.article-info {
+		margin-bottom: em(30);
+		position: relative;
+		&:before {
+			content: '';
+			display: block;
+			width: 120px;
+			height: 1px;
+			background-color: #999;
+			position: absolute;
+			top: -8px;
+			left: 0;
+		}
+	}
+}
+@media screen and (min-width: em(500)) {
+	.article-content {
+		figure {
+			&.left,
+			&.right { width: 250px; }
+			&.left {
+				float: left;
+				margin-right: $img-gutter;
+			}
+			&.right {
+				float: right;
+				margin-left: $img-gutter;
+			}
+		}
+	}
+}
+// sidebar
+$sidebar-horizontal-w: 200px;
+$sidebar-vertical-h: 40px;
+.sidebar {
+	position: fixed;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	@if $z-index { z-index: nth($z-index, 2); }
+	@else { z-index: 9999; }
+	@extend %globle-transition;
+	&.left,
+	&.right {
+		width: $sidebar-horizontal-w;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+		margin: 0;
+	}
+	&.left {
+		left: 0;
+		margin-left: -$sidebar-horizontal-w;
+	}
+	&.right {
+		right: 0;
+		margin-right: -$sidebar-horizontal-w;
+	}
+	&.top,
+	&.bottom {
+		width: 100%;
+		height: $sidebar-vertical-h;
+		left: 0;
+	}
+	&.top {
+		top: 0;
+		margin-top: -$sidebar-vertical-h;
+	}
+	&.bottom {
+		bottom: 0;
+		margin-bottom: -$sidebar-vertical-h;
+	}
+	// move sidebar
+	&.move { margin: 0 !important; }
+}
+body,
+.upper {
+	@extend %globle-transition;
+	@include position(relative, 0px 0px 0px 0px);
+}
+// translate and reveal
+.translate-,
+.reveal- {
+	&left,
+	&right,
+	&top,
+	&bottom {
+		.sidebar { margin: 0 !important; }
+	}
+	&left { left: $sidebar-horizontal-w; }
+	&right { right: $sidebar-horizontal-w; }
+	&top { top: $sidebar-vertical-h; }
+	&bottom { bottom: $sidebar-vertical-h; }
+}
+// reveal
+.upper {
+	min-width: 320px;
+	background-color: #fff;
+	@if $z-index { z-index: nth($z-index, 2); }
+	@else { z-index: 200; }
+}
+.sidebar.below { 
+	margin: 0 !important; 
+	@if $z-index { z-index: nth($z-index, 3); }
+	@else { z-index: 100; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

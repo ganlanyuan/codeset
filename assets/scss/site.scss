@@ -1,22 +1,26 @@
 @charset "UTF-8";
+
 // global setting
 @import "bourbon/bourbon"; 
 @import "site/setting"; // varaibles and settings
 
+// frameworks
 @import "normalize/normalize"; // css reset
 @import "font-awesome/font-awesome"; // icon font
+// @import "OwlCarousel/OwlCarousel"; // slidershow
 // @import "animate/animate";
-// @import "foundation/foundation";
-// @import "semantic-ui/semantic-ui";
-@import "pure/pure";
+@import "pure/pure";  // template
 
 
-// add css files
-@import "site/typography";
-@import "site/components";
+// common style
+// @import "site/typography";
+@import "site/module";
 @import "site/common";
+
+// individual pages
 @import "site/index";
+@import "site/article";
+@import "site/video";
+
+// media query
 @import "site/mq";
-
-// css goes here
-

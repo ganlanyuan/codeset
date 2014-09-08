@@ -1,31 +1,31 @@
 //csslint regex-selectors:false, known-properties:false, duplicate-properties:false
-@media (min-width: em(1024)) {
+@media screen and (min-width: em(1024)) {
 	.visible-mobile,
 	.visible-tablet,
-	.hidden-desktop { display: none; }
+	.hidden-desktop { display: none !important; }
 }
 
-// @media (max-width: em(480)) {
+// @media screen and (max-width: em(480)) {
 //     .pure-g-r > .pure-u,
 //     .pure-g-r > [class *= "pure-u-"] {
 //         width: 100%;
 //     }
 // }
 
-@media (max-width: em(767)) {
+@media screen and (max-width: em(767)) {
 	// .pure-g-r > .pure-u,
 	// .pure-g-r > [class *= "pure-u-"] {
 	//     width: 100%;
 	// }
 	.hidden-mobile,
 	.visible-tablet,
-	.visible-desktop { display: none; }
+	.visible-desktop { display: none !important; }
 }
 
-@media (min-width: em(768)) and (max-width: em(1023)) {
+@media screen and (min-width: em(768)) and (max-width: em(1023)) {
 	.hidden-tablet,
 	.visible-mobile,
-	.visible-desktop { display: none; }
+	.visible-desktop { display: none !important; }
 }
 
 // .pure-g-r {

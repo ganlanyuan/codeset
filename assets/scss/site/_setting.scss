@@ -1,4 +1,8 @@
-@charset "UTF-8";
+/* setting
+-----------------------------
+setting for pure
+site setting
+*/
 
 // setting for pure ======================
 // generate css
@@ -9,7 +13,7 @@ $generate-checkbox: false !default;
 $IE7: false !default;
 // grid
 $row-w: em(1200) !default;
-$gutter-w: em(20) !default;
+$gutter-w: em(30) !default;
 $block-gutter-w: $gutter-w;
 $block-grid-number: 8 !default;
 $sm: em(568) !default;
@@ -24,8 +28,10 @@ $focus-invalid-border-color: #ee5f5b !default;
 $basic-color: #e6e6e6 !default;
 $simply-border-color: #ddd !default;
 $social: (
-  facebook: #4462B1, 
-  twitter: #4E9EDB, 
+  facebook-like: #4660b5, 
+  facebook: #39579a, 
+  twitter: #23cbff, 
+  pinterest: #df2109, 
   google: #567EF0, 
   google-plus: #DA4835, 
   linkedin: #005987, 
@@ -36,13 +42,25 @@ $social: (
 
 // site setting ============================
 // color
-
-
+$blue: #1f4385;
+$light-blue: #1e6bb5;
+$red: #cc0000;
+$yellow: #fca205;
+$border-color: #e1e1e1;
 
 // font-family
+$ff-g: Georgia, serif;
+$ff-a: Arial, serif;
 
-
-
+%ff-header {
+  font-family: $ff-g;
+}
+%ff-content {
+  font-family: $ff-a;
+}
+%a-hover-tdn {
+  &:hover { text-decoration: none; }
+}
 // font-size
 
 // z-index
@@ -50,4 +68,24 @@ $z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
 // transition
 %globle-transition {
   @include transition(all .3s $ease-out-quart);
+}
+%li-style {
+  padding-top: em(10);
+  padding-bottom: em(10);
+  border-top: 1px solid $border-color;
+  :last-child { margin-bottom: 0; }
+}
+%img-left {
+  @extend %clearfix;
+  img {
+    float: left;
+    margin-right: em(13);
+  }
+}
+%img-right {
+  @extend %clearfix;
+  img {
+    float: right;
+    margin-left: em(13);
+  }
 }

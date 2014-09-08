@@ -18,9 +18,13 @@ button,
 		border-color: $simply-border-color;
 		background-color: #fff;
 	}
+	@at-root .grouped {
+		@extend %clearfix;
+	}
 	.grouped & {
-		margin-right: .2em;
-		margin-bottom: .2em;
+		margin-right: .4em;
+		margin-bottom: .4em;
+		float: left;
 	}
 	@at-root .combined {
 		@extend %clearfix;
