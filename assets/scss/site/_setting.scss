@@ -1,10 +1,30 @@
 /* setting
 -----------------------------
-setting for pure
-site setting
+site
+pure
 */
 
-// setting for pure ======================
+// site ============================
+// color
+$text-color: #212121;
+$blue: #1f4385;
+$light-blue: #1e6bb5;
+$red: #cc0000;
+$yellow: #fca205;
+$border-color: #e1e1e1;
+
+// font-family
+$ff-g: Georgia, serif;
+$ff-a: Arial, serif;
+
+// font-size
+
+// z-index
+$z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
+// transition
+
+
+// pure ======================
 // generate css
 $generate-grid: true !default;
 $generate-grid-block: false !default;
@@ -40,52 +60,3 @@ $social: (
   primary: #0078E7
 ) !default;
 
-// site setting ============================
-// color
-$blue: #1f4385;
-$light-blue: #1e6bb5;
-$red: #cc0000;
-$yellow: #fca205;
-$border-color: #e1e1e1;
-
-// font-family
-$ff-g: Georgia, serif;
-$ff-a: Arial, serif;
-
-%ff-header {
-  font-family: $ff-g;
-}
-%ff-content {
-  font-family: $ff-a;
-}
-%a-hover-tdn {
-  &:hover { text-decoration: none; }
-}
-// font-size
-
-// z-index
-$z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
-// transition
-%globle-transition {
-  @include transition(all .3s $ease-out-quart);
-}
-%li-style {
-  padding-top: em(10);
-  padding-bottom: em(10);
-  border-top: 1px solid $border-color;
-  :last-child { margin-bottom: 0; }
-}
-%img-left {
-  @extend %clearfix;
-  img {
-    float: left;
-    margin-right: em(13);
-  }
-}
-%img-right {
-  @extend %clearfix;
-  img {
-    float: right;
-    margin-left: em(13);
-  }
-}

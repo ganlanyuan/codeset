@@ -6,9 +6,6 @@ article
 sidebar 
 */
 
-body { overflow-x: hidden; }
-img.full { width: 100%; display: block; }
-
 // flex video
 @function ratio($width, $height) {
 	@return percentage($height/$width);
