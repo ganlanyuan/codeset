@@ -98,6 +98,7 @@ $link-color: #0C97D2;
 		@include rem(font-size, 16);
 		line-height: 1.7;
 		margin-bottom: 1.8em;
+		color: #212121;
 	}
 	blockquote {
 		margin: 1.6em;
@@ -230,7 +231,15 @@ body,
 	@if $z-index { z-index: nth($z-index, 3); }
 	@else { z-index: 100; }
 }
-
+@media screen and (min-width: em(1024)) {
+	.translate-,
+	.reveal- {
+		&left { left: 0px; }
+		&right { right: 0px; }
+		&top { top: 0px; }
+		&bottom { bottom: 0px; }
+	}
+}
 
 
 
