@@ -4,7 +4,10 @@
 		@extend %row-common;
 	}
 	> li {
-		@include col(1, $block-number);
+		@include perc-col(1, $block-number);
+		@at-root (without: media){
+		  @extend %block-col;
+		}
 		margin-bottom: $block-gutter-w;
 		> :last-child { margin-bottom: 0; }
 	}

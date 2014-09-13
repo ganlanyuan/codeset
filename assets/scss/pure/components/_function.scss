@@ -6,8 +6,8 @@ $generate-checkbox: false !default;
 $IE7: false !default;
 // grid
 $row-w: em(1200) !default;
-$gutter-w: em(20) !default;
-$block-gutter-w: $gutter-w;
+$gutter-w: em(30) !default;
+$block-gutter-w: $gutter-w !default;
 $block-grid-number: 8 !default;
 $sm: em(568) !default;
 $md: em(768) !default;

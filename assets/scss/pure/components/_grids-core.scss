@@ -67,13 +67,21 @@
 	@if $IE7 { 
 		*display: inline; // IE < 8: fake inline-block 
 		zoom: 1;
+		word-spacing: normal;
 	}
 	letter-spacing: normal;
-	word-spacing: normal;
 	vertical-align: top;
 	text-rendering: auto;
-	padding-left: ($gutter-w/2);
-	padding-right: ($gutter-w/2);
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+}
+%grid-col {
+	@extend %col-common;
+	padding-left: ($gutter-w/2);
+	padding-right: ($gutter-w/2);
+}
+%block-col {
+	@extend %col-common;
+	padding-left: ($block-gutter-w/2);
+	padding-right: ($block-gutter-w/2);
 }

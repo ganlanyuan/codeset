@@ -1,13 +1,16 @@
 // mixin div { @include col(2,3); }
-@mixin col($col-number, $total-columns){
+@mixin perc-col($col-number, $total-columns){
 	width: perc($col-number,$total-columns);
+}
+@mixin col($col-number, $total-columns){
+	@include perc-col($col-number, $total-columns);
 	@at-root (without: media){
-	  @extend %col-common;
+	  @extend %grid-col;
 	}
 }
 
 .col {
-	@extend %col-common;
+	@extend %grid-col;
 }
 // generate css
 @if $generate-grid {

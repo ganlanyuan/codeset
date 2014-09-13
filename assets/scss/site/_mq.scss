@@ -10,6 +10,8 @@ max
 	// site-header
 	// components
 	// article page
+	.main { @include col(9,11);}
+	.side { @include col(2,11); @include clearfix;}
 }
 @media screen and (min-width: em(768)) {
 	// components
