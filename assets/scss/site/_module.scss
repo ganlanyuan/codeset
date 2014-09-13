@@ -3,6 +3,7 @@
 flex video
 ad
 article
+fixed-columns
 sidebar 
 */
 
@@ -153,6 +154,60 @@ $link-color: #0C97D2;
 				margin-left: $img-gutter;
 			}
 		}
+	}
+}
+
+// fixed-columns
+@mixin fixed-col($direction, $aside, $gutter) {
+	$total: ($aside + $gutter);
+	@at-root (without: media) { @extend %clearfix; }
+	@if $direction == left {
+		padding-right: $total;
+		> .col-main {
+			float: left;
+			width: 100%;
+		}
+		> .col-aside {
+			float: right;
+			width: $aside;
+			margin-right: - $total;
+		}
+	}
+	@else {
+		padding-left: $total;
+		> .col-main {
+			float: right;
+			width: 100%;
+		}
+		> .col-aside {
+			float: left;
+			width: $aside;
+			margin-left: - $total;
+		}
+	}
+}
+@mixin fixed-col3($left, $right, $gutter) {
+	$total-left: ($left + $gutter);
+	$total-right: ($right + $gutter);
+	@at-root (without: media) { @extend %clearfix; }
+	padding-left: $total-left;
+	padding-right: $total-right;
+	> .col-main,
+	> .col-aside-left,
+	> .col-aside-right { 
+		display: inline-block;
+		vertical-align: top;
+	}
+	> .col-main { width: 100%; }
+	> .col-aside-right {
+		float: right;
+		width: $right;
+		margin-right: - $total-right;
+	}
+	> .col-aside-left {
+		float: left;
+		width: $left;
+		margin-left: - $total-left;
 	}
 }
 // sidebar
