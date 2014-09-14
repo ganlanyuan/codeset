@@ -59,7 +59,7 @@ textarea {
 input,
 button,
 .button { 
-	line-height: normal; 
+	line-height: normal !important; 
 	&.hidden {
 		width: 0 !important;
 		height: 0 !important;
