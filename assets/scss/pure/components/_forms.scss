@@ -56,8 +56,10 @@ textarea {
 	}
 }
 
-input { 
-	line-height: 1; 
+input,
+button,
+.button { 
+	line-height: normal; 
 	&.hidden {
 		width: 0 !important;
 		height: 0 !important;
