@@ -4,7 +4,7 @@
 		@extend %row-common;
 	}
 	> li {
-		@include perc-col(1, $block-number);
+		width: percentage((1/$block-number));
 		@at-root (without: media){
 		  @extend %block-col;
 		}

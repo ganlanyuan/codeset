@@ -50,11 +50,6 @@ $social: (
   @return ($pxval / $base) * 1em;
 }
 
-// get percentage
-@function perc($a, $b) {
-  @return percentage(($a/$b));
-}
-
 // @mixin clearfix {
 //   &:after {
 //     content:"";

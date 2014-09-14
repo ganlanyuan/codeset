@@ -1,22 +1,19 @@
 // mixin div { @include col(2,3); }
-@mixin perc-col($col-number, $total-columns){
-	width: perc($col-number,$total-columns);
-}
 @mixin col($col-number, $total-columns){
-	@include perc-col($col-number, $total-columns);
+	width: percentage(($col-number/$total-columns));
 	@at-root (without: media){
 	  @extend %grid-col;
 	}
 }
-
-.col {
-	@extend %grid-col;
+@mixin col-left($col-number, $total-columns){
+	position: relative;
+	left: percentage(($col-number/$total-columns));
 }
+
+.col { @extend %grid-col; }
 // generate css
 @if $generate-grid {
-	.col-1 {
-		width: 100%;
-	}
+	.col-1 { width: 100%; }
 	.col-1-2 {
 		width: 50%;
 		@if $IE7 { *width: 49.969%; }

@@ -193,18 +193,18 @@ $link-color: #0C97D2;
 	padding-left: $total-left;
 	padding-right: $total-right;
 	> .col-main,
-	> .col-aside-left,
-	> .col-aside-right { 
+	> .col-left,
+	> .col-right { 
 		display: inline-block;
 		vertical-align: top;
 	}
 	> .col-main { width: 100%; }
-	> .col-aside-right {
+	> .col-right {
 		float: right;
 		width: $right;
 		margin-right: - $total-right;
 	}
-	> .col-aside-left {
+	> .col-left {
 		float: left;
 		width: $left;
 		margin-left: - $total-left;
