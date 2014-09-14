@@ -161,7 +161,7 @@ $link-color: #0C97D2;
 @mixin fixed-col($direction, $aside, $gutter) {
 	$total: ($aside + $gutter);
 	@at-root (without: media) { @extend %clearfix; }
-	@if $direction == left {
+	@if $direction == right {
 		padding-right: $total;
 		> .col-main {
 			float: left;

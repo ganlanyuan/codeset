@@ -40,12 +40,7 @@
 	// display: -ms-flexbox;
 	// -ms-flex-flow: row wrap;
 	.opera-only :-o-prefocus,
-	& {
-		word-spacing: -0.43em;
-	}
-}
-.row {
-	@extend %row-common;
+	& { word-spacing: -0.43em; }
 }
 
 // Opera as of 12 on Windows needs word-spacing.
@@ -83,6 +78,8 @@
 }
 %block-col {
 	@extend %col-common;
-	padding-left: ($block-gutter-w/2);
-	padding-right: ($block-gutter-w/2);
+  padding-left: ($block-gutter-w/2);
+  padding-right: ($block-gutter-w/2);
+	margin-bottom: $block-gutter-w;
+	> :last-child { margin-bottom: 0 !important; }
 }
