@@ -287,20 +287,6 @@ body,
 	@else { z-index: 100; }
 }
 @media screen and (min-width: em(1024)) {
-	.sidebar {
-		&.left {
-			margin-left: -$sidebar-horizontal-w !important;
-		}
-		&.right {
-			margin-right: -$sidebar-horizontal-w !important;
-		}
-		&.top {
-			margin-top: -$sidebar-vertical-h !important;
-		}
-		&.bottom {
-			margin-bottom: -$sidebar-vertical-h !important;
-		}
-	}
 	.translate-,
 	.reveal- {
 		&left { left: 0px; }
