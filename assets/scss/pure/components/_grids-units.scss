@@ -1,20 +1,42 @@
 // mixin div { @include col(2,3); }
-@mixin col($col-number, $total-columns){
+@mixin col(
+	$col-number, 
+	$total-columns,
+	$collapse: false, 
+	$centered: false
+	){
 	width: percentage(($col-number/$total-columns));
 	@at-root (without: media){ @extend %grid-col; }
+	@if $collapse {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	@if $centered {
+		@include col-centered;
+	}
 }
-@mixin col-left($col-number, $total-columns){
+@mixin col-push($col-number, $total-columns){
 	position: relative;
 	left: percentage(($col-number/$total-columns));
 }
-@mixin col-centered {
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
+@mixin col-pull($col-number, $total-columns){
+	position: relative;
+	left: percentage((-$col-number/$total-columns));
+}
+@mixin col-offset($col-number, $total-columns){
+	margin-left: percentage(($col-number/$total-columns));
 }
 
-.row { @extend %row-common; }
-.col { @extend %grid-col; }
+.row { @extend %row-common; 
+	&.row-full { max-width: none; }
+}
+.col { @extend %grid-col; 
+	.row-collapse > & {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+.col-centered { @include col-centered; }
 // generate css
 @if $generate-grid {
 	.col-1 { width: 100%; }

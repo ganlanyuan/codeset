@@ -83,3 +83,8 @@
 	margin-bottom: $block-gutter-w;
 	> :last-child { margin-bottom: 0 !important; }
 }
+@mixin col-centered {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}

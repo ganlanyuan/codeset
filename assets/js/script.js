@@ -8,7 +8,7 @@ document.ready(function () {
 	var sidebar = document.querySelector('.sidebar');
 	var upper = document.querySelector('.upper');
 	menu.onclick = function () {
-		var data = menu.getAttribute('data');
+		var data = this.getAttribute('data');
 		if (data.length !== 0) {
 			if (data.indexOf('move') !== -1) {
 				var cSidebar = classList(sidebar);

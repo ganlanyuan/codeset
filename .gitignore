@@ -4,4 +4,4 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 *.DS_Store
-/.sass-cache/
+.sass-cache/
