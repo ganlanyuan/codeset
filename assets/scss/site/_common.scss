@@ -89,6 +89,10 @@ time {
 
 // common style
 body { overflow-x: hidden; }
+[class^="icon-"]::before, 
+[class*=" icon-"]::before,
+[class^="icon-"]:before, 
+[class*=" icon-"]:before { font-family: Arial, sans-serif; display: none; } // reset chrome icon-font
 img.full { width: 100%; display: block; }
 a {
   text-decoration: none;
