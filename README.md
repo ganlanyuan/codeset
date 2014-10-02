@@ -26,7 +26,7 @@ assets -- scss -- animate
 <a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/grid.php">grid</a> <br>
 <a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/button.php">button</a> <br>
 <a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/form.php">form</a> <br>
-<a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/visibility.php">visibility</a>
+<a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/visibility.php">visibility</a> <br>
 <a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/module.php">others</a>
 
 <h3>Websites</h3>
