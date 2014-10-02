@@ -1,11 +1,10 @@
-/* module
------------------------------
-flex video
-ad
-article
-fixed-columns
-sidebar 
-*/
+// module
+//-----------------------------
+// flex video
+// ad
+// article
+// fixed-columns
+// sidebar 
 
 // flex video
 @function ratio($width, $height) {
@@ -164,11 +163,11 @@ $article-link-color: #0C97D2;
 	@at-root (without: media) { @extend %clearfix; }
 	@if $direction == right {
 		padding-right: $total;
-		> .col-main {
+		> #{am(col-main)} {
 			float: left;
 			width: 100%;
 		}
-		> .col-aside {
+		> #{am(col-aside)} {
 			float: right;
 			width: $aside;
 			margin-right: - $total;
@@ -176,11 +175,11 @@ $article-link-color: #0C97D2;
 	}
 	@else {
 		padding-left: $total;
-		> .col-main {
+		> #{am(col-main)} {
 			float: right;
 			width: 100%;
 		}
-		> .col-aside {
+		> #{am(col-aside)} {
 			float: left;
 			width: $aside;
 			margin-left: - $total;
@@ -193,19 +192,13 @@ $article-link-color: #0C97D2;
 	@at-root (without: media) { @extend %clearfix; }
 	padding-left: $total-left;
 	padding-right: $total-right;
-	> .col-main,
-	> .col-left,
-	> .col-right { 
-		display: inline-block;
-		vertical-align: top;
-	}
-	> .col-main { width: 100%; }
-	> .col-right {
+	> #{am(col-main)} { width: 100%; float: left; }
+	> #{am(col-right)} {
 		float: right;
 		width: $right;
 		margin-right: - $total-right;
 	}
-	> .col-left {
+	> #{am(col-left)} {
 		float: left;
 		width: $left;
 		margin-left: - $total-left;
@@ -214,50 +207,50 @@ $article-link-color: #0C97D2;
 // sidebar
 $sidebar-horizontal-w: 200px;
 $sidebar-vertical-h: 40px;
-.sidebar {
+#{am(sidebar)} {
 	position: fixed;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	@if $z-index { z-index: nth($z-index, 2); }
-	@else { z-index: 9999; }
+	@if $z-index { z-index: nth($z-index, 1); }
+	@else { z-index: 300; }
 	@extend %globle-transition;
-	&.left,
-	&.right {
-		width: $sidebar-horizontal-w;
-		height: 100%;
-		top: 0;
-		bottom: 0;
-		overflow-x: hidden;
-		overflow-y: auto;
-		margin: 0;
-	}
-	&.left {
-		left: 0;
-		margin-left: -$sidebar-horizontal-w;
-	}
-	&.right {
-		right: 0;
-		margin-right: -$sidebar-horizontal-w;
-	}
-	&.top,
-	&.bottom {
-		width: 100%;
-		height: $sidebar-vertical-h;
-		left: 0;
-	}
-	&.top {
-		top: 0;
-		margin-top: -$sidebar-vertical-h;
-	}
-	&.bottom {
-		bottom: 0;
-		margin-bottom: -$sidebar-vertical-h;
-	}
-	// move sidebar
-	&.move { margin: 0 !important; }
 }
+#{am(sidebar,left)},
+#{am(sidebar,right)} {
+	width: $sidebar-horizontal-w;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin: 0;
+}
+#{am(sidebar,left)} {
+	left: 0;
+	margin-left: -$sidebar-horizontal-w;
+}
+#{am(sidebar,right)} {
+	right: 0;
+	margin-right: -$sidebar-horizontal-w;
+}
+#{am(sidebar,top)},
+#{am(sidebar,bottom)} {
+	width: 100%;
+	height: $sidebar-vertical-h;
+	left: 0;
+}
+#{am(sidebar,top)}{
+	top: 0;
+	margin-top: -$sidebar-vertical-h;
+}
+#{am(sidebar,bottom)} {
+	bottom: 0;
+	margin-bottom: -$sidebar-vertical-h;
+}
+// move sidebar
+.sidebar-move { margin: 0 !important; }
 body,
-.upper {
+#{am(upper)} {
 	@extend %globle-transition;
 	@include position(relative, 0px 0px 0px 0px);
 }
@@ -268,7 +261,7 @@ body,
 	&right,
 	&top,
 	&bottom {
-		.sidebar { margin: 0 !important; }
+		#{am(sidebar)} { margin: 0 !important; }
 	}
 	&left { left: $sidebar-horizontal-w; }
 	&right { right: $sidebar-horizontal-w; }
@@ -276,18 +269,18 @@ body,
 	&bottom { bottom: $sidebar-vertical-h; }
 }
 // reveal
-.upper {
+#{am(upper)} {
 	min-width: 320px;
 	background-color: #fff;
 	@if $z-index { z-index: nth($z-index, 2); }
 	@else { z-index: 200; }
 }
-.sidebar.below { 
+#{am(sidebar,below)} { 
 	margin: 0 !important; 
 	@if $z-index { z-index: nth($z-index, 3); }
 	@else { z-index: 100; }
 }
-.menu-close { cursor: pointer; }
+#{am(menu-close)} { cursor: pointer; }
 
 
 

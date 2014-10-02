@@ -1,46 +1,36 @@
-/* media query
------------------------------
-min
-min & max 
-max
-*/
+// media query
+//-----------------------------
+// min
+// min & max 
+// max
 
 // min
-@media screen and (min-width: em(560)) {
-	// site-header
-	// components
-	// article page
+@include mq-min(640) {
+	// 
 }
-@media screen and (min-width: em(768)) {
-	// components
-	// article page
-	.main {@include col(2,3); @include col-centered; }
+@include mq-min(768) {
+	// 
 }
-@media screen and (min-width: em(860)) {
-	// components
+@include mq-min(1024) {
+	// 
 }
-@media screen and (min-width: em(900)) {
-	// homepage
-}
-@media screen and (min-width: em(1024)) {
-	// site-header
-	// section header
-	// components
-	// site-footer
-	// section
-}
-@media screen and (min-width: em(1200)) {
-	// site-header
-	// section header
-	// components
+@include mq-min(1200) {
+	// 
 }
 
+
 // min & max
-@media screen and (min-width: em(360)) and (max-width: em(500)) {
+@include mq-mm(500, 640) {
+	// 
 }
 
 // max
-@media screen and (max-width: em(767)) {
-	// components
+@include mq-max(1024) {
+	// 
 }
-
+@include mq-max(768) {
+	// 
+}
+@include mq-max(640) {
+	// 
+}

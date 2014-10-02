@@ -1,0 +1,141 @@
+// grids
+//-----------------------
+// basis
+// grids
+// block grid
+
+// basis
+%row-common {
+  letter-spacing: -0.33em; 
+  @if $IE7 {*letter-spacing: normal; *word-spacing: -0.43em; }
+  max-width: $row-w;
+  margin-left: auto;
+  margin-right: auto;
+}
+%col-common {
+  display: inline-block;
+  @if $IE7 {*display: inline; zoom: 1; word-spacing: normal; }
+  letter-spacing: normal;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+// grids
+%grid-col {
+  @extend %col-common;
+  padding-left: ($gutter-w/2);
+  padding-right: ($gutter-w/2);
+}
+@mixin col(
+  $col-number, 
+  $total-columns: $grid-number,
+  $collapse: false, 
+  $centered: false
+  ){
+  width: percentage(($col-number/$total-columns));
+  @at-root (without: media){ @extend %grid-col; }
+  @if $collapse {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @if $centered {
+    @include col-centered;
+  }
+}
+@mixin col-centered {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+@mixin col-push($col-number, $total-columns: $grid-number){
+  position: relative;
+  left: percentage(($col-number/$total-columns));
+}
+@mixin col-pull($col-number, $total-columns: $grid-number){
+  position: relative;
+  left: percentage((-$col-number/$total-columns));
+}
+@mixin col-offset($col-number, $total-columns: $grid-number){
+  margin-left: percentage(($col-number/$total-columns));
+}
+
+@include am(row) {@extend %row-common; }
+@include am(row, full) { max-width: none; }
+@include am(row, collapse) { 
+  > #{am(col)} {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@include am(row) {
+  #{am(row)} {
+    margin-left: (-$gutter-w/2);
+    margin-right: (-$gutter-w/2);
+  }
+  #{am(row, collapse)} {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@include am(col) { @extend %grid-col; }
+@include am(col,centered) { @include col-centered; }
+
+@if $generate-grid {
+  @for $i from 1 through $grid-number {
+    @include am(col, $i) { width: percentage(($i/$grid-number)); }
+  }
+  $mq-width:(
+    // sm: $sm,
+    md: $md,
+    lg: $lg,
+    xl: $xl
+  );
+  @each $name, $value in $mq-width {
+    @media screen and (min-width: $value){
+      @for $i from 1 through $grid-number {
+        @include am(col, #{$name}-#{$i}) { width: percentage(($i/$grid-number)); }
+      }
+    }
+  }
+}
+
+// block grid
+%block-col {
+  @extend %col-common;
+  @include rem(padding-left, ($block-gutter-w/2));
+  @include rem(padding-right, ($block-gutter-w/2));
+  @include rem(margin-bottom, $block-gutter-w);
+  > :last-child { margin-bottom: 0 !important; }
+}
+@mixin block($block-number) {
+  @at-root (without: media) { 
+    @extend %row-common; 
+    #{am(row)} & {
+      margin-left: (-$block-gutter-w/2);
+      margin-right: (-$block-gutter-w/2);
+    }
+  }
+  > li {
+    width: percentage((1/$block-number));
+    @at-root (without: media){ @extend %block-col; }
+  }
+}
+@if $generate-grid-block {
+  @for $i from 1 through $block-grid-number {
+    .block-#{$i} { @include block($i); }
+    @media screen and (min-width: $sm) {
+      .block-sm-#{$i} { @include block($i); }
+    }
+    @media screen and (min-width: $md) {
+      .block-md-#{$i} { @include block($i); }
+    }
+    @media screen and (min-width: $lg) {
+      .block-lg-#{$i} { @include block($i); }
+    }
+    @media screen and (min-width: $xl) {
+      .block-xl-#{$i} { @include block($i); }
+    }
+  }
+}

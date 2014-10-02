@@ -14,7 +14,7 @@
 [type="color"],
 select,
 textarea {
-	padding: 0.6em 0.8em;
+	padding: em(9) em(12);
 	display: inline-block;
 	color: #666;
 	border: 1px solid #ddd;
@@ -22,32 +22,30 @@ textarea {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	@extend %pure-transition;
-	// font-size: 0.8em;
-	// box-shadow: inset 0 1px 3px #ddd;
-	&.thin { padding: .4em 1em; }
-	&.bold { padding: .8em 1em; }
-	&.fluid { width: 100%; }
-	&:focus {
-		outline: 0;
-		border-color: $focus-border-color;
-	}
 }
+input,
+select {
+	line-height: normal !important; 
+}
+#{am(input,thin)} { padding: em(6) em(12); }
+#{am(input,bold)} { padding: em(12) em(16); }
 
 input,
 select,
 textarea {
+	&:focus {outline: 0; border-color: $focus-border-color; }
 	&[disabled] {
 		cursor: not-allowed;
 		background-color: #efefef;
 		color: #cad2d3;
 	}
 	&[readonly] {
-		background: #eee; // menu hover bg color
-		color: #777; // menu text color
+		background: #eee; 
+		color: #777; 
 		border-color: #ccc;
 		&:focus { border-color: #ccc; }
 	}
-	&:focus:invalid {
+	&:invalid {
 		color: $focus-invalid-color;
 		border: 1px solid $focus-invalid-border-color;
 		&:focus {
@@ -56,21 +54,16 @@ textarea {
 	}
 }
 
-input,
-button,
-.button { 
-	line-height: normal !important; 
-	&.hidden {
-		width: 0 !important;
-		height: 0 !important;
-		border: 0 !important;
-		padding: 0 !important;
-	}
+#{am(input,hidden)},
+#{am(button,hidden)} {
+	width: 0 !important;
+	height: 0 !important;
+	border: 0 !important;
+	padding: 0 !important;
 }
-
-[type="file"]:focus:invalid:focus,
-[type="radio"]:focus:invalid:focus,
-[type="checkbox"]:focus:invalid:focus {
+[type="file"]:invalid:focus,
+[type="radio"]:invalid:focus,
+[type="checkbox"]:invalid:focus {
 	outline-color: #e9322d;
 }
 [type="radio"],
@@ -107,14 +100,14 @@ legend {
 }
 
 // Rounded Inputs
-input.input-rounded,
-.input-rounded {
+#{am(input,rounded)},
+#{am(button,rounded)} {
 	border-radius: 2em;
 	padding: 0.5em 1em;
 }
 
 // Stacked Forms
-.form-stacked {
+@include am(form,stacked) {
 	[type="text"],
 	[type="password"],
 	[type="email"],
@@ -135,17 +128,15 @@ input.input-rounded,
 		display: block;
 		margin: 0.25em 0;
 	}
-	label {
-		line-height: 1.6;
-	}
+	label {line-height: 1.6; }
 }
 
 // Aligned Forms
-.form-aligned {
+@include am(form,aligned) {
 	input,
 	textarea,
 	select,
-	.form-message-inline {
+	#{am(form-message-inline)} {
 		display: inline-block;
 		vertical-align: middle;
 		@if $IE7 {
@@ -158,7 +149,7 @@ input.input-rounded,
 		vertical-align: top;
 	}
 
-	.form-aligned-group {
+	@at-root #{am(form-aligned-group)} {
 		margin-bottom: 0.8em;
 		label {
 			text-align: right;
@@ -170,16 +161,18 @@ input.input-rounded,
 			margin: 0 1rem 0 0;
 		}
 	}
-	.form-message,
-	.form-control {
+	@at-root #{am(form-control)} {
 		margin: 16px 0 0 177.6px;
 		margin: 1rem 0 0 11.1rem;
+	}
+	#{am(form-message)} {
+		@extend #{am(form-control)};
 	}
 }
 
 
 // Grouped Inputs
-.form-group {
+@include am(form,grouped) {
 	fieldset {
 		margin-bottom: em(10);
 	}
@@ -206,32 +199,26 @@ input.input-rounded,
 }
 
 // input grid
-.input-1 { width: 100%; }
-.input-2-3 { width: 66%; }
-.input-1-2 { width: 50%; }
-.input-1-3 { width: 33%; }
-.input-1-4 { width: 25%; }
+#{am(input,fluid)},
+#{am(input,1)} { width: 100%; }
+#{am(input,#{2}-#{3})} { width: 66%; }
+#{am(input,#{1}-#{2})} { width: 50%; }
+#{am(input,#{1}-#{3})} { width: 33%; }
+#{am(input,#{1}-#{4})} { width: 25%; }
 
-// muti radio/checkbox rows
-.muti-checkbox,
-.muti-radio {
-	margin: 0.5em 0 !important;
+// Block help for forms
+#{am(form-message)} {
 	display: block;
+	color: #666;
+	font-size: 90%;
 }
 
 // Inline help for forms
-.form-message-inline {
+#{am(form-message-inline)} {
 	display: inline-block;
 	padding-left: 0.3em;
 	color: #666;
 	vertical-align: middle;
-	font-size: 90%;
-}
-
-// Block help for forms
-.form-message {
-	display: block;
-	color: #666;
 	font-size: 90%;
 }
 
@@ -444,6 +431,52 @@ input.input-rounded,
 			opacity: 0.4;
 			color: rgba(0, 0, 0, 0.3);
 		}
+	}
+}
+
+@media only screen and (max-width : em(480)) {
+	[type="text"],
+	[type="password"],
+	[type="email"],
+	[type="url"],
+	[type="date"],
+	[type="month"],
+	[type="time"],
+	[type="datetime"],
+	[type="datetime-local"],
+	[type="week"],
+	[type="number"],
+	[type="search"],
+	[type="tel"],
+	[type="color"],
+	label {
+		margin-bottom: 0.3em;
+		// display: block;
+	}
+	button[type="submit"] {
+		margin: 0.7em 0 0;
+	}
+
+	// form-aligned
+	@include am(aligned) {
+		#{am(form-aligned-group)} {
+			label {
+				margin-bottom: 0.3em;
+				text-align: left;
+				display: block;
+				width: 100%;
+			}
+		}
+		#{am(form-control)} {
+			margin: 1em 0 0 0;
+		}
+	}
+
+	#{am(form-message-inline)} ,
+	#{am(form-message)} {
+		display: block;
+		font-size: 80%;
+		padding: 0.2em 0 0.8em;
 	}
 }
 

@@ -7,32 +7,34 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-	<meta http-equiv="cleartype" content="on">
-	<title></title>
+	<!-- <meta http-equiv="cleartype" content="on"> -->
+	<title>Site Title</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+	<!-- favicons -->
 	<link rel="shortcut icon" href="img/favicon.ico"> <!-- 16x16 -->
 	<link rel="shortcut icon" href="img/favicon.png"> <!-- 32x32 -->
-	<link rel="apple-touch-icon" href="img/touch_icon_60.png"> <!-- 60x60 -->
-	<link rel="apple-touch-icon" sizes="76x76" href="img/touch_icon_76.png"> <!-- 76x76 -->
-	<link rel="apple-touch-icon" sizes="120x120" href="img/touch_icon_120.png"> <!-- 120x120 -->
-	<link rel="apple-touch-icon" sizes="152x152" href="img/touch_icon_152.png"> <!-- 152x152 -->
+	<link rel="apple-touch-icon" href="img/touch_icon_60.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch-icon_72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/touch_icon_76.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch-icon_114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/touch_icon_120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/touch_icon_152.png">
+	<link rel="apple-touch-startup-image" href="img/splash.png">
 
+	<!-- css -->
 	<link rel="stylesheet" href="assets/css/site.css">
 	
+	<!-- javascript -->
 	<!--[if (lt IE 9)]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="assets/js/lib/ie.js"></script>
 	<![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="assets/js/script.min.js"></script>
-	<!--[if lt IE 9]>
-	  <script src="assets/js/foundation/foundation.lte8.min.js"></script>
-	<![endif]-->
-	<script>
-	  $(document).foundation();
-	</script>
 </head>

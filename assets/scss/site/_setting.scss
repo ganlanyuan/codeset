@@ -1,8 +1,8 @@
-/* setting
------------------------------
-site
-pure
-*/
+// setting
+//-----------------------------
+//site
+//pure
+
 
 // site ============================
 // color
@@ -35,10 +35,11 @@ $generate-checkbox: false !default;
 // support IE7
 $IE7: false !default;
 // grid
+$grid-number: 12 !default;
 $row-w: em(1200) !default;
 $gutter-w: em(30) !default;
-$block-gutter-w: $gutter-w !default;
 $block-grid-number: 8 !default;
+$block-gutter-w: $gutter-w !default;
 $sm: em(568) !default;
 $md: em(768) !default;
 $lg: em(1024) !default;

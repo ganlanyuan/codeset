@@ -1,133 +1,374 @@
-// document.ready
-(function () {
-  var ie = !!(window.attachEvent && !window.opera);
-  var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
-  var fn = [];
-  var run = function () { for (var i = 0; i < fn.length; i++){fn[i]();} };
-  var d = document;
-  d.ready = function (f) {
-    if (!ie && !wk && d.addEventListener){
-      return d.addEventListener('DOMContentLoaded', f, false);
-    }
-    if (fn.push(f) > 1) {return;}
-    if (ie){
-      (function () {
-        try { d.documentElement.doScroll('left'); run(); }
-        catch (err) { setTimeout(arguments.callee, 0); }
-      })();
-    }else if (wk){
-      var t = setInterval(function () {
-        if (/^(loaded|complete)$/.test(d.readyState)){
-          clearInterval(t), run();
-        }
-      }, 0);
-    }
-  };
-})();
-
-// get window width, height, scrolltop
-// var a = new MyWindow(); a.getWidth || getHeight || getScrollTop
-var MyWindow = function () {};
-MyWindow.prototype.getWidth = function  () {
-  var d = document, w = window,
-  winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
-  return winW;  
-};
-MyWindow.prototype.getHeight = function () {
-  var winH, d = document, w = window;
-  if(w.innerHeight) { // all except IE
-    winH = w.innerHeight;
-  } else if (d.documentElement && d.documentElement.clientHeight) {
-    // IE 6 Strict Mode
-    winH = d.documentElement.clientHeight;
-  } else if (d.body) { // other
-    winH = d.body.clientHeight;
-  }
-  return winH;
-};
-MyWindow.prototype.getScrollTop = function () {
-  var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-  return scrollTop;
-};
-
-// get element width, height, actual top, actual left
-// var a = new Element(Object); a.getWidth
-var myElement = function (myObject) {
-  this.o = myObject;
-  this.box = this.o.getBoundingClientRect();
-};
-myElement.prototype.getWidth = function () {
-  var ow = this.box.width || (this.box.right - this.box.left);
-  return ow;
-};
-myElement.prototype.getHeight = function () {
-  var oh = this.box.height || (this.box.bottom - this.box.top);
-  return oh;
-};
-myElement.prototype.getTop = function () {
-  var actualTop = this.o.offsetTop, current = this.o.offsetParent;
-  while (current !== null){
-    actualTop += current.offsetTop;
-    current = current.offsetParent;
-  }
-  return actualTop;
-};
-myElement.prototype.getLeft = function () {
-  var actualLeft = this.o.offsetLeft, current = this.o.offsetParent;
-  while (current !== null){
-    actualLeft += current.offsetLeft;
-    current = current.offsetParent;
-  }
-  return actualLeft;
-};
-
-
-// classList(Object)   [= Object.classList]
-// var a = classList(Object); a.add('class');
-function CSSClassList(e) { this.e = e; }
-function classList(e) {
-  if (e.classList) {return e.classList;} 
-  else {return new CSSClassList(e);} 
+// Wl start
+if (typeof Array.prototype.indexOf !== 'function') {
+	Array.prototype.indexOf = function (item) {
+		for(var i = 0; i < this.length; i++) {
+			if (this[i] === item) {
+				return i;
+			}
+		}
+		return -1;
+	}; 
 }
-CSSClassList.prototype.contains = function(c) { 
-  if (c.length === 0 || c.indexOf(" ") !== -1) {
-    throw new Error("Invalid class name: '" + c + "'");
+Array.prototype.contains = function(obj) {
+  var i = this.length;
+  while (i--) {
+    if (this[i] === obj) {
+        return true;
+    }
   }
-  var classes = this.e.className;
-  if (!classes) {return false; }
-  if (classes === c) {return true;} 
-  return classes.search("\\b" + c + "\\b") !== -1;
-};
-CSSClassList.prototype.add = function(c) {
-  if (this.contains(c)) {return;} 
-  var classes = this.e.className;
-  if (!classes){
-    this.e.className = c;
-  } else {
-    c = " " + c; 
-    this.e.className += c;
-  } 
-};
-CSSClassList.prototype.remove = function(c) {
-  if (c.length === 0 || c.indexOf(" ") !== -1){
-      throw new Error("Invalid class name: '" + c + "'");}
-  var pattern = new RegExp("\\s*\\b" + c + "\\b", "g");
-  this.e.className = this.e.className.replace(pattern, "");
-};
-CSSClassList.prototype.toggle = function(c) {
-  if (this.contains(c)) { 
-    this.remove(c); 
-    return false;
-  }
-  else { 
-    this.add(c); 
-    return true;
-  }
-};
-CSSClassList.prototype.toString = function() { return this.e.className; };
-CSSClassList.prototype.toArray = function() {
-  return this.e.className.match(/\b\w+\b/g) || [];
-};
+  return false;
+}
+
+window.wl = (function () {
+	function Wl(els) {
+		for(var i = 0; i < els.length; i++ ) {
+			this[i] = els[i];
+		}
+		this.length = els.length;
+	}
+	// ========= UTILS =========
+	Wl.prototype.map = function (callback) {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			results.push(callback.call(this, this[i], i));
+		}
+		return results; //.length > 1 ? results : results[0];
+	};
+	Wl.prototype.mapOne = function (callback) {
+		var m = this.map(callback);
+		return m.length > 1 ? m : m[0];
+	};
+	Wl.prototype.forEach = function (callback) {
+		this.map(callback);
+		return this; 
+	};
+
+	// ========== DOM MANIPULATION ==========
+
+	// handle DOM
+	Wl.prototype.firstChild = function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].firstElementChild) {
+				results.push(this[i].firstElementChild);
+			} else{
+				var node = this[i].firstChild;
+				while (node.nodeType !== 1) {
+					node = node.nextSibling;
+				}
+				results.push(node);
+			}
+		}
+		return new Wl(results);
+	};
+
+	Wl.prototype.lastChild = function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].lastElementChild) {
+				results.push(this[i].lastElementChild);
+			} else{
+				var node = this[i].lastChild;
+				while (node.nodeType !== 1) {
+					node = node.previousSibling;
+				}
+				results.push(node);
+			}
+		}
+		return new Wl(results);
+	};
+
+	Wl.prototype.children = function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].children) {
+				var children = this[i].children;
+				for (var j = 0; j < children.length; j++) {
+					results.push(children[j]);
+				}
+			} else{
+				var childNodes = this[i].childNodes;
+				for (var j = 0; j < childNodes.length; j++) {
+					if (childNodes[j].nodeType === 1) {
+						results.push(childNodes[j]);
+					}
+				}
+			}
+		}
+		return new Wl(results);
+	};
+
+	Wl.prototype.parent = function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			results.push(this[i].parentNode);
+		}
+		return new Wl(results);
+	};
+
+	// Wl.prototype.siblings = function () {
+	// 	var results = [];
+	// 	var allSiblings = this.parent().children();
+	// 	for (var i = 0; i < allSiblings.length; i++) {
+	// 		if (!this.contains(allSiblings[i])) {
+	// 			results.push(allSiblings[i]);
+	// 		}
+	// 	}
+	// 	return new Wl(results);
+	// };
+
+	// handle attr
+	Wl.prototype.text = function (text) {
+		if (typeof text !== "undefined") {
+			return this.forEach(function (el) {
+				if (el.textContent) {
+					el.textContent = text;
+				} else{
+					el.innerText = text;
+				}
+			});
+		} else {
+			return this.mapOne(function (el) {
+				if (el.textContent) {
+					return el.textContent;
+				} else{
+					return el.innerText;
+				}
+			});
+		}
+	};
+
+	Wl.prototype.html = function (html) {
+		if (typeof html !== "undefined") {
+			return this.forEach(function (el) {
+				el.innerHTML = html;
+			});
+		} else {
+			return this.mapOne(function (el) {
+				return el.innerHTML;
+			});
+		}
+	};
+
+	Wl.prototype.attr = function (attr, val) {
+		if (typeof val !== 'undefined') {
+			return this.forEach(function(el) {
+				el.setAttribute(attr, val);
+			});
+		} else {
+			return this.mapOne(function (el) {
+				return el.getAttribute(attr);
+			});
+		}
+	};
+
+	// handle class
+	Wl.prototype.hasClass = function (hasclass) {
+		for (var i = 0; i < this.length; i++) {
+			var classes = this[i].className;
+			if (!classes) {return false; }
+			if (classes === hasclass) {return true;} 
+			return classes.search("\\b" + hasclass + "\\b") !== -1;
+		}
+	};
+
+	Wl.prototype.addClass = function (classes) {
+		var className = "";
+		if (typeof classes !== 'string') {
+			for (var i = 0; i < classes.length; i++) {
+			   className += " " + classes[i];
+			}
+		} else {
+			className = " " + classes;
+		}
+		return this.forEach(function (el) {
+			el.className += className;
+		});
+	};
+
+	Wl.prototype.removeClass = function (clazz) {
+		return this.forEach(function (el) {
+			var cs = el.className.split(' '), i;
+
+			while ( (i = cs.indexOf(clazz)) > -1) { 
+				cs = cs.slice(0, i).concat(cs.slice(++i));
+			}
+			el.className = cs.join(' ');
+		});
+	};
+
+	Wl.prototype.toggleClass = function (toggleclass) {
+		if (this.hasClass(toggleclass)) {
+			this.removeClass(toggleclass);
+		} else{
+			this.addClass(toggleclass);
+		}
+	};
+
+	// handle node
+	Wl.prototype.append = function (els) {
+		return this.forEach(function (parEl, i) {
+			els.forEach(function (childEl) {
+				parEl.appendChild( (i > 0) ? childEl.cloneNode(true) : childEl);
+			});
+		});
+	};
+
+	Wl.prototype.prepend = function (els) {
+		return this.forEach(function (parEl, i) {
+			for (var j = els.length -1; j > -1; j--) {
+				parEl.insertBefore((i > 0) ? els[j].cloneNode(true) : els[j], parEl.firstChild);
+			}
+		});
+	};
+
+	Wl.prototype.remove = function () {
+		return this.forEach(function (el) {
+			return el.parentNode.removeChild(el);
+		});
+	};
+
+	// get element size
+	Wl.prototype.getWidth = function () {
+		return this.mapOne(function (el) {
+			var box = el.getBoundingClientRect();
+			var ow = box.width || (box.right - box.left);
+			return ow;
+		});
+	};
+
+	Wl.prototype.getHeight = function () {
+		return this.mapOne(function (el) {
+			var box = el.getBoundingClientRect();
+			var oh = box.height || (box.bottom - box.top);
+			return oh;
+		});
+	};
+
+	Wl.prototype.getTop = function () {
+		return this.mapOne(function (el) {
+			var actualTop = el.offsetTop, current = el.offsetParent;
+			while (current !== null){
+			actualTop += current.offsetTop;
+			current = current.offsetParent;
+			}
+			return actualTop;
+		});
+	};
+
+	Wl.prototype.getLeft = function () {
+		return this.mapOne(function (el) {
+			var actualLeft = el.offsetLeft, current = el.offsetParent;
+			while (current !== null){
+			actualLeft += current.offsetLeft;
+			current = current.offsetParent;
+			}
+			return actualLeft;
+		});
+	};
+
+	// add eventListener
+	Wl.prototype.on = (function () {
+		if (document.addEventListener) {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.addEventListener(evt, fn, false);
+				});
+			};
+		} else if (document.attachEvent)  {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.attachEvent("on" + evt, fn);
+				});
+			};
+		} else {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el["on" + evt] = fn;
+				});
+			};
+		}
+	}());
+
+	Wl.prototype.off = (function () {
+		if (document.removeEventListener) {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.removeEventListener(evt, fn, false);
+				});
+			};
+		} else if (document.detachEvent)  {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.detachEvent("on" + evt, fn);
+				});
+			};
+		} else {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el["on" + evt] = null;
+				});
+			};
+		}
+	}());
+
+	var wl = {
+		get: function (selector) {
+			var els;
+			if (typeof selector === 'string') {
+				els = document.querySelectorAll(selector);
+			} else if (selector.length) { 
+				els = selector;
+			} else {
+				els = [selector];
+			}
+			return new Wl(els);
+		}, 
+		create: function (tagName, attrs) {
+			var el = new Wl([document.createElement(tagName)]);
+			if (attrs) {
+				if (attrs.className) { 
+					el.addClass(attrs.className);
+					delete attrs.className;
+				}
+				if (attrs.text) { 
+					el.text(attrs.text);
+					delete attrs.text;
+				}
+				for (var key in attrs) {
+					if (attrs.hasOwnProperty(key)) {
+						el.attr(key, attrs[key]);
+					}
+				}
+			}
+			return el;
+		},
+		winW: function  () {
+		  var d = document, w = window,
+		  winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
+		  return winW;  
+		},
+		winH: function () {
+		  var winH, d = document, w = window;
+		  if(w.innerHeight) { // all except IE
+			winH = w.innerHeight;
+		  } else if (d.documentElement && d.documentElement.clientHeight) {
+			// IE 6 Strict Mode
+			winH = d.documentElement.clientHeight;
+		  } else if (d.body) { // other
+			winH = d.body.clientHeight;
+		  }
+		  return winH;
+		},
+		winST: function () {
+		  var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+		  return scrollTop;
+		}
+	};
+
+	return wl;
+}());
+
 
 
 // scroll to
@@ -137,11 +378,39 @@ function scrollTo(element, to, duration) {
   var perTick = difference / duration * 10;
 
   setTimeout(function() {
-    element.scrollTop = element.scrollTop + perTick;
-    if (element.scrollTop === to) {return;}
-    scrollTo(element, to, duration - 10);
+	element.scrollTop = element.scrollTop + perTick;
+	if (element.scrollTop === to) {return;}
+	scrollTo(element, to, duration - 10);
   }, 10);
 }
+
+// document.ready
+(function () {
+  var ie = !!(window.attachEvent && !window.opera);
+  var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
+  var fn = [];
+  var run = function () { for (var i = 0; i < fn.length; i++){fn[i]();} };
+  var d = document;
+  d.ready = function (f) {
+	if (!ie && !wk && d.addEventListener){
+	  return d.addEventListener('DOMContentLoaded', f, false);
+	}
+	if (fn.push(f) > 1) {return;}
+	if (ie){
+	  (function () {
+		try { d.documentElement.doScroll('left'); run(); }
+		catch (err) { setTimeout(arguments.callee, 0); }
+	  })();
+	}else if (wk){
+	  var t = setInterval(function () {
+		if (/^(loaded|complete)$/.test(d.readyState)){
+		  clearInterval(t), run();
+		}
+	  }, 0);
+	}
+  };
+})();
+
 
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-boxshadow-flexbox-multiplebgs-opacity-cssanimations-cssgradients-csstransforms-csstransforms3d-csstransitions-inlinesvg-svg-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_calc

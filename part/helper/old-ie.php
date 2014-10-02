@@ -1,5 +1,5 @@
 <!--[if lte IE 7]>
-<style>
+<style scoped="false">
   #lte-ie7-cover { filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#4C000000', endColorstr='#4C000000');background:rgba(0,0,0,0.3); width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 999999; }
   #lte-ie7 { position: fixed; z-index: 999999; left: 50%; top: 50%; margin-left: -270px; margin-top: -157px; width: 500px; min-height: 325px; padding: 20px; background-color: #fff; }
   #lte-ie7 h1 { font-size: 1.3em; line-height: 1.4; margin-bottom: 20px; font-weight: bold; font-family: Arial, sans-serif; text-transform: none; }

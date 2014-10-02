@@ -1,0 +1,141 @@
+// buttons
+//----------------------------
+// placeholder and mixin
+// generate css
+
+// placeholder and mixin
+%button-basic {
+	display: inline-block;
+	padding: em(10) em(13);
+	color: #444;  
+	color: rgba(0, 0, 0, .8); 
+	border-radius: .3em;
+	border-width: 0;
+	background-color: $basic-color;
+	line-height: normal !important;
+	white-space: nowrap;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	@extend %pure-transition;
+	&::-moz-focus-inner { padding: 0; border: 0; }
+	&:hover { 
+		text-decoration: none; 
+		background-color: darken($basic-color, 5%);
+	}
+	&:focus { 
+		outline: 0; 
+		box-shadow: inset 0px 3px 3px rgba(0,0,0,.1);
+	}
+	@if $IE7 {*display: inline; *zoom: 1; *font-size: 90%; *overflow: visible; }
+}
+@mixin button (
+	$color: false,
+	$thin: false,
+	$bold: false,
+	$fluid: false,
+	$simple: false,
+	$disabled: false
+	){
+	@extend %button-basic;
+	@if $color {
+		border-color: $color;
+		background-color: $color;
+		color: #fff;
+		&:hover {
+			border-color: lighten($color, 7%);
+			background-color: lighten($color, 7%);
+		}
+		&:focus {
+			box-shadow: inset 0px 3px 3px rgba(0,0,0,.1);
+		}
+	}
+	@if $thin {padding: em(7) em(13); }
+	@if $bold {padding: em(13) em(17); }
+	@if $fluid {
+		width: 100%;
+	}
+	@if $simple {
+		border: 1px solid $simply-border-color;
+		padding: em(9) em(12);
+		background-color: #fff;
+		&:hover { 
+			border-color: darken($simply-border-color, 10%); 
+			background-color: #fff;
+		}
+	}
+	@if $disabled {
+		&, 
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: 0.40;
+			cursor: not-allowed;
+			box-shadow: none;
+			.no-opacity & {
+				background-color: #F5F5F5;
+			}
+		}
+	}
+}
+
+// generate css
+@include am(button,thin) { padding: em(7) em(13); }
+@include am(button,bold) { padding: em(13) em(17); }
+@include am(button,fluid) { width: 100%; }
+@include am(button,simple) { 
+	border: 1px solid $simply-border-color;
+	padding: em(9) em(12);
+	background-color: #fff;
+	&:hover { 
+		border-color: darken($simply-border-color, 10%);
+		background-color: #fff;
+	}
+}
+#{am(button,simple)}#{am(button,thin)} {padding: em(6) em(12); }
+#{am(button,simple)}#{am(button,bold)} {padding: em(12) em(16); }
+@include am(button) {
+	@include button($color: false);
+	@at-root .grouped {
+		@extend %clearfix;
+	}
+	.grouped & {
+		margin-right: em(6);
+		margin-bottom: em(6);
+		float: left;
+	}
+	@at-root .combined {
+		@extend %clearfix;
+		> :first-child {
+			float: left;
+			margin-right: -1px;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		> :last-child {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+}
+%color-white { color: #fff; }
+@each $social-name, $color in $social {
+	@include am(button, $social-name) {
+		background-color: $color;
+		@extend %color-white;
+		&:hover {background-color: lighten($color, 7%); }
+	}
+}
+@include am(button,disabled) {
+	&,
+	&:hover,
+	&:focus,
+	&:active {
+		opacity: 0.40;
+		cursor: not-allowed;
+		box-shadow: none;
+		.no-opacity & {background-color: #F5F5F5; }
+	}
+}

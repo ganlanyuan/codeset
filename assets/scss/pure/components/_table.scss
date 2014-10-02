@@ -1,0 +1,40 @@
+@include am(table) {
+	empty-cells: show;
+	border: 1px solid $table-border-color;
+	caption {
+		font: italic 85%/1.2 arial, sans-serif;
+		padding: 1em 0;
+		color: #666;
+	}
+	td,
+	th {
+		border-left: 1px solid $table-border-color;
+		border-width: 0 0 0 1px;
+		overflow: visible; 
+		padding: em(7) em(12);
+	}
+	td:first-child,
+	th:first-child {
+		border-left-width: 0;
+	}
+	td { background-color: transparent;}
+	thead {background: $thead-bg-color; }
+}
+%bbwn {border-bottom-width: 0; }
+@include am(table,bordered) {
+	td {border-bottom: 1px solid $table-border-color; }
+	tbody > tr:last-child td { @extend %bbwn;} 
+}
+@include am(table,striping-even) {
+	tr:nth-child(even) td {background-color: $striping-bg-color; }
+}
+@include am(table,striping-odd) {
+	tr:nth-child(2n-1) td {background-color: $striping-bg-color; }
+}
+@include am(table,horizontal) {
+	th, td {
+		border-width: 0 0 1px 0;
+		border-bottom: 1px solid $table-border-color;
+	}
+	tbody > tr:last-child td { @extend %bbwn;} 
+}
