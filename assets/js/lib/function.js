@@ -1,4 +1,4 @@
-// Wl start
+// wl start
 if (typeof Array.prototype.indexOf !== 'function') {
 	Array.prototype.indexOf = function (item) {
 		for(var i = 0; i < this.length; i++) {
@@ -8,15 +8,6 @@ if (typeof Array.prototype.indexOf !== 'function') {
 		}
 		return -1;
 	}; 
-}
-Array.prototype.contains = function(obj) {
-  var i = this.length;
-  while (i--) {
-    if (this[i] === obj) {
-        return true;
-    }
-  }
-  return false;
 }
 
 window.wl = (function () {
@@ -106,16 +97,16 @@ window.wl = (function () {
 		return new Wl(results);
 	};
 
-	// Wl.prototype.siblings = function () {
-	// 	var results = [];
-	// 	var allSiblings = this.parent().children();
-	// 	for (var i = 0; i < allSiblings.length; i++) {
-	// 		if (!this.contains(allSiblings[i])) {
-	// 			results.push(allSiblings[i]);
-	// 		}
-	// 	}
-	// 	return new Wl(results);
-	// };
+	Wl.prototype.siblings = function () {
+		var results = [];
+		var allSiblings = this.parent().children();
+		for (var i = 0; i < allSiblings.length; i++) {
+			if (allSiblings[i] !== this[0]) {
+				results.push(allSiblings[i]);
+			}
+		}
+		return new Wl(results);
+	};
 
 	// handle attr
 	Wl.prototype.text = function (text) {
@@ -163,45 +154,68 @@ window.wl = (function () {
 	};
 
 	// handle class
-	Wl.prototype.hasClass = function (hasclass) {
+	Wl.prototype.hasClass = function (c) {
 		for (var i = 0; i < this.length; i++) {
 			var classes = this[i].className;
 			if (!classes) {return false; }
-			if (classes === hasclass) {return true;} 
-			return classes.search("\\b" + hasclass + "\\b") !== -1;
+			if (classes === c) {return true;} 
+			return classes.search("\\b" + c + "\\b") !== -1;
 		}
 	};
 
-	Wl.prototype.addClass = function (classes) {
+	Wl.prototype.addClass = function (c) {
 		var className = "";
-		if (typeof classes !== 'string') {
-			for (var i = 0; i < classes.length; i++) {
-			   className += " " + classes[i];
+		function addClassCheck (obj,cla) {
+			if (obj.className.indexOf(cla) === -1) {
+				className += ' ' + cla;
 			}
-		} else {
-			className = " " + classes;
+			return className;
 		}
 		return this.forEach(function (el) {
+			if (c.indexOf(' ') !== -1) {
+				var cs = c.split(' ');
+				for (var i = 0; i < cs.length; i++) {
+					addClassCheck(el,cs[i]);
+				}
+			} else {
+				addClassCheck(el,c);
+			}
 			el.className += className;
 		});
 	};
 
-	Wl.prototype.removeClass = function (clazz) {
+	Wl.prototype.removeClass = function (c) {
+		function removeClassCheck (obj, cla) {
+			var pattern = new RegExp("\\b" + cla + "\\b\\s*", "g");
+			obj.className = obj.className.replace(pattern, "");
+		}
 		return this.forEach(function (el) {
-			var cs = el.className.split(' '), i;
-
-			while ( (i = cs.indexOf(clazz)) > -1) { 
-				cs = cs.slice(0, i).concat(cs.slice(++i));
+			if (c.indexOf(' ') !== -1) {
+				var cs = c.split(' ');
+				for (var i = 0; i < cs.length; i++) {
+					removeClassCheck(el,cs[i]);
+				};
+			} else{
+				removeClassCheck(el,c);
 			}
-			el.className = cs.join(' ');
 		});
 	};
 
-	Wl.prototype.toggleClass = function (toggleclass) {
-		if (this.hasClass(toggleclass)) {
-			this.removeClass(toggleclass);
+	Wl.prototype.toggleClass = function (c) {
+		function toggleClassCheck (obj, cla) {
+			if (obj.hasClass(cla)) {
+				obj.removeClass(cla);
+			} else{
+				obj.addClass(cla);
+			}
+		}
+		if (c.indexOf(' ') !== -1) {
+			var cs = c.split(' ');
+			for (var i = 0; i < cs.length; i++) {
+				toggleClassCheck(this, cs[i]);
+			};
 		} else{
-			this.addClass(toggleclass);
+			toggleClassCheck(this, c);
 		}
 	};
 
@@ -344,25 +358,25 @@ window.wl = (function () {
 			return el;
 		},
 		winW: function  () {
-		  var d = document, w = window,
-		  winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
-		  return winW;  
+			var d = document, w = window,
+			winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
+			return winW;  
 		},
 		winH: function () {
-		  var winH, d = document, w = window;
-		  if(w.innerHeight) { // all except IE
+			var winH, d = document, w = window;
+			if(w.innerHeight) { // all except IE
 			winH = w.innerHeight;
-		  } else if (d.documentElement && d.documentElement.clientHeight) {
+			} else if (d.documentElement && d.documentElement.clientHeight) {
 			// IE 6 Strict Mode
 			winH = d.documentElement.clientHeight;
-		  } else if (d.body) { // other
+			} else if (d.body) { // other
 			winH = d.body.clientHeight;
-		  }
-		  return winH;
+			}
+			return winH;
 		},
 		winST: function () {
-		  var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-		  return scrollTop;
+			var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+			return scrollTop;
 		}
 	};
 
@@ -373,42 +387,42 @@ window.wl = (function () {
 
 // scroll to
 function scrollTo(element, to, duration) {
-  if (duration < 0) {return;}
-  var difference = to - element.scrollTop;
-  var perTick = difference / duration * 10;
+	if (duration < 0) {return;}
+	var difference = to - element.scrollTop;
+	var perTick = difference / duration * 10;
 
-  setTimeout(function() {
+	setTimeout(function() {
 	element.scrollTop = element.scrollTop + perTick;
 	if (element.scrollTop === to) {return;}
 	scrollTo(element, to, duration - 10);
-  }, 10);
+	}, 10);
 }
 
 // document.ready
 (function () {
-  var ie = !!(window.attachEvent && !window.opera);
-  var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
-  var fn = [];
-  var run = function () { for (var i = 0; i < fn.length; i++){fn[i]();} };
-  var d = document;
-  d.ready = function (f) {
+	var ie = !!(window.attachEvent && !window.opera);
+	var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
+	var fn = [];
+	var run = function () { for (var i = 0; i < fn.length; i++){fn[i]();} };
+	var d = document;
+	d.ready = function (f) {
 	if (!ie && !wk && d.addEventListener){
-	  return d.addEventListener('DOMContentLoaded', f, false);
+		return d.addEventListener('DOMContentLoaded', f, false);
 	}
 	if (fn.push(f) > 1) {return;}
 	if (ie){
-	  (function () {
+		(function () {
 		try { d.documentElement.doScroll('left'); run(); }
 		catch (err) { setTimeout(arguments.callee, 0); }
-	  })();
+		})();
 	}else if (wk){
-	  var t = setInterval(function () {
+		var t = setInterval(function () {
 		if (/^(loaded|complete)$/.test(d.readyState)){
-		  clearInterval(t), run();
+			clearInterval(t), run();
 		}
-	  }, 0);
+		}, 0);
 	}
-  };
+	};
 })();
 
 
