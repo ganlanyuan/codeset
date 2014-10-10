@@ -26,6 +26,7 @@
 	<link rel="apple-touch-icon" sizes="120x120" href="img/touch_icon_120.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="img/touch_icon_152.png">
 	<link rel="apple-touch-startup-image" href="img/splash.png">
+	<!-- 152x152 img/touch_icon_152.png, 120x120 img/touch_icon_120.png, 114x114 img/touch-icon_114.png, 76x76 img/touch_icon_76.png, 72x72 img/touch-icon_72.png, 60x60 img/touch_icon_60.png, 32x32 img/favicon.png -->
 
 	<!-- css -->
 	<link rel="stylesheet" href="assets/css/site.css">

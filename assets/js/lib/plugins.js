@@ -144,3 +144,37 @@ function index(current, obj){
   }
 }
 
+// scroll
+document.ready(function () {
+  var didScroll;
+  var lastScrollTop = 0;
+  var delta = 5;
+
+  window.onscroll = function(event){
+      didScroll = true;
+  };
+
+  setInterval(function() {
+      if (didScroll) {
+          hasScrolled();
+          didScroll = false;
+      }
+  }, 250);
+
+  function hasScrolled() {
+    var st = wl.winST(), winW = wl.winW(), articleST;
+    if (winW > 1220) {
+      var articleST = wl.get('.article-header').getTop() - 80;
+    } else{
+      var articleST = wl.get('.article-header').getTop() - 60;
+    }
+    // scroll down
+    if (st > lastScrollTop && st > articleST) {
+      wl.get('.article-slide-container').addClass('hide');
+    } else{
+      // scroll up
+      wl.get('.article-slide-container').removeClass('hide');
+    }     
+    lastScrollTop = st;
+  }
+});

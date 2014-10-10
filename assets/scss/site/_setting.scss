@@ -1,7 +1,8 @@
 // setting
 //-----------------------------
-//site
-//pure
+// site
+// pure
+// module
 
 
 // site ============================
@@ -63,3 +64,12 @@ $social: (
   email: #1D90DD, 
   primary: #0078E7
 ) !default;
+
+
+// module
+$sidebar-horizontal-w: 200px;
+$sidebar-vertical-h: 40px;
+$menu-color:#000;
+$menu-active-color: #fd5619;
+$menu-bg-color: #fff;
+$menu-inverted: false;
