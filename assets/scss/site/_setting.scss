@@ -3,9 +3,11 @@
 // site
 // pure
 // module
+// @mixins
+// %-placeholder
 
 
-// site ============================
+// site -------------------------
 // color
 $text-color: #212121;
 $blue: #1f4385;
@@ -28,7 +30,7 @@ $z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }
 
-// pure ======================
+// pure -----------------------
 // generate css
 $generate-grid: true !default;
 $generate-grid-block: false !default;
@@ -66,10 +68,47 @@ $social: (
 ) !default;
 
 
-// module
+// module ---------------------
 $sidebar-horizontal-w: 200px;
 $sidebar-vertical-h: 40px;
 $menu-color:#000;
 $menu-active-color: #fd5619;
 $menu-bg-color: #fff;
 $menu-inverted: false;
+
+// @mixins ----------------------
+@mixin replace($old-context, $contexts...) {
+  @each $context in $contexts {
+    @at-root #{selector-replace(&, $old-context, $context)} {
+      @content;  
+    }
+  }  
+}
+
+// %-placeholder -----------------
+%ff-header {font-family: $ff-g; }
+%ff-content {font-family: $ff-a; }
+%hover-tdn {&:hover { text-decoration: none; } }
+%li-style {
+  padding-top: em(10);
+  padding-bottom: em(10);
+  border-top: 1px solid $border-color;
+  :last-child { margin-bottom: 0; }
+}
+%img-left, %img-right { @extend %clearfix; }
+%img-left img {float: left; margin-right: em(15); }
+%img-right img {float: right; margin-left: em(15); }
+%justify {
+  text-align: justify;
+  line-height: 0;
+  margin-bottom: -5px;
+  > li, > div, > span {
+    line-height: 1;
+    display: inline-block;
+  }
+  &:after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+  }
+}
