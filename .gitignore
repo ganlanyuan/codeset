@@ -4,4 +4,14 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 *.DS_Store
-.sass-cache/
+/.sass-cache/
+/.codekit-cache/
+/design/
+README.md
+LICENSE
+*.codekit
+*.sublime-project
+*.sublime-workspace
+sftp-config.json
+/assets/scss/.sass-cache/
+/assets/scss/pure/.sass-cache/
