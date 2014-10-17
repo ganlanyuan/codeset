@@ -6,7 +6,7 @@
 // placeholder and mixin
 %button-basic {
 	display: inline-block;
-	padding: em(10) em(13);
+	@include rem(padding, 10 13);
 	color: #444;  
 	color: rgba(0, 0, 0, .8); 
 	border-radius: .3em;
@@ -52,14 +52,12 @@
 			box-shadow: inset 0px 3px 3px rgba(0,0,0,.1);
 		}
 	}
-	@if $thin {padding: em(7) em(13); }
-	@if $bold {padding: em(13) em(17); }
-	@if $fluid {
-		width: 100%;
-	}
+	@if $thin { @include rem(padding, 7 13); }
+	@if $bold { @include rem(padding, 13 13); }
+	@if $fluid { width: 100%; }
 	@if $simple {
 		border: 1px solid $simply-border-color;
-		padding: em(9) em(12);
+		@include rem(padding, 9 12); 
 		background-color: #fff;
 		&:hover { 
 			border-color: darken($simply-border-color, 10%); 
@@ -82,20 +80,20 @@
 }
 
 // generate css
-@include am(button,thin) { padding: em(7) em(13); }
-@include am(button,bold) { padding: em(13) em(17); }
+@include am(button,thin) { @include rem(padding, 7 13); }
+@include am(button,bold) { @include rem(padding, 13 17); }
 @include am(button,fluid) { width: 100%; }
 @include am(button,simple) { 
 	border: 1px solid $simply-border-color;
-	padding: em(9) em(12);
+	@include rem(padding, 9 12); 
 	background-color: #fff;
 	&:hover { 
 		border-color: darken($simply-border-color, 10%);
 		background-color: #fff;
 	}
 }
-#{am(button,simple)}#{am(button,thin)} {padding: em(6) em(12); }
-#{am(button,simple)}#{am(button,bold)} {padding: em(12) em(16); }
+#{am(button,simple)}#{am(button,thin)} { @include rem(padding, 6 12);  }
+#{am(button,simple)}#{am(button,bold)} { @include rem(padding, 12 16); }
 @include am(button) {
 	@include button($color: false);
 	@at-root .grouped {

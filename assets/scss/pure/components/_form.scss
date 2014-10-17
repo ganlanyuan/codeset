@@ -14,7 +14,7 @@
 [type="color"],
 select,
 textarea {
-	padding: em(9) em(12);
+	@include rem(padding, 9 12); 
 	display: inline-block;
 	color: #666;
 	border: 1px solid #ddd;
@@ -27,8 +27,8 @@ input,
 select {
 	line-height: normal !important; 
 }
-#{am(input,thin)} { padding: em(6) em(12); }
-#{am(input,bold)} { padding: em(12) em(16); }
+#{am(input,thin)} { @include rem(padding, 6 12); }
+#{am(input,bold)} { @include rem(padding, 12 16); }
 
 input,
 select,
@@ -178,7 +178,7 @@ legend {
 	}
 	input {
 		display: block;
-		padding: em(10);
+		@include rem(padding, 10); 
 		margin: 0 0 -1px;
 		border-radius: 0;
 		position: relative;
