@@ -5,7 +5,8 @@
 
 <div am-row="">
   <div am-col="">
-    <p>Main content goes here</p>
+    <p>Your content goes here ...</p>
+    <i class="ic-chat-bubble"></i>
   </div>
 </div>
 

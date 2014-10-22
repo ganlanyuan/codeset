@@ -15,3 +15,4 @@ LICENSE
 sftp-config.json
 /assets/scss/.sass-cache/
 /assets/scss/pure/.sass-cache/
+/tests/scss/.sass-cache/

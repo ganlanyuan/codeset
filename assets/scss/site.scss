@@ -6,13 +6,14 @@
 
 // frameworks
 @import "normalize/normalize"; // css reset
-@import "font-awesome/font-awesome"; // icon font
+// @import "font-awesome/font-awesome"; // icon font
 // @import "OwlCarousel/OwlCarousel"; // slidershow
 // @import "animate/animate";
 @import "pure/pure";  // template
 
 
 // common style
+@import "site/icon-font"; // icon font
 @import "site/module";
 @import "site/common";
 
