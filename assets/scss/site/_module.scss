@@ -211,7 +211,7 @@ $article-link-color: #0C97D2;
 	box-sizing: border-box;
 	@if $z-index { z-index: nth($z-index, 1); }
 	@else { z-index: 300; }
-	@extend %globle-transition;
+	@extend %global-transition;
 }
 #{am(sidebar,left)},
 #{am(sidebar,right)} {
@@ -249,7 +249,7 @@ $article-link-color: #0C97D2;
 .sidebar-move { margin: 0 !important; }
 body,
 #{am(upper)} {
-	@extend %globle-transition;
+	@extend %global-transition;
 	@include position(relative, 0px 0px 0px 0px);
 }
 // translate and reveal
@@ -284,7 +284,7 @@ body,
 	top: 15px;
 	@include size(18 2);
 	background-color: $menu-color;
-	@extend %globle-transition;
+	@extend %global-transition;
 }
 #{am(menu, styled)},
 #{am(menu-close, styled)} {
@@ -295,7 +295,7 @@ body,
 	background-color: $menu-bg-color;
 	box-sizing: content-box;
 	cursor: pointer;
-	@extend %globle-transition;
+	@extend %global-transition;
 	&:hover {
 		span, &:before, &:after { background-color: $menu-active-color;}
 	}

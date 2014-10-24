@@ -25,7 +25,7 @@ $ff-a: Arial, serif;
 // z-index
 $z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
 // transition
-%globle-transition {
+%global-transition {
   -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }

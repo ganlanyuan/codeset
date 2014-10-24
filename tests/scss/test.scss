@@ -86,7 +86,7 @@ ul.styled li {
     padding: 1em 2em;
     text-decoration: none;
     color: #fff;
-    @extend %globle-transition;
+    @extend %global-transition;
     &:hover {
       text-decoration: none;
       background-color: rgba(255,255,255,.2);

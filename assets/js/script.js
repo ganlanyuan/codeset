@@ -31,3 +31,15 @@ document.ready(function () {
 			return false;
 		});
 });
+// hide mobile menu on desktop
+document.ready(function () {
+	window.onresize = function () {
+		var winW = wl.winW();
+		if (winW > 1023) {
+			wl.get('[am-sidebar]').removeClass('sidebar-move');
+			wl.get('body').removeClass('translate-left');
+			wl.get('[am-upper]').removeClass('reveal-left');
+			wl.get('[am-menu]').removeClass('am-menu-active');
+		}
+	};
+});
