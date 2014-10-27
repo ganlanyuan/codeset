@@ -39,10 +39,10 @@ if (typeof Array.prototype.indexOf !== 'function') {
 
 // $kit start
 // (function (window, undefined) {
-var $kit = function (properties) {
-	if ( window === this ) {return new $kit(properties); }
-	if (typeof properties === 'string') {
-		var result = document.querySelectorAll(properties);
+var $kit = function (selector) {
+	if ( window === this ) {return new $kit(selector); }
+	if (typeof selector === 'string') {
+		var result = document.querySelectorAll(selector);
 		if ( result.length > 0 ) {
 			for (var i = 0; i < result.length; i++) {
 				this[i] = result[i];
@@ -50,8 +50,8 @@ var $kit = function (properties) {
 			this.length = result.length;
 			return this;
 		}
-	} else if ( typeof properties === 'object' ) {
-		this[0] = properties;
+	} else if ( typeof selector === 'object' ) {
+		this[0] = selector;
 		this.length = 1;
 		return this;
 	}
@@ -129,7 +129,7 @@ $kit.fn = $kit.prototype = {
 				results.push(node);
 			}
 		}
-		return new Wl(results);
+		return new $kit(results);
 	},
 
 	lastChild: function () {
@@ -145,7 +145,7 @@ $kit.fn = $kit.prototype = {
 				results.push(node);
 			}
 		}
-		return new Wl(results);
+		return new $kit(results);
 	},
 
 	children: function () {
@@ -165,7 +165,7 @@ $kit.fn = $kit.prototype = {
 				}
 			}
 		}
-		return new Wl(results);
+		return new $kit(results);
 	},
 
 	parent: function () {
@@ -173,7 +173,7 @@ $kit.fn = $kit.prototype = {
 		for (var i = 0; i < this.length; i++) {
 			results.push(this[i].parentNode);
 		}
-		return new Wl(results);
+		return new $kit(results);
 	},
 
 	siblings: function () {
@@ -184,7 +184,7 @@ $kit.fn = $kit.prototype = {
 				results.push(allSiblings[i]);
 			}
 		}
-		return new Wl(results);
+		return new $kit(results);
 	},
 
 	// handle attr
@@ -405,7 +405,7 @@ $kit.fn = $kit.prototype = {
 	}()),
 
 	create: function (tagName, attrs) {
-		var el = new Wl([document.createElement(tagName)]);
+		var el = new $kit([document.createElement(tagName)]);
 		if (attrs) {
 			if (attrs.className) { 
 				el.addClass(attrs.className);
