@@ -174,9 +174,6 @@ $font-path:"../../../assets/fonts/icon-font";
 .ic-forward:before {
   content: "l";
 }
-.ic-angle-up:before {
-  content: "i";
-}
 .ic-angle-right:before {
   content: "m";
 }
@@ -185,4 +182,10 @@ $font-path:"../../../assets/fonts/icon-font";
 }
 .ic-angle-down:before {
   content: "o";
+}
+.ic-ptint:before {
+  content: "q";
+}
+.ic-angle-up:before {
+  content: "i";
 }

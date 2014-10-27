@@ -305,7 +305,7 @@ body,
 	&:before {margin-top: -5px; }
 	&:after {margin-top: 5px; }
 }
-.am-menu-active,
+[am-menu~="styled"].am-menu-active,
 #{am(menu-close, styled)} {
 	span { display: none; }
 	&:before,

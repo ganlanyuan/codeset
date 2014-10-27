@@ -2,11 +2,9 @@
 <body>
 <?php include 'part/helper/no-js.php'; ?>
 <?php include 'part/header.php'; ?>
-
 <div am-row="">
   <div am-col="">
     <p>Your content goes here ...</p>
-    <i class="ic-chat-bubble"></i>
   </div>
 </div>
 

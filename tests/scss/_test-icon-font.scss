@@ -8,7 +8,6 @@ $font-path:"../../../assets/fonts/icon-font";
     url("#{$font-path}/icon-font.svg#icon-font") format("svg");
   font-weight: normal;
   font-style: normal;
-
 }
 
 [data-icon]:before {content: attr(data-icon); }
@@ -175,9 +174,6 @@ $font-path:"../../../assets/fonts/icon-font";
 .ic-forward:before {
   content: "l";
 }
-.ic-angle-up:before {
-  content: "i";
-}
 .ic-angle-right:before {
   content: "m";
 }
@@ -186,4 +182,10 @@ $font-path:"../../../assets/fonts/icon-font";
 }
 .ic-angle-down:before {
   content: "o";
+}
+.ic-ptint:before {
+  content: "q";
+}
+.ic-angle-up:before {
+  content: "i";
 }

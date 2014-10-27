@@ -1,403 +1,3 @@
-// wl start
-if (typeof Array.prototype.indexOf !== 'function') {
-	Array.prototype.indexOf = function (item) {
-		for(var i = 0; i < this.length; i++) {
-			if (this[i] === item) {
-				return i;
-			}
-		}
-		return -1;
-	}; 
-}
-
-window.wl = (function () {
-	function Wl(els) {
-		for(var i = 0; i < els.length; i++ ) {
-			this[i] = els[i];
-		}
-		this.length = els.length;
-	}
-	// ========= UTILS =========
-	Wl.prototype.map = function (callback) {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			results.push(callback.call(this, this[i], i));
-		}
-		return results; //.length > 1 ? results : results[0];
-	};
-	Wl.prototype.mapOne = function (callback) {
-		var m = this.map(callback);
-		return m.length > 1 ? m : m[0];
-	};
-	Wl.prototype.forEach = function (callback) {
-		this.map(callback);
-		return this; 
-	};
-
-	// ========== DOM MANIPULATION ==========
-
-	// handle DOM
-	Wl.prototype.firstChild = function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			if (this[i].firstElementChild) {
-				results.push(this[i].firstElementChild);
-			} else{
-				var node = this[i].firstChild;
-				while (node.nodeType !== 1) {
-					node = node.nextSibling;
-				}
-				results.push(node);
-			}
-		}
-		return new Wl(results);
-	};
-
-	Wl.prototype.lastChild = function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			if (this[i].lastElementChild) {
-				results.push(this[i].lastElementChild);
-			} else{
-				var node = this[i].lastChild;
-				while (node.nodeType !== 1) {
-					node = node.previousSibling;
-				}
-				results.push(node);
-			}
-		}
-		return new Wl(results);
-	};
-
-	Wl.prototype.children = function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			if (this[i].children) {
-				var children = this[i].children;
-				for (var j = 0; j < children.length; j++) {
-					results.push(children[j]);
-				}
-			} else{
-				var childNodes = this[i].childNodes;
-				for (var j = 0; j < childNodes.length; j++) {
-					if (childNodes[j].nodeType === 1) {
-						results.push(childNodes[j]);
-					}
-				}
-			}
-		}
-		return new Wl(results);
-	};
-
-	Wl.prototype.parent = function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			results.push(this[i].parentNode);
-		}
-		return new Wl(results);
-	};
-
-	Wl.prototype.siblings = function () {
-		var results = [];
-		var allSiblings = this.parent().children();
-		for (var i = 0; i < allSiblings.length; i++) {
-			if (allSiblings[i] !== this[0]) {
-				results.push(allSiblings[i]);
-			}
-		}
-		return new Wl(results);
-	};
-
-	// handle attr
-	Wl.prototype.text = function (text) {
-		if (typeof text !== "undefined") {
-			return this.forEach(function (el) {
-				if (el.textContent) {
-					el.textContent = text;
-				} else{
-					el.innerText = text;
-				}
-			});
-		} else {
-			return this.mapOne(function (el) {
-				if (el.textContent) {
-					return el.textContent;
-				} else{
-					return el.innerText;
-				}
-			});
-		}
-	};
-
-	Wl.prototype.html = function (html) {
-		if (typeof html !== "undefined") {
-			return this.forEach(function (el) {
-				el.innerHTML = html;
-			});
-		} else {
-			return this.mapOne(function (el) {
-				return el.innerHTML;
-			});
-		}
-	};
-
-	Wl.prototype.attr = function (attr, val) {
-		if (typeof val !== 'undefined') {
-			return this.forEach(function(el) {
-				el.setAttribute(attr, val);
-			});
-		} else {
-			return this.mapOne(function (el) {
-				return el.getAttribute(attr);
-			});
-		}
-	};
-
-	// handle class
-	Wl.prototype.hasClass = function (c) {
-		for (var i = 0; i < this.length; i++) {
-			var classes = this[i].className;
-			if (!classes) {return false; }
-			if (classes === c) {return true;} 
-			return classes.search("\\b" + c + "\\b") !== -1;
-		}
-	};
-
-	Wl.prototype.addClass = function (c) {
-		var className = "";
-		function addClassCheck (obj,cla) {
-			if (obj.className.indexOf(cla) === -1) {
-				className += ' ' + cla;
-			}
-			return className;
-		}
-		return this.forEach(function (el) {
-			if (c.indexOf(' ') !== -1) {
-				var cs = c.split(' ');
-				for (var i = 0; i < cs.length; i++) {
-					addClassCheck(el,cs[i]);
-				}
-			} else {
-				addClassCheck(el,c);
-			}
-			el.className += className;
-		});
-	};
-
-	Wl.prototype.removeClass = function (c) {
-		function removeClassCheck (obj, cla) {
-			var pattern = new RegExp("\\b" + cla + "\\b\\s*", "g");
-			obj.className = obj.className.replace(pattern, "");
-		}
-		return this.forEach(function (el) {
-			if (c.indexOf(' ') !== -1) {
-				var cs = c.split(' ');
-				for (var i = 0; i < cs.length; i++) {
-					removeClassCheck(el,cs[i]);
-				};
-			} else{
-				removeClassCheck(el,c);
-			}
-		});
-	};
-
-	Wl.prototype.toggleClass = function (c) {
-		function toggleClassCheck (obj, cla) {
-			if (obj.hasClass(cla)) {
-				obj.removeClass(cla);
-			} else{
-				obj.addClass(cla);
-			}
-		}
-		if (c.indexOf(' ') !== -1) {
-			var cs = c.split(' ');
-			for (var i = 0; i < cs.length; i++) {
-				toggleClassCheck(this, cs[i]);
-			};
-		} else{
-			toggleClassCheck(this, c);
-		}
-	};
-
-	// handle node
-	Wl.prototype.append = function (els) {
-		return this.forEach(function (parEl, i) {
-			els.forEach(function (childEl) {
-				parEl.appendChild( (i > 0) ? childEl.cloneNode(true) : childEl);
-			});
-		});
-	};
-
-	Wl.prototype.prepend = function (els) {
-		return this.forEach(function (parEl, i) {
-			for (var j = els.length -1; j > -1; j--) {
-				parEl.insertBefore((i > 0) ? els[j].cloneNode(true) : els[j], parEl.firstChild);
-			}
-		});
-	};
-
-	Wl.prototype.remove = function () {
-		return this.forEach(function (el) {
-			return el.parentNode.removeChild(el);
-		});
-	};
-
-	// get element size
-	Wl.prototype.getWidth = function () {
-		return this.mapOne(function (el) {
-			var box = el.getBoundingClientRect();
-			var ow = box.width || (box.right - box.left);
-			return ow;
-		});
-	};
-
-	Wl.prototype.getHeight = function () {
-		return this.mapOne(function (el) {
-			var box = el.getBoundingClientRect();
-			var oh = box.height || (box.bottom - box.top);
-			return oh;
-		});
-	};
-
-	Wl.prototype.getTop = function () {
-		return this.mapOne(function (el) {
-			var actualTop = el.offsetTop, current = el.offsetParent;
-			while (current !== null){
-			actualTop += current.offsetTop;
-			current = current.offsetParent;
-			}
-			return actualTop;
-		});
-	};
-
-	Wl.prototype.getLeft = function () {
-		return this.mapOne(function (el) {
-			var actualLeft = el.offsetLeft, current = el.offsetParent;
-			while (current !== null){
-			actualLeft += current.offsetLeft;
-			current = current.offsetParent;
-			}
-			return actualLeft;
-		});
-	};
-
-	// add eventListener
-	Wl.prototype.on = (function () {
-		if (document.addEventListener) {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.addEventListener(evt, fn, false);
-				});
-			};
-		} else if (document.attachEvent)  {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.attachEvent("on" + evt, fn);
-				});
-			};
-		} else {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el["on" + evt] = fn;
-				});
-			};
-		}
-	}());
-
-	Wl.prototype.off = (function () {
-		if (document.removeEventListener) {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.removeEventListener(evt, fn, false);
-				});
-			};
-		} else if (document.detachEvent)  {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.detachEvent("on" + evt, fn);
-				});
-			};
-		} else {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el["on" + evt] = null;
-				});
-			};
-		}
-	}());
-
-	var wl = {
-		get: function (selector) {
-			var els;
-			if (typeof selector === 'string') {
-				els = document.querySelectorAll(selector);
-			} else if (selector.length) { 
-				els = selector;
-			} else {
-				els = [selector];
-			}
-			return new Wl(els);
-		}, 
-		create: function (tagName, attrs) {
-			var el = new Wl([document.createElement(tagName)]);
-			if (attrs) {
-				if (attrs.className) { 
-					el.addClass(attrs.className);
-					delete attrs.className;
-				}
-				if (attrs.text) { 
-					el.text(attrs.text);
-					delete attrs.text;
-				}
-				for (var key in attrs) {
-					if (attrs.hasOwnProperty(key)) {
-						el.attr(key, attrs[key]);
-					}
-				}
-			}
-			return el;
-		},
-		winW: function  () {
-			var d = document, w = window,
-			winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
-			return winW;  
-		},
-		winH: function () {
-			var winH, d = document, w = window;
-			if(w.innerHeight) { // all except IE
-			winH = w.innerHeight;
-			} else if (d.documentElement && d.documentElement.clientHeight) {
-			// IE 6 Strict Mode
-			winH = d.documentElement.clientHeight;
-			} else if (d.body) { // other
-			winH = d.body.clientHeight;
-			}
-			return winH;
-		},
-		winST: function () {
-			var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-			return scrollTop;
-		}
-	};
-
-	return wl;
-}());
-
-
-
-// scroll to
-function scrollTo(element, to, duration) {
-	if (duration < 0) {return;}
-	var difference = to - element.scrollTop;
-	var perTick = difference / duration * 10;
-
-	setTimeout(function() {
-	element.scrollTop = element.scrollTop + perTick;
-	if (element.scrollTop === to) {return;}
-	scrollTo(element, to, duration - 10);
-	}, 10);
-}
-
 // document.ready
 (function () {
 	var ie = !!(window.attachEvent && !window.opera);
@@ -424,6 +24,426 @@ function scrollTo(element, to, duration) {
 	}
 	};
 })();
+
+
+if (typeof Array.prototype.indexOf !== 'function') {
+	Array.prototype.indexOf = function (item) {
+		for(var i = 0; i < this.length; i++) {
+			if (this[i] === item) {
+				return i;
+			}
+		}
+		return -1;
+	}; 
+}
+
+// $kit start
+// (function (window, undefined) {
+var $kit = function (properties) {
+	if ( window === this ) {return new $kit(properties); }
+	if (typeof properties === 'string') {
+		var result = document.querySelectorAll(properties);
+		if ( result.length > 0 ) {
+			for (var i = 0; i < result.length; i++) {
+				this[i] = result[i];
+			}
+			this.length = result.length;
+			return this;
+		}
+	} else if ( typeof properties === 'object' ) {
+		this[0] = properties;
+		this.length = 1;
+		return this;
+	}
+};
+
+$kit.win = {
+	W: function  () {
+		var d = document, w = window,
+		winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
+		return winW;  
+	},
+
+	H: function () {
+		var winH, d = document, w = window;
+		if(w.innerHeight) { // all except IE
+			winH = w.innerHeight;
+		} else if (d.documentElement && d.documentElement.clientHeight) {
+		// IE 6 Strict Mode
+			winH = d.documentElement.clientHeight;
+		} else if (d.body) { // other
+			winH = d.body.clientHeight;
+		}
+		return winH;
+	},
+
+	ST: function () {
+		var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+		return scrollTop;
+	}
+};
+
+$kit.fn = $kit.prototype = {
+	hide: function(fadespeed,fn) {
+		for (var i = 0; i < this.length; i++) {
+			this[i].style.display = 'none';
+		}
+		return this;
+	},
+	show: function(fadespeed,fn) {
+		for (var i = 0; i < this.length; i++) {
+			this[i].style.display = 'inherit';
+		}
+		return this;
+	},
+	// ========= UTILS =========
+	map: function (callback) {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			results.push(callback.call(this, this[i], i));
+		}
+		return results; //.length > 1 ? results : results[0];
+	},
+	mapOne: function (callback) {
+		var m = this.map(callback);
+		return m.length > 1 ? m : m[0];
+	},
+	forEach: function (callback) {
+		this.map(callback);
+		return this; 
+	},
+
+	// ========== DOM MANIPULATION ==========
+
+	// handle DOM
+	firstChild: function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].firstElementChild) {
+				results.push(this[i].firstElementChild);
+			} else{
+				var node = this[i].firstChild;
+				while (node.nodeType !== 1) {
+					node = node.nextSibling;
+				}
+				results.push(node);
+			}
+		}
+		return new Wl(results);
+	},
+
+	lastChild: function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].lastElementChild) {
+				results.push(this[i].lastElementChild);
+			} else{
+				var node = this[i].lastChild;
+				while (node.nodeType !== 1) {
+					node = node.previousSibling;
+				}
+				results.push(node);
+			}
+		}
+		return new Wl(results);
+	},
+
+	children: function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].children) {
+				var children = this[i].children;
+				for (var j = 0; j < children.length; j++) {
+					results.push(children[j]);
+				}
+			} else{
+				var childNodes = this[i].childNodes;
+				for (var j = 0; j < childNodes.length; j++) {
+					if (childNodes[j].nodeType === 1) {
+						results.push(childNodes[j]);
+					}
+				}
+			}
+		}
+		return new Wl(results);
+	},
+
+	parent: function () {
+		var results = [];
+		for (var i = 0; i < this.length; i++) {
+			results.push(this[i].parentNode);
+		}
+		return new Wl(results);
+	},
+
+	siblings: function () {
+		var results = [];
+		var allSiblings = this.parent().children();
+		for (var i = 0; i < allSiblings.length; i++) {
+			if (allSiblings[i] !== this[0]) {
+				results.push(allSiblings[i]);
+			}
+		}
+		return new Wl(results);
+	},
+
+	// handle attr
+	text: function (text) {
+		if (typeof text !== "undefined") {
+			return this.forEach(function (el) {
+				if (el.textContent) {
+					el.textContent = text;
+				} else{
+					el.innerText = text;
+				}
+			});
+		} else {
+			return this.mapOne(function (el) {
+				if (el.textContent) {
+					return el.textContent;
+				} else{
+					return el.innerText;
+				}
+			});
+		}
+	},
+
+	html: function (html) {
+		if (typeof html !== "undefined") {
+			return this.forEach(function (el) {
+				el.innerHTML = html;
+			});
+		} else {
+			return this.mapOne(function (el) {
+				return el.innerHTML;
+			});
+		}
+	},
+
+	attr: function (attr, val) {
+		if (typeof val !== 'undefined') {
+			return this.forEach(function(el) {
+				el.setAttribute(attr, val);
+			});
+		} else {
+			return this.mapOne(function (el) {
+				return el.getAttribute(attr);
+			});
+		}
+	},
+
+	// handle class
+	hasClass: function (c) {
+		for (var i = 0; i < this.length; i++) {
+			var classes = this[i].className;
+			if (!classes) {return false; }
+			if (classes === c) {return true;} 
+			return classes.search("\\b" + c + "\\b") !== -1;
+		}
+	},
+
+	addClass: function (c) {
+		var className = "";
+		function addClassCheck (obj,cla) {
+			if (obj.className.indexOf(cla) === -1) {
+				className += ' ' + cla;
+			}
+			return className;
+		}
+		return this.forEach(function (el) {
+			if (c.indexOf(' ') !== -1) {
+				var cs = c.split(' ');
+				for (var i = 0; i < cs.length; i++) {
+					addClassCheck(el,cs[i]);
+				}
+			} else {
+				addClassCheck(el,c);
+			}
+			el.className += className;
+		});
+	},
+
+	removeClass: function (c) {
+		function removeClassCheck (obj, cla) {
+			var pattern = new RegExp("\\b" + cla + "\\b\\s*", "g");
+			obj.className = obj.className.replace(pattern, "");
+		}
+		return this.forEach(function (el) {
+			if (c.indexOf(' ') !== -1) {
+				var cs = c.split(' ');
+				for (var i = 0; i < cs.length; i++) {
+					removeClassCheck(el,cs[i]);
+				};
+			} else{
+				removeClassCheck(el,c);
+			}
+		});
+	},
+
+	toggleClass: function (c) {
+		function toggleClassCheck (obj, cla) {
+			if (obj.hasClass(cla)) {
+				obj.removeClass(cla);
+			} else{
+				obj.addClass(cla);
+			}
+		}
+		if (c.indexOf(' ') !== -1) {
+			var cs = c.split(' ');
+			for (var i = 0; i < cs.length; i++) {
+				toggleClassCheck(this, cs[i]);
+			};
+		} else{
+			toggleClassCheck(this, c);
+		}
+	},
+
+	// handle node
+	append: function (els) {
+		return this.forEach(function (parEl, i) {
+			els.forEach(function (childEl) {
+				parEl.appendChild( (i > 0) ? childEl.cloneNode(true) : childEl);
+			});
+		});
+	},
+
+	prepend: function (els) {
+		return this.forEach(function (parEl, i) {
+			for (var j = els.length -1; j > -1; j--) {
+				parEl.insertBefore((i > 0) ? els[j].cloneNode(true) : els[j], parEl.firstChild);
+			}
+		});
+	},
+
+	remove: function () {
+		return this.forEach(function (el) {
+			return el.parentNode.removeChild(el);
+		});
+	},
+
+	// get element size
+	getWidth: function () {
+		return this.mapOne(function (el) {
+			var box = el.getBoundingClientRect();
+			var ow = box.width || (box.right - box.left);
+			return ow;
+		});
+	},
+
+	getHeight: function () {
+		return this.mapOne(function (el) {
+			var box = el.getBoundingClientRect();
+			var oh = box.height || (box.bottom - box.top);
+			return oh;
+		});
+	},
+
+	getTop: function () {
+		return this.mapOne(function (el) {
+			var actualTop = el.offsetTop, current = el.offsetParent;
+			while (current !== null){
+			actualTop += current.offsetTop;
+			current = current.offsetParent;
+			}
+			return actualTop;
+		});
+	},
+
+	getLeft: function () {
+		return this.mapOne(function (el) {
+			var actualLeft = el.offsetLeft, current = el.offsetParent;
+			while (current !== null){
+			actualLeft += current.offsetLeft;
+			current = current.offsetParent;
+			}
+			return actualLeft;
+		});
+	},
+
+	on: (function () {
+		if (document.addEventListener) {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.addEventListener(evt, fn, false);
+				});
+			};
+		} else if (document.attachEvent)  {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.attachEvent("on" + evt, fn);
+				});
+			};
+		} else {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el["on" + evt] = fn;
+				});
+			};
+		}
+	}()),
+
+	off: (function () {
+		if (document.removeEventListener) {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.removeEventListener(evt, fn, false);
+				});
+			};
+		} else if (document.detachEvent)  {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el.detachEvent("on" + evt, fn);
+				});
+			};
+		} else {
+			return function (evt, fn) {
+				return this.forEach(function (el) {
+					el["on" + evt] = null;
+				});
+			};
+		}
+	}()),
+
+	create: function (tagName, attrs) {
+		var el = new Wl([document.createElement(tagName)]);
+		if (attrs) {
+			if (attrs.className) { 
+				el.addClass(attrs.className);
+				delete attrs.className;
+			}
+			if (attrs.text) { 
+				el.text(attrs.text);
+				delete attrs.text;
+			}
+			for (var key in attrs) {
+				if (attrs.hasOwnProperty(key)) {
+					el.attr(key, attrs[key]);
+				}
+			}
+		}
+		return el;
+	}
+
+};
+
+// 	window.$kit = $kit;
+// })(window);
+// $kit end
+
+
+// scroll to
+function scrollTo(element, to, duration) {
+	if (duration < 0) {return;}
+	var difference = to - element.scrollTop;
+	var perTick = difference / duration * 10;
+
+	setTimeout(function() {
+	element.scrollTop = element.scrollTop + perTick;
+	if (element.scrollTop === to) {return;}
+	scrollTo(element, to, duration - 10);
+	}, 10);
+}
+
 
 
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD

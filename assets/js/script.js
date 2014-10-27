@@ -2,7 +2,7 @@
 
 // show sidebar
 document.ready(function () {
-	var menu = wl.get('[am-menu]');
+	var menu = $kit('[am-menu]');
 	function menuAddClass (obj, c) {
 		if (obj.className.indexOf(c) === -1) {
 			obj.className += ' ' + c;
@@ -15,31 +15,32 @@ document.ready(function () {
 		menu[i].onclick = function () {
 			var data = this.getAttribute('data');
 				if (data.indexOf('move') !== -1) {
-					wl.get('[am-sidebar]').toggleClass('sidebar-move');
+					$kit('[am-sidebar]').toggleClass('sidebar-move');
 				} else if (data.indexOf('translate') !== -1){
-					wl.get('body').toggleClass(data);
+					$kit('body').toggleClass(data);
 					menuAddClass(this, 'am-menu-active');
 				} else if (data.indexOf('reveal') !== -1){
-					wl.get('[am-upper]').toggleClass(data);
+					$kit('[am-upper]').toggleClass(data);
 					menuAddClass(this, 'am-menu-active');
 				}
 			return false;
 		};
 	}
-	wl.get('[am-menu-close]').on('click', function () {
-			wl.get('[am-sidebar]').removeClass('sidebar-move');
+	$kit('[am-menu-close]').on('click', function () {
+			$kit('[am-sidebar]').removeClass('sidebar-move');
 			return false;
 		});
 });
 // hide mobile menu on desktop
 document.ready(function () {
 	window.onresize = function () {
-		var winW = wl.winW();
+		var winW = $kit.win.W();
 		if (winW > 1023) {
-			wl.get('[am-sidebar]').removeClass('sidebar-move');
-			wl.get('body').removeClass('translate-left');
-			wl.get('[am-upper]').removeClass('reveal-left');
-			wl.get('[am-menu]').removeClass('am-menu-active');
+			$kit('[am-sidebar~="left"]').removeClass('sidebar-move');
+			$kit('[am-sidebar~="right"]').removeClass('sidebar-move');
+			$kit('body').removeClass('translate-left');
+			$kit('[am-upper]').removeClass('reveal-left');
+			$kit('[am-menu]').removeClass('am-menu-active');
 		}
 	};
 });
