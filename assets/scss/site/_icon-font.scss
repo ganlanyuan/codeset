@@ -10,10 +10,7 @@ $font-path:"../../../assets/fonts/icon-font";
   font-style: normal;
 }
 
-[data-icon]:before {content: attr(data-icon); }
-[data-icon]:before,
-[class^="ic-"]:before,
-[class*=" ic-"]:before {
+%icon-font {
   display: inline-block;
   font-family: "icon-font" !important;
   font-style: normal !important;
@@ -22,6 +19,12 @@ $font-path:"../../../assets/fonts/icon-font";
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+[data-icon]:before {content: attr(data-icon); }
+[data-icon]:before,
+[class^="ic-"]:before,
+[class*=" ic-"]:before {
+  @extend %icon-font;
 }
 
 .ic-comment:before {
