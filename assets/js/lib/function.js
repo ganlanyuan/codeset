@@ -25,6 +25,33 @@
 	};
 })();
 
+// kit start
+/*** Helper Functions ***/
+function toCamelCase(str) {
+	return str.replace(/-([a-z])/ig, function( all, letter ) {
+		return letter.toUpperCase();
+	});
+}
+
+var getStyle = (function() {
+	if (typeof getComputedStyle !== "undefined") {
+		return function(el, cssProp) {
+			return window.getComputedStyle(el, null).getPropertyValue(cssProp);
+		};
+	} else {
+		return function(el, cssProp) {
+			return el.currentStyle[toCamelCase(cssProp)];
+		};
+	}
+}());
+
+
+/*** Language Extensions ***/
+if (typeof String.prototype.trim === "undefined") {
+	String.prototype.trim = function() {
+		return this.replace( /^\s+/, "" ).replace( /\s+$/, "" );
+	};
+}
 
 if (typeof Array.prototype.indexOf !== 'function') {
 	Array.prototype.indexOf = function (item) {
@@ -37,27 +64,490 @@ if (typeof Array.prototype.indexOf !== 'function') {
 	}; 
 }
 
-// $kit start
 // (function (window, undefined) {
-var $kit = function (selector) {
-	if ( window === this ) {return new $kit(selector); }
-	if (typeof selector === 'string') {
+var kit = function (selector) {
+	if ( window === this ) {return new kit(selector); }
+	var type = typeof selector;
+	if (type === 'string') {
 		var result = document.querySelectorAll(selector);
 		if ( result.length > 0 ) {
 			for (var i = 0; i < result.length; i++) {
 				this[i] = result[i];
 			}
 			this.length = result.length;
-			return this;
 		}
-	} else if ( typeof selector === 'object' ) {
+	} else if (type === "object" && selector.nodeType !== "undefined" && selector.nodeType === 1) {
 		this[0] = selector;
 		this.length = 1;
-		return this;
+	}
+	return this;
+};
+
+// ========= UTILS =========
+kit.prototype.map = function (callback) {
+	var results = [];
+	for (var i = 0; i < this.length; i++) {
+		results.push(callback.call(this, this[i], i));
+	}
+	return results;
+};
+
+kit.prototype.mapOne = function (callback) {
+	var m = this.map(callback);
+	return m.length > 1 ? m : m[0];
+};
+
+kit.prototype.forEach = function (callback) {
+	this.map(callback);
+	return this; 
+};
+
+// ========= Event static methods =========
+if (typeof addEventListener !== "undefined") {
+	kit.addEvent = function(obj, evt, fn) {
+		obj.addEventListener(evt, fn, false);
+	};
+
+	kit.removeEvent = function(obj, evt, fn) {
+		obj.removeEventListener(evt, fn, false);
+	};
+} else if (typeof attachEvent !== "undefined") {
+	kit.addEvent = function(obj, evt, fn) {
+		var fnHash = "e_" + evt + fn;
+
+		obj[fnHash] = function() {
+			var type = event.type,
+				relatedTarget = null;
+
+			if (type === "mouseover" || type === "mouseout") {
+				relatedTarget = (type === "mouseover") ? event.fromElement : event.toElement;
+			}
+			
+			fn.call(obj, {
+				target : event.srcElement,
+				type : type,
+				relatedTarget : relatedTarget,
+				_event : event,
+				preventDefault : function() {
+					this._event.returnValue = false;
+				},
+				stopPropagation : function() {
+					this._event.cancelBubble = true;
+				}
+			});
+		};
+
+		obj.attachEvent("on" + evt, obj[fnHash]);
+	};
+
+	kit.removeEvent = function(obj, evt, fn) {
+		var fnHash = "e_" + evt + fn;
+
+		if (typeof obj[fnHash] !== "undefined") {
+			obj.detachEvent("on" + evt, obj[fnHash]);
+			delete obj[fnHash];
+		}
+	};
+} else {
+	kit.addEvent = function(obj, evt, fn) {
+		obj["on" + evt] = fn;
+	};
+
+	kit.removeEvent = function(obj, evt, fn) {
+		obj["on" + evt] = null;
+	};
+}
+
+// ========= Event instance methods =========
+kit.prototype.on = function (evt, fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, evt, fn);
+	});
+};
+
+kit.prototype.off = function (evt, fn) {
+	return this.forEach(function (el) {
+		kit.removeEvent(el, evt, fn);
+	});
+};
+
+// var names = ("blur focus focusin focusout load resize scroll unload click dblclick " +
+//   "mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+//   "change select submit keydown keypress keyup error contextmenu").split(" ");
+kit.prototype.click = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'click', fn);
+	});
+};
+
+kit.prototype.mouseover = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'mouseover', fn);
+	});
+};
+
+kit.prototype.mouseout = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'mouseout', fn);
+	});
+};
+
+// ========== DOM MANIPULATION ==========
+kit.prototype.hide = function(fadespeed,fn) {
+	return this.forEach(function (el) {
+		el.style.display = 'none';
+	});
+};
+kit.prototype.show = function(fadespeed,fn) {
+	return this.forEach(function (el) {
+		el.style.display = 'inherit';
+	});
+};
+
+// handle DOM
+kit.prototype.firstChild = function () {
+	var results = [];
+	for (var i = 0; i < this.length; i++) {
+		if (this[i].firstElementChild) {
+			results.push(this[i].firstElementChild);
+		} else{
+			var node = this[i].firstChild;
+			while (node.nodeType !== 1) {
+				node = node.nextSibling;
+			}
+			results.push(node);
+		}
+	}
+	return new kit(results);
+};
+
+kit.prototype.lastChild = function () {
+	var results = [];
+	for (var i = 0; i < this.length; i++) {
+		if (this[i].lastElementChild) {
+			results.push(this[i].lastElementChild);
+		} else{
+			var node = this[i].lastChild;
+			while (node.nodeType !== 1) {
+				node = node.previousSibling;
+			}
+			results.push(node);
+		}
+	}
+	return new kit(results);
+};
+
+kit.prototype.children = function () {
+	var results = [];
+	for (var i = 0; i < this.length; i++) {
+		if (this[i].children) {
+			var children = this[i].children;
+			for (var j = 0; j < children.length; j++) {
+				results.push(children[j]);
+			}
+		} else{
+			var childNodes = this[i].childNodes;
+			for (var j = 0; j < childNodes.length; j++) {
+				if (childNodes[j].nodeType === 1) {
+					results.push(childNodes[j]);
+				}
+			}
+		}
+	}
+	return new kit(results);
+};
+
+kit.prototype.parent = function () {
+	var results = [];
+	for (var i = 0; i < this.length; i++) {
+		results.push(this[i].parentNode);
+	}
+	return new kit(results);
+};
+
+kit.prototype.siblings = function () {
+	var results = [];
+	var allSiblings = this.parent().children();
+	for (var i = 0; i < allSiblings.length; i++) {
+		if (allSiblings[i] !== this[0]) {
+			results.push(allSiblings[i]);
+		}
+	}
+	return new kit(results);
+};
+
+// handle attr
+kit.prototype.text = function (text) {
+	if (typeof text !== "undefined") {
+		return this.forEach(function (el) {
+			if (el.textContent) {
+				el.textContent = text;
+			} else{
+				el.innerText = text;
+			}
+		});
+	} else {
+		return this.mapOne(function (el) {
+			if (el.textContent) {
+				return el.textContent;
+			} else{
+				return el.innerText;
+			}
+		});
 	}
 };
 
-$kit.win = {
+kit.prototype.html = function (html) {
+	if (typeof html !== "undefined") {
+		return this.forEach(function (el) {
+			el.innerHTML = html;
+		});
+	} else {
+		return this.mapOne(function (el) {
+			return el.innerHTML;
+		});
+	}
+};
+
+kit.prototype.attr = function (attr, val) {
+	if (typeof val !== 'undefined') {
+		return this.forEach(function(el) {
+			el.setAttribute(attr, val);
+		});
+	} else {
+		return this.mapOne(function (el) {
+			return el.getAttribute(attr);
+		});
+	}
+};
+
+/*** Style instance methods ***/
+kit.css = function(el, css, value) {
+	var cssType = typeof css,
+		valueType = typeof value,
+		elStyle = el.style;
+
+	if (cssType !== "undefined" && valueType === "undefined") {
+		if (cssType === "object") {
+			// set style info
+			for (var prop in css) {
+				if (css.hasOwnProperty(prop)) {
+					elStyle[toCamelCase(prop)] = css[prop];
+				}
+			}
+		} else if (cssType === "string") {
+			// get style info for specified property
+			return getStyle(el, css);
+		} else {
+			throw { message: "Invalid parameter passed to css()" };
+		}
+
+	} else if (cssType === "string" && valueType === "string") {
+		elStyle[toCamelCase(css)] = value;
+
+	} else {
+		throw { message: "Invalid parameters passed to css()" };
+	}
+};
+
+
+kit.hasClass = function(el, value) {   
+	return (" " + el.className + " ").indexOf(" " + value + " ") > -1;
+};
+
+kit.addClass = function(el, value) {
+	var className = el.className;
+	
+	if (!className) {
+		el.className = value;
+	} else {
+		var classNames = value.split(/\s+/),
+			l = classNames.length;
+
+		for ( var i = 0; i < l; i++ ) {		    
+			if (!this.hasClass(el, classNames[i])) {
+				className += " " + classNames[i];
+			}
+		}
+
+		el.className = className.trim();
+	}
+};
+
+kit.removeClass = function(el, value) {
+	if (value) {
+		var classNames = value.split(/\s+/),
+			className = " " + el.className + " ",
+			l = classNames.length;
+
+		for (var i = 0; i < l; i++) {
+			className = className.replace(" " + classNames[i] + " ", " ");
+		}
+
+		el.className = className.trim();
+
+	} else {
+		el.className = "";
+	}
+};
+
+kit.toggleClass = function(el, value) {
+	var classNames = value.split(/\s+/),
+		i = 0,
+		className;
+
+	while (className = classNames[i++]) {
+		this[this.hasClass(el, className) ? "removeClass" : "addClass"](el, className);
+	}
+};
+
+//*** Style instance methods ***/
+kit.prototype.css = function(css, value) {
+	return this.forEach(function (el) {
+		return kit.css(el, css, value) || el;
+	})
+};
+
+kit.prototype.addClass = function(value) {
+	return this.forEach(function (el) {
+		kit.addClass(el, value);
+	})
+};
+
+kit.prototype.removeClass = function(value) {
+	return this.forEach(function (el) {
+		kit.removeClass(el, value);
+	})
+};
+
+kit.prototype.toggleClass = function(value) {
+	return this.forEach(function (el) {
+		kit.toggleClass(el, value);
+	})
+};
+
+kit.prototype.hasClass = function(value) {
+	return this.forEach(function (el) {
+		kit.hasClass(el, value);
+	})
+};
+
+// handle node
+kit.createElement = function(obj) {
+	if (!obj || !obj.tagName) {
+		throw { message : "Invalid argument" };
+	}
+
+	var el = document.createElement(obj.tagName);
+	obj.id && (el.id = obj.id);
+	obj.className && (el.className = obj.className);
+	obj.html && (el.innerHTML = obj.html);
+	
+	if (typeof obj.attributes !== "undefined") {
+		var attr = obj.attributes,
+			prop;
+
+		for (prop in attr) {
+			if (attr.hasOwnProperty(prop)) {
+				el.setAttribute(prop, attr[prop]);
+			}
+		}
+	}
+
+	if (typeof obj.children !== "undefined") {
+		var child,
+			i = 0;
+
+		while (child = obj.children[i++]) {
+			el.appendChild(this.createElement(child));
+		}
+	}
+
+	return el;
+};
+
+kit.prototype.remove = function () {
+	return this.forEach(function (el) {
+		return el.parentNode.removeChild(el);
+	});
+};
+
+kit.prototype.append = function(data) {
+	if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
+		this.forEach(function (el) {
+			el.appendChild(data);
+		})
+	} else if (data instanceof kit) {
+		this.mapOne(function (el) {
+			el.appendChild(data);
+		})
+	} else if (typeof data === "string") {
+		this.forEach(function (el) {
+			var html = el.innerHTML;
+			el.innerHTML = html + data;
+		})
+	}
+
+	return this;
+};
+
+// kit.prototype.append = function (els) {
+// 	return this.forEach(function (parEl, i) {
+// 		els.forEach(function (childEl) {
+// 			parEl.appendChild( (i > 0) ? childEl.cloneNode(true) : childEl);
+// 		});
+// 	});
+// };
+
+// kit.prototype.prepend = function (els) {
+// 	return this.forEach(function (parEl, i) {
+// 		for (var j = els.length -1; j > -1; j--) {
+// 			parEl.insertBefore((i > 0) ? els[j].cloneNode(true) : els[j], parEl.firstChild);
+// 		}
+// 	});
+// };
+
+
+// get element size
+kit.prototype.getWidth = function () {
+	return this.mapOne(function (el) {
+		var box = el.getBoundingClientRect();
+		var ow = box.width || (box.right - box.left);
+		return ow;
+	});
+};
+
+kit.prototype.getHeight = function () {
+	return this.mapOne(function (el) {
+		var box = el.getBoundingClientRect();
+		var oh = box.height || (box.bottom - box.top);
+		return oh;
+	});
+};
+
+kit.prototype.getTop = function () {
+	return this.mapOne(function (el) {
+		var actualTop = el.offsetTop, current = el.offsetParent;
+		while (current !== null){
+		actualTop += current.offsetTop;
+		current = current.offsetParent;
+		}
+		return actualTop;
+	});
+};
+
+kit.prototype.getLeft = function () {
+	return this.mapOne(function (el) {
+		var actualLeft = el.offsetLeft, current = el.offsetParent;
+		while (current !== null){
+		actualLeft += current.offsetLeft;
+		current = current.offsetParent;
+		}
+		return actualLeft;
+	});
+};
+
+kit.win = {
 	W: function  () {
 		var d = document, w = window,
 		winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
@@ -83,352 +573,8 @@ $kit.win = {
 	}
 };
 
-$kit.fn = $kit.prototype = {
-	hide: function(fadespeed,fn) {
-		for (var i = 0; i < this.length; i++) {
-			this[i].style.display = 'none';
-		}
-		return this;
-	},
-	show: function(fadespeed,fn) {
-		for (var i = 0; i < this.length; i++) {
-			this[i].style.display = 'inherit';
-		}
-		return this;
-	},
-	// ========= UTILS =========
-	map: function (callback) {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			results.push(callback.call(this, this[i], i));
-		}
-		return results; //.length > 1 ? results : results[0];
-	},
-	mapOne: function (callback) {
-		var m = this.map(callback);
-		return m.length > 1 ? m : m[0];
-	},
-	forEach: function (callback) {
-		this.map(callback);
-		return this; 
-	},
-
-	// ========== DOM MANIPULATION ==========
-
-	// handle DOM
-	firstChild: function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			if (this[i].firstElementChild) {
-				results.push(this[i].firstElementChild);
-			} else{
-				var node = this[i].firstChild;
-				while (node.nodeType !== 1) {
-					node = node.nextSibling;
-				}
-				results.push(node);
-			}
-		}
-		return new $kit(results);
-	},
-
-	lastChild: function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			if (this[i].lastElementChild) {
-				results.push(this[i].lastElementChild);
-			} else{
-				var node = this[i].lastChild;
-				while (node.nodeType !== 1) {
-					node = node.previousSibling;
-				}
-				results.push(node);
-			}
-		}
-		return new $kit(results);
-	},
-
-	children: function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			if (this[i].children) {
-				var children = this[i].children;
-				for (var j = 0; j < children.length; j++) {
-					results.push(children[j]);
-				}
-			} else{
-				var childNodes = this[i].childNodes;
-				for (var j = 0; j < childNodes.length; j++) {
-					if (childNodes[j].nodeType === 1) {
-						results.push(childNodes[j]);
-					}
-				}
-			}
-		}
-		return new $kit(results);
-	},
-
-	parent: function () {
-		var results = [];
-		for (var i = 0; i < this.length; i++) {
-			results.push(this[i].parentNode);
-		}
-		return new $kit(results);
-	},
-
-	siblings: function () {
-		var results = [];
-		var allSiblings = this.parent().children();
-		for (var i = 0; i < allSiblings.length; i++) {
-			if (allSiblings[i] !== this[0]) {
-				results.push(allSiblings[i]);
-			}
-		}
-		return new $kit(results);
-	},
-
-	// handle attr
-	text: function (text) {
-		if (typeof text !== "undefined") {
-			return this.forEach(function (el) {
-				if (el.textContent) {
-					el.textContent = text;
-				} else{
-					el.innerText = text;
-				}
-			});
-		} else {
-			return this.mapOne(function (el) {
-				if (el.textContent) {
-					return el.textContent;
-				} else{
-					return el.innerText;
-				}
-			});
-		}
-	},
-
-	html: function (html) {
-		if (typeof html !== "undefined") {
-			return this.forEach(function (el) {
-				el.innerHTML = html;
-			});
-		} else {
-			return this.mapOne(function (el) {
-				return el.innerHTML;
-			});
-		}
-	},
-
-	attr: function (attr, val) {
-		if (typeof val !== 'undefined') {
-			return this.forEach(function(el) {
-				el.setAttribute(attr, val);
-			});
-		} else {
-			return this.mapOne(function (el) {
-				return el.getAttribute(attr);
-			});
-		}
-	},
-
-	// handle class
-	hasClass: function (c) {
-		for (var i = 0; i < this.length; i++) {
-			var classes = this[i].className;
-			if (!classes) {return false; }
-			if (classes === c) {return true;} 
-			return classes.search("\\b" + c + "\\b") !== -1;
-		}
-	},
-
-	addClass: function (c) {
-		var className = "";
-		function addClassCheck (obj,cla) {
-			if (obj.className.indexOf(cla) === -1) {
-				className += ' ' + cla;
-			}
-			return className;
-		}
-		return this.forEach(function (el) {
-			if (c.indexOf(' ') !== -1) {
-				var cs = c.split(' ');
-				for (var i = 0; i < cs.length; i++) {
-					addClassCheck(el,cs[i]);
-				}
-			} else {
-				addClassCheck(el,c);
-			}
-			el.className += className;
-		});
-	},
-
-	removeClass: function (c) {
-		function removeClassCheck (obj, cla) {
-			var pattern = new RegExp("\\b" + cla + "\\b\\s*", "g");
-			obj.className = obj.className.replace(pattern, "");
-		}
-		return this.forEach(function (el) {
-			if (c.indexOf(' ') !== -1) {
-				var cs = c.split(' ');
-				for (var i = 0; i < cs.length; i++) {
-					removeClassCheck(el,cs[i]);
-				};
-			} else{
-				removeClassCheck(el,c);
-			}
-		});
-	},
-
-	toggleClass: function (c) {
-		function toggleClassCheck (obj, cla) {
-			if (obj.hasClass(cla)) {
-				obj.removeClass(cla);
-			} else{
-				obj.addClass(cla);
-			}
-		}
-		if (c.indexOf(' ') !== -1) {
-			var cs = c.split(' ');
-			for (var i = 0; i < cs.length; i++) {
-				toggleClassCheck(this, cs[i]);
-			};
-		} else{
-			toggleClassCheck(this, c);
-		}
-	},
-
-	// handle node
-	append: function (els) {
-		return this.forEach(function (parEl, i) {
-			els.forEach(function (childEl) {
-				parEl.appendChild( (i > 0) ? childEl.cloneNode(true) : childEl);
-			});
-		});
-	},
-
-	prepend: function (els) {
-		return this.forEach(function (parEl, i) {
-			for (var j = els.length -1; j > -1; j--) {
-				parEl.insertBefore((i > 0) ? els[j].cloneNode(true) : els[j], parEl.firstChild);
-			}
-		});
-	},
-
-	remove: function () {
-		return this.forEach(function (el) {
-			return el.parentNode.removeChild(el);
-		});
-	},
-
-	// get element size
-	getWidth: function () {
-		return this.mapOne(function (el) {
-			var box = el.getBoundingClientRect();
-			var ow = box.width || (box.right - box.left);
-			return ow;
-		});
-	},
-
-	getHeight: function () {
-		return this.mapOne(function (el) {
-			var box = el.getBoundingClientRect();
-			var oh = box.height || (box.bottom - box.top);
-			return oh;
-		});
-	},
-
-	getTop: function () {
-		return this.mapOne(function (el) {
-			var actualTop = el.offsetTop, current = el.offsetParent;
-			while (current !== null){
-			actualTop += current.offsetTop;
-			current = current.offsetParent;
-			}
-			return actualTop;
-		});
-	},
-
-	getLeft: function () {
-		return this.mapOne(function (el) {
-			var actualLeft = el.offsetLeft, current = el.offsetParent;
-			while (current !== null){
-			actualLeft += current.offsetLeft;
-			current = current.offsetParent;
-			}
-			return actualLeft;
-		});
-	},
-
-	on: (function () {
-		if (document.addEventListener) {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.addEventListener(evt, fn, false);
-				});
-			};
-		} else if (document.attachEvent)  {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.attachEvent("on" + evt, fn);
-				});
-			};
-		} else {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el["on" + evt] = fn;
-				});
-			};
-		}
-	}()),
-
-	off: (function () {
-		if (document.removeEventListener) {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.removeEventListener(evt, fn, false);
-				});
-			};
-		} else if (document.detachEvent)  {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el.detachEvent("on" + evt, fn);
-				});
-			};
-		} else {
-			return function (evt, fn) {
-				return this.forEach(function (el) {
-					el["on" + evt] = null;
-				});
-			};
-		}
-	}()),
-
-	create: function (tagName, attrs) {
-		var el = new $kit([document.createElement(tagName)]);
-		if (attrs) {
-			if (attrs.className) { 
-				el.addClass(attrs.className);
-				delete attrs.className;
-			}
-			if (attrs.text) { 
-				el.text(attrs.text);
-				delete attrs.text;
-			}
-			for (var key in attrs) {
-				if (attrs.hasOwnProperty(key)) {
-					el.attr(key, attrs[key]);
-				}
-			}
-		}
-		return el;
-	}
-
-};
-
-// 	window.$kit = $kit;
+// 	window.kit = kit;
 // })(window);
-// $kit end
 
 
 // scroll to
