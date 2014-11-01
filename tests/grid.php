@@ -111,16 +111,25 @@
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-assets/scss/site/setting.scss: $grid-number
+			<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; Total 12 columns by default &#45;&#45;&#62;
+&lt;&#33;&#45;&#45; assets/scss/site/setting.scss: $grid-number &#45;&#45;&#62;
 
 &lt;div am-row&gt;
-  &lt;div am-col="5"&gt;&lt;/div&gt;
-  &lt;div am-col="7"&gt;&lt;/div&gt;
+  &lt;div am-col="1"&gt;&lt;/div&gt; &lt;div am-col="11"&gt;&lt;/div&gt;
+  &lt;div am-col="2"&gt;&lt;/div&gt; &lt;div am-col="10"&gt;&lt;/div&gt;
+  &lt;div am-col="3"&gt;&lt;/div&gt; &lt;div am-col="9"&gt;&lt;/div&gt;
+  &lt;div am-col="4"&gt;&lt;/div&gt; &lt;div am-col="8"&gt;&lt;/div&gt;
+  &lt;div am-col="5"&gt;&lt;/div&gt; &lt;div am-col="7"&gt;&lt;/div&gt;
+  &lt;div am-col="6"&gt;&lt;/div&gt; &lt;div am-col="6"&gt;&lt;/div&gt;
+  &lt;div am-col="7"&gt;&lt;/div&gt; &lt;div am-col="5"&gt;&lt;/div&gt;
+  &lt;div am-col="8"&gt;&lt;/div&gt; &lt;div am-col="4"&gt;&lt;/div&gt;
+  &lt;div am-col="9"&gt;&lt;/div&gt; &lt;div am-col="3"&gt;&lt;/div&gt;
+  &lt;div am-col="10"&gt;&lt;/div&gt; &lt;div am-col="2"&gt;&lt;/div&gt;
+  &lt;div am-col="11"&gt;&lt;/div&gt; &lt;div am-col="1"&gt;&lt;/div&gt;
+  &lt;div am-col="12"&gt;&lt;/div&gt;
 &lt;/div&gt;
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 	<div am-row>
@@ -138,21 +147,18 @@ assets/scss/site/setting.scss: $grid-number
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-HTML:
+			<pre><code class="language-markup">
 &lt;div am-row&gt;
   &lt;div class="my-column-left"&gt;
   &lt;/div&gt;
   &lt;div class="my-column-right"&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
-SCSS:
+			</code><code class="language-scss">
+&#47;&#47; You can put any number here
 .my-column-left { @include col(1600, 4000); }
 .my-column-right { @include col(2400, 4000); }
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 
@@ -186,17 +192,14 @@ SCSS:
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-HTML:
+			<pre><code class="language-markup">
 &lt;div am-row&gt;
   &lt;div class="my-column-2-left"&gt;
   &lt;/div&gt;
   &lt;div class="my-column-2-right"&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
-SCSS:
+			</code><code class="language-scss">
 @media screen and (min-width: 640px) {
   .my-column-2-left { @include col(1, 2); }
   .my-column-2-right { @include col(1, 2); }
@@ -205,8 +208,8 @@ SCSS:
   .my-column-2-left { @include col(1, 3); }
   .my-column-2-right { @include col(2, 3); }
 }
-				</pre>
-			</div>
+			</code>
+			</pre>
 		</div>
 	</div>
 
@@ -225,22 +228,18 @@ SCSS:
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-HTML:
+			<pre><code class="language-markup">
 &lt;div am-row&gt;
   &lt;div class="my-column-centered"&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
-SCSS:
+</code><code class="language-scss">
 @media screen and (min-width: 640px) {
   .my-column-centered { 
     @include col(2, 3, $centered:true);
   }
 }
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 
@@ -259,14 +258,11 @@ SCSS:
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-HTML:
+			<pre><code class="language-markup">
 &lt;div am-row="full"&gt;
   ...
 &lt;/div&gt;
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 
@@ -290,19 +286,15 @@ HTML:
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-HTML:
+			<pre><code class="language-markup">
 &lt;div am-row="collapse"&gt;
   ...
 &lt;/div&gt;
-
+			</code>
 --or--
-
-SCSS:
+			<code class="language-scss">
 .my-column { @include col(2, $collapse:true); }
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 
@@ -321,14 +313,11 @@ SCSS:
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-HTML:
+			<pre><code class="language-markup">
 &lt;div am-row="full collapse"&gt;
   ...
 &lt;/div&gt;
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 
@@ -344,15 +333,12 @@ HTML:
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-SCSS:
+			<pre><code class="language-scss">
 .my-col-offset { 
   @include col(3); 
   @include col-offset(9);
 }
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 
@@ -371,9 +357,7 @@ SCSS:
 	</div>
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-SCSS:
+			<pre><code class="language-scss">
 .my-col-push-left { 
   @include col(3); 
   @include col-push(9);
@@ -382,8 +366,7 @@ SCSS:
   @include col(9);
   @include col-pull(3);
 }
-				</pre>
-			</div>
+			</code></pre>
 		</div>
 	</div>
 
@@ -410,9 +393,8 @@ SCSS:
 
 	<div am-row>
 		<div am-col>
-			<div class="code">
-				<pre>
-HTML:
+			<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; Must use ul > li tags &#45;&#45;&#62;
 &lt;ul class="myblock"&gt;
   &lt;li&gt;&lt;img src="http://placehold.it/400x200" alt=""&gt;&lt;/li&gt;
   &lt;li&gt;&lt;img src="http://placehold.it/400x200" alt=""&gt;&lt;/li&gt;
@@ -423,24 +405,22 @@ HTML:
   &lt;li&gt;&lt;img src="http://placehold.it/400x200" alt=""&gt;&lt;/li&gt;
   &lt;li&gt;&lt;img src="http://placehold.it/400x200" alt=""&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-SCSS:
+</code><code class="language-scss">
+&#47;&#47; how many blocks per row
 @media screen and (min-width: 640px) {
   .myblock { @include block(2);}
 }
 @media screen and (min-width: 1024px) {
   .myblock { @include block(4);}
 }
-				</pre>
-			</div>
+			</code></pre>
 		</div>
-
+	</div>
 	<div am-row>
 		<div am-col>
 			<h2>Nested Grids</h2>
 		</div>
 	</div>
-
 	<div am-row>
 		<div am-col="6">
 			<div class="content">
@@ -454,7 +434,6 @@ SCSS:
 				</div>
 			</div>
 		</div>
-
 		<div am-col="6">
 			<div class="content">
 				<div am-row>
@@ -474,6 +453,43 @@ SCSS:
 			</div>
 		</div>
 	</div>
-
+	<div am-row="">
+		<div am-col="">
+			<pre><code class="language-markup">
+&lt;div am-row&gt;
+  &lt;div am-col="6"&gt;
+    &lt;div class="content"&gt;
+      &lt;div am-row&gt;
+        &lt;div am-col="6"&gt;
+          &lt;div class="content"&gt;6&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div am-col="6"&gt;
+          &lt;div class="content"&gt;6&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div am-col="6"&gt;
+    &lt;div class="content"&gt;
+      &lt;div am-row&gt;
+        &lt;div am-col="3"&gt;
+          &lt;div class="content"&gt;3&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div am-col="3"&gt;
+          &lt;div class="content"&gt;3&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div am-col="3"&gt;
+          &lt;div class="content"&gt;3&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div am-col="3"&gt;
+          &lt;div class="content"&gt;3&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+			</code></pre>
+		</div>
+	</div>
 </body>
 </html>

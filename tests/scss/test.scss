@@ -18,13 +18,6 @@
 // common
 // body { padding: 50px}
 h3 {margin-top: 30px;}
-.code {
-  border: 1px solid #cecece;
-  padding: 0 15px;
-  margin: 20px 0;
-  // border-radius: 5px;
-}
-pre { color: #999; }
 ul.styled li {
   padding: .5em 0;
 }
@@ -34,6 +27,10 @@ ul.styled li {
 .simple-button { @include button($color:false, $simple:true); }
 .big-button { @include button; font-size: 1.5em; }
 .small-button { @include button; font-size: .8em; }
+// form
+.my-input {
+  padding: 1.6em 2em;
+}
 // responsive
 .content {
   background-color: #f2f2f2;

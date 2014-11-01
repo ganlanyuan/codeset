@@ -7,7 +7,6 @@
 	<style>
 	.red { color: red;}
 	</style>
-	<!-- <script src="test.js"></script> -->
 </head>
 <body>
 <div am-sidebar="below left">
@@ -57,20 +56,18 @@
 	<div am-row>
 		<div am-col>
 			<div class="code">
-				<pre>
-HTML:
+				<pre><code class="language-markup">
 &lt;div class="my-wrap-1"&gt;
   &lt;div am-col-main&gt;
   &lt;/div&gt;
   &lt;div am-col-aside&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
-SCSS:
+				</code><code class="language-scss">
 @media screen and (min-width: 640px){
   .my-wrap-1 { @include fixed-col(right, 300px, 20px);}
 }
-				</pre>
+				</code></pre>
 			</div>
 		</div>
 	</div>
@@ -99,8 +96,7 @@ SCSS:
 	<div am-row>
 		<div am-col>
 			<div class="code">
-				<pre>
-HTML:
+				<pre><code class="language-markup">
 &lt;div class="my-wrap-2"&gt;
   &lt;div am-col-left&gt;
   &lt;/div&gt;
@@ -109,12 +105,11 @@ HTML:
   &lt;div am-col-right&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
-SCSS:
+				</code><code class="language-scss">
 @media screen and (min-width: 640px){
 	.my-wrap-2 { @include fixed-col3(200px, 300px, 20px);}
 }
-				</pre>
+				</code></pre>
 			</div>
 		</div>
 	</div>
@@ -133,13 +128,12 @@ SCSS:
 	<div am-row>
 		<div am-col>
 			<div class="code">
-				<pre>
-HTML:
+				<pre><code class="language-markup">
 &lt;div am-sidebar="left"&gt;
   &lt;div am-menu-close&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div am-menu data="move"&gt;&lt;/div&gt;
-				</pre>
+				</code></pre>
 			</div>
 		</div>
 	</div>
@@ -157,11 +151,10 @@ HTML:
 	<div am-row>
 		<div am-col>
 			<div class="code">
-				<pre>
-HTML:
+				<pre><code class="language-markup">
 &lt;div am-sidebar="left"&gt;&lt;/div&gt;
 &lt;div am-menu data="translate-left"&gt;&lt;/div&gt;
-				</pre>
+				</code></pre>
 			</div>
 		</div>
 	</div>
@@ -179,14 +172,13 @@ HTML:
 	<div am-row>
 		<div am-col>
 			<div class="code">
-				<pre>
-HTML:
+				<pre><code class="language-markup">
 &lt;div am-sidebar="below left"&gt;&lt;/div&gt;
 &lt;div am-upper&gt;
   &lt;div am-menu data="reveal-left"&gt;&lt;/div&gt;
 	...
 &lt;/div&gt;
-				</pre>
+				</code></pre>
 			</div>
 		</div>
 	</div>
@@ -207,11 +199,11 @@ HTML:
 		<div am-row>
 			<div am-col>
 				<div class="code">
-					<pre>
+					<pre><code class="language-markup">
 &lt;div class="flex-video"&gt;
   &lt;iframe width="560" height="315" src="//www.youtube.com/embed/Y1JPtngL17M" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-					</pre>
+					</code></pre>
 				</div>
 			</div>
 		</div>
@@ -230,11 +222,11 @@ HTML:
 		<div am-row>
 			<div am-col>
 				<div class="code">
-					<pre>
+					<pre><code class="language-markup">
 &lt;div class="fixed-video"&gt;
   &lt;iframe width="560" height="315" src="//www.youtube.com/embed/Y1JPtngL17M" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-					</pre>
+					</code></pre>
 				</div>
 			</div>
 		</div>
@@ -281,8 +273,7 @@ HTML:
 	<div am-row>
 		<div am-col>
 			<div class="code">
-				<pre>
-HTML:
+				<pre><code class="language-markup">
 &lt;article class="article-content"&gt;
   &lt;figure class="centered"&gt;&lt;img src="" alt="" class="full"&gt;&lt;/figure&gt;
   &lt;figure class="left"&gt;&lt;img src="" alt="" class="full"&gt;&lt;/figure&gt;
@@ -291,7 +282,7 @@ HTML:
    ...
   &lt;/div&gt;
 &lt;/article&gt;
-				</pre>
+				</code></pre>
 			</div>
 		</div>
 	</div>
