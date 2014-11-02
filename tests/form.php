@@ -9,31 +9,58 @@
 </head>
 
 <body>
+<div am-row="collapse full" class="topbar">
+	<div am-col class="topbar-col"><a href="grid.php">grid</a></div>
+	<div am-col class="topbar-col"><a href="button.php">button</a></div>
+	<div am-col class="topbar-col active"><a href="form.php">form</a></div>
+	<div am-col class="topbar-col"><a href="visibility.php">visibility</a></div>
+	<div am-col class="topbar-col"><a href="module.php">module</a></div>
+	<div am-col class="topbar-col"><a href="icon-font.php">icon-font</a></div>
+</div>
+<div class="test-wrap">
+	<div am-col-aside="" class="fixed-sidebar">
+		<ul>
+			<li><a href="#t1">Invalid Inputs</a></li>
+			<li><a href="#t2">Disabled Inputs</a></li>
+			<li><a href="#t3">Readonly Inputs</a></li>
+			<li><a href="#t4">Customise</a></li>
+			<li><a href="#t5">Default Form</a></li>
+			<li><a href="#t6">Multi-Column Form with Grids</a></li>
+			<li><a href="#t7">Stacked Form</a></li>
+			<li><a href="#t8">Aligned Form</a></li>
+			<li><a href="#t9">Grouped form</a></li>
+			<li><a href="#t10">Input Sizing</a></li>
+			<li><a href="#t11">Rounded Form</a></li>
+			<li><a href="#t12">Checkboxes and Radios</a></li>
+			<li><a href="#t13">Help text</a></li>
+		</ul>
+	</div>
+	<div am-col-main="">
 	<div am-row>
 		<div am-col>
 			<h1>Forms</h1>
-			<h3>Invalid Inputs</h3>
+			<h3 id="t1">Invalid Inputs</h3>
 			<form>
 				<input type="email" placeholder="Requires an email" required>
 			</form>
 			<pre><code class="language-markup">
 &lt;input type="email" placeholder="Requires an email" required&gt;
 			</code></pre>
-			<h3>Disabled Inputs</h3>
+			<h3 id="t2">Disabled Inputs</h3>
 			<form>
 				<input class="input-xlarge" type="text" placeholder="Disabled input here..." value="Foo bar baz" disabled>
 			</form>
 			<pre><code class="language-markup">
 &lt;input class="input-xlarge" type="text" placeholder="Disabled input here..." value="Foo bar baz" disabled&gt;
 			</code></pre>
-			<h3>Readonly Inputs</h3>
+			<h3 id="t3">Readonly Inputs</h3>
 			<form>
 				<input type="text" placeholder="Readonly input here..." value="Foo bar baz" readonly>
 			</form>
 			<pre><code class="language-markup">
 &lt;input type="text" placeholder="Readonly input here..." value="Foo bar baz" readonly&gt;
 			</code></pre>
-			<h3>Customise</h3>
+			<h3 id="t4">Customise</h3>
 			<input type="text" am-input="bold" placeholder="bold"> <br>
 			<input type="text" placeholder="normal"> <br>
 			<input type="text" am-input="thin" placeholder="thin"> <br>
@@ -48,7 +75,7 @@
 .my-input { padding: 1.6em 2em; }
 			</code>
 			</pre>
-			<h3>Default Form</h3>
+			<h3 id="t5">Default Form</h3>
 			<form>
 				<fieldset>
 					<input type="text" placeholder="Email">
@@ -69,29 +96,29 @@
 	&lt;/fieldset&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Multi-Column Form with Grids</h3>
+			<h3 id="t6">Multi-Column Form with Grids</h3>
 			<form am-form="stacked">
 				<fieldset>
 					<div am-row>
 						<div am-col="4">
 							<label>First Name</label>
-							<input type="text" am-input="fluid">
+							<input type="text" am-input="fluid=">
 						</div>
 						<div am-col="4">
 							<label>Password</label>
-							<input type="password" am-input="fluid">
+							<input type="password" am-input="fluid=">
 						</div>
 						<div am-col="4">
 							<label>E-Mail</label>
-							<input type="email" required am-input="fluid">
+							<input type="email" required am-input="fluid=">
 						</div>
 						<div am-col="4">
 							<label>City</label>
-							<input type="text" am-input="fluid">
+							<input type="text" am-input="fluid=">
 						</div>
 						<div am-col="4">
 							<label>State</label>
-							<select am-input="fluid">
+							<select am-input="fluid=">
 								<option>AL</option>
 								<option>CA</option>
 								<option>IL</option>
@@ -117,23 +144,23 @@
 		&lt;div am-row&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;First Name&lt;/label&gt;
-				&lt;input type="text" am-input="fluid"&gt;
+				&lt;input type="text" am-input="fluid="&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;Password&lt;/label&gt;
-				&lt;input type="password" am-input="fluid"&gt;
+				&lt;input type="password" am-input="fluid="&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;E-Mail&lt;/label&gt;
-				&lt;input type="email" required am-input="fluid"&gt;
+				&lt;input type="email" required am-input="fluid="&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;City&lt;/label&gt;
-				&lt;input type="text" am-input="fluid"&gt;
+				&lt;input type="text" am-input="fluid="&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;State&lt;/label&gt;
-				&lt;select am-input="fluid"&gt;
+				&lt;select am-input="fluid="&gt;
 					&lt;option&gt;AL&lt;/option&gt;
 					&lt;option&gt;CA&lt;/option&gt;
 					&lt;option&gt;IL&lt;/option&gt;
@@ -154,7 +181,7 @@
 	&lt;/fieldset&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Stacked Form</h3>
+			<h3 id="t7">Stacked Form</h3>
 			<form am-form="stacked">
 				<fieldset>
 					<label>First Name</label>
@@ -211,7 +238,7 @@
 	&lt;/fieldset&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Aligned Form</h3>
+			<h3 id="t8">Aligned Form</h3>
 			<form am-form="aligned">
 				<fieldset>
 					<div am-form-aligned-group>
@@ -282,7 +309,7 @@
 	&lt;/fieldset&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Grouped form</h3>
+			<h3 id="t9">Grouped form</h3>
 			<form am-form="grouped">
 		    <fieldset>
 	        <input type="text" am-input="1-2" placeholder="Username">
@@ -309,7 +336,7 @@
   &lt;button type="submit" am-button="primary"&gt;Sign in&lt;/button&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Input Sizing</h3>
+			<h3 id="t10">Input Sizing</h3>
 			<form>
 				<input am-input="1" type="text" placeholder="am-input='1'"><br/>
 				<input am-input="1-2" type="text" placeholder="am-input='1-2'"><br/>
@@ -430,7 +457,7 @@
   &lt;/div&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Rounded Form</h3>
+			<h3 id="t11">Rounded Form</h3>
 			<form am-form="stacked">
 				<label>Subject</label>
 				<input type="text" am-input="rounded" placeholder="Subject" />
@@ -449,7 +476,7 @@
 	&lt;input type="reset" am-button="rounded" value="Reset" /&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Checkboxes and Radios</h3>
+			<h3 id="t12">Checkboxes and Radios</h3>
 			<form>
 				<label class="checkbox">
 					<input type="checkbox" value="">
@@ -480,7 +507,7 @@
   &lt;/label&gt;
 &lt;/form&gt;
 			</code></pre>
-			<h3>Help text</h3>
+			<h3 id="t13">Help text</h3>
 			<form>
 				<fieldset>
 					<label>Last Name</label>
@@ -513,5 +540,7 @@
 			</code></pre>
 		</div>
 	</div>
+	</div>
+</div>
 </body>
 </html>

@@ -37,6 +37,14 @@
   </style>
 </head>
 <body>
+<div am-row="collapse full" class="topbar">
+  <div am-col class="topbar-col"><a href="grid.php">grid</a></div>
+  <div am-col class="topbar-col"><a href="button.php">button</a></div>
+  <div am-col class="topbar-col"><a href="form.php">form</a></div>
+  <div am-col class="topbar-col"><a href="visibility.php">visibility</a></div>
+  <div am-col class="topbar-col"><a href="module.php">module</a></div>
+  <div am-col class="topbar-col active"><a href="icon-font.php">icon-font</a></div>
+</div>
 <div am-row="">
   <div am-col="">
       <h1>icon-font</h1>

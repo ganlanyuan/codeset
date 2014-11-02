@@ -8,11 +8,32 @@
 </head>
 
 <body>
+<div am-row="collapse full" class="topbar">
+	<div am-col class="topbar-col"><a href="grid.php">grid</a></div>
+	<div am-col class="topbar-col active"><a href="button.php">button</a></div>
+	<div am-col class="topbar-col"><a href="form.php">form</a></div>
+	<div am-col class="topbar-col"><a href="visibility.php">visibility</a></div>
+	<div am-col class="topbar-col"><a href="module.php">module</a></div>
+	<div am-col class="topbar-col"><a href="icon-font.php">icon-font</a></div>
+</div>
+<div class="test-wrap">
+	<div am-col-aside="" class="fixed-sidebar">
+		<ul>
+			<li><a href="#t1">Regular Buttons</a></li>
+			<li><a href="#t2">Disabled Buttons</a></li>
+			<li><a href="#t3">Primary Buttons</a></li>
+			<li><a href="#t4">Customizing Buttons</a></li>
+			<li><a href="#t5">Grouped buttons</a></li>
+			<li><a href="#t6">Combined with input</a></li>
+			<li><a href="#t7">Customize with SASS</a></li>
+		</ul>
+	</div>
+	<div am-col-main="">
 	<div am-row>
 		<div am-col>
 			<h1>Buttons Tests</h1>
 			
-			<h3>Regular Buttons</h3>
+			<h3 id="t1">Regular Buttons</h3>
 			<div>
 				<button am-button>A Regular Button</button>
 				<a am-button href="#">An anchor Button</a>
@@ -22,7 +43,7 @@
 &lt;a am-button href="#"&gt;...&lt;/a&gt;
 			</code></pre>
 			
-			<h3>Disabled Buttons</h3>
+			<h3 id="t2">Disabled Buttons</h3>
 			<div>
 				<button am-button="disabled">A Regular Button</button>
 			</div>
@@ -30,7 +51,7 @@
 &lt;button am-button="disabled"&gt;...&lt;/button&gt;
 			</code></pre>
 			
-			<h3>Primary Buttons</h3>
+			<h3 id="t3">Primary Buttons</h3>
 			<div>
 				<button am-button="primary">A Regular Button</button>
 			</div>
@@ -40,7 +61,7 @@
 				</code></pre>
 			</div>
 			
-			<h3>Customizing Buttons</h3>
+			<h3 id="t4">Customizing Buttons</h3>
 			<div>
 				<button am-button="bold">bold button</button>
 				<button am-button>regular button</button>
@@ -54,7 +75,7 @@
 &lt;button am-button="simple"&gt;simple button&lt;/button&gt;
 			</code></pre>
 			
-			<h3>Grouped buttons</h3>
+			<h3 id="t5">Grouped buttons</h3>
 			<div class="grouped">
 				<a href="" am-button="facebook"><i class="fa fa-facebook"></i> facebook</a>
 				<a href="" am-button="twitter"><i class="fa fa-twitter"></i> twitter</a>
@@ -71,7 +92,7 @@
  &lt;a href="" am-button="email"&gt;&lt;i class="fa fa-envelope"&gt;&lt;/i&gt; email&lt;/a&gt;
 &lt;/div&gt;
 			</code></pre>
-			<h3>Combined with input</h3>
+			<h3 id="t6">Combined with input</h3>
 			<div class="combined">
 				<input type="search" placeholder="search..."><input am-button="primary" type="submit" value="Submit">
 			</div>
@@ -81,7 +102,7 @@
 &lt;/div&gt;
 			</code></pre>
 			
-			<h3>Customize with SASS</h3>
+			<h3 id="t7">Customize with SASS</h3>
 			<ul class="styled">
 				<li> <a href="" class="purple-button">purple-button</a> </li>
 				<li> <a href="" class="thin-button">thin-button</a> </li>
@@ -97,7 +118,8 @@
 .small-button { @include button; font-size: .8em; }
 			</code></pre>
 		</div>
+		</div>
 	</div>
-	
+</div>
 </body>
 </html>

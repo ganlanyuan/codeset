@@ -29,7 +29,6 @@ assets -- scss -- animate
 <a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/visibility.php">visibility</a> <br>
 <a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/module.php">module</a> <br>
 <a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/icon-font.php">icon-font</a> <br>
-<a target="_blank" href="http://designdev.christianpost.com/learn/new/tests/module.php">others</a>
 
 <h3>Links</h3>
 <a target="_blank" href="http://purecss.io/">pure</a> <br>

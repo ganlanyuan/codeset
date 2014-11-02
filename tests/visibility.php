@@ -9,10 +9,27 @@
 </head>
 
 <body>
+<div am-row="collapse full" class="topbar">
+  <div am-col class="topbar-col"><a href="grid.php">grid</a></div>
+  <div am-col class="topbar-col"><a href="button.php">button</a></div>
+  <div am-col class="topbar-col"><a href="form.php">form</a></div>
+  <div am-col class="topbar-col active"><a href="visibility.php">visibility</a></div>
+  <div am-col class="topbar-col"><a href="module.php">module</a></div>
+  <div am-col class="topbar-col"><a href="icon-font.php">icon-font</a></div>
+</div>
+<div class="test-wrap">
+  <div am-col-aside="" class="fixed-sidebar">
+    <ul>
+      <li><a href="#t1">visible</a></li>
+      <li><a href="#t2">hidden</a></li>
+
+    </ul>
+  </div>
+  <div am-col-main="">
   <div am-row>
     <div am-col>
       <h1>Visibility</h1>
-      <h4>visible</h4>
+      <h4 id="t1">visible</h4>
       <p am-visible="mb">only visible on mobile</p>
       <p am-visible="tl">only visible on tablet</p>
       <p am-visible="dt">only visible on desktop</p>
@@ -24,7 +41,7 @@
 &lt;p am-visible="dt"&gt;only visible on desktop&lt;/p&gt;
         </code></pre>
       </div>
-      <h4>hidden</h4>
+      <h4 id="t2">hidden</h4>
       <p am-hidden="mb">only hidden on mobile</p>
       <p am-hidden="tl">only hidden on tablet</p>
       <p am-hidden="dt">only hidden on desktop</p>
@@ -37,5 +54,7 @@
       </div>
     </div>
   </div>
+</div>
+</div>
 </body>
 </html>

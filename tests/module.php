@@ -4,9 +4,6 @@
 	<meta charset="utf-8">
 	<title>module</title>
 	<?php include 'css.php'; ?>
-	<style>
-	.red { color: red;}
-	</style>
 </head>
 <body>
 <div am-sidebar="below left">
@@ -30,6 +27,26 @@
 </div>
 
 <div am-upper>
+<div am-row="collapse full" class="topbar">
+	<div am-col class="topbar-col"><a href="grid.php">grid</a></div>
+	<div am-col class="topbar-col"><a href="button.php">button</a></div>
+	<div am-col class="topbar-col"><a href="form.php">form</a></div>
+	<div am-col class="topbar-col"><a href="visibility.php">visibility</a></div>
+	<div am-col class="topbar-col active"><a href="module.php">module</a></div>
+	<div am-col class="topbar-col"><a href="icon-font.php">icon-font</a></div>
+</div>
+<div class="test-wrap">
+	<div am-col-aside="" class="fixed-sidebar">
+		<ul>
+			<li><a href="#t1">fixed columns</a></li>
+			<li><a href="#t2">sidebar</a></li>
+			<li><a href="#t3">video</a></li>
+			<li><a href="#t4">article style</a></li>
+			<li><a href="#t5">breadcrumb</a></li>
+			<li><a href="#t6">pagination</a></li>
+		</ul>
+	</div>
+	<div am-col-main="">
 	<div am-row>
 		<div am-col>
 			<h1>module</h1>
@@ -37,7 +54,7 @@
 	</div>
 	<div am-row>
 		<div am-col>
-			<h2>fixed columns</h2>
+			<h2 id="t1">fixed columns</h2>
 			<h4>2 columns</h4>
 		</div>
 	</div>
@@ -116,7 +133,7 @@
 
 	<div am-row>
 		<div am-col>
-			<h2>sidebar</h2>
+			<h2 id="t2">sidebar</h2>
 			<h4>style 1: move</h4>
 		</div>
 	</div>
@@ -183,9 +200,32 @@
 		</div>
 	</div>
 
+	<div am-row>
+		<div am-col>
+			<h4>styled icon</h4>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+			<div am-menu="styled" data="reveal-left"><span></span></div>
+			<div am-menu-close="styled"><span></span></div>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+			<div class="code">
+				<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; setting.scss: $menu-active-color &#45;&#45;&#62;
+&lt;div am-menu="styled" data="reveal-left"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div am-menu-close="styled"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+				</code></pre>
+			</div>
+		</div>
+	</div>
+
 		<div am-row>
 			<div am-col>
-				<h2>video</h2>
+				<h2 id="t3">video</h2>
 				<h4>flex video</h4>
 			</div>
 		</div>
@@ -233,7 +273,7 @@
 
 	<div am-row>
 		<div am-col>
-			<h2>article style</h2>
+			<h2 id="t4">article style</h2>
 		</div>
 	</div>
 	<div am-row>
@@ -285,6 +325,88 @@
 				</code></pre>
 			</div>
 		</div>
+	</div>
+	<div am-row="">
+		<div am-col="">
+			<h2 id="t5">breadcrumb</h2>
+		</div>
+	</div>
+	<div am-row="">
+		<div am-col="">
+			<ul am-breadcrumb>
+				<li><a href="">Home</a></li>
+				<li><a href="">News</a></li>
+				<li class="active"><a href="">Local News</a></li>
+			</ul>
+			<pre><code class="language-markup">
+&lt;&#33;&#45;&#45;
+setting.scss
+
+// breadcrumb 
+$breadcrumb-font-size: 12;
+$breadcrumb-color: #212121;
+$breadcrumb-active-color: #b4b4b4;
+$breadcrumb-fw-bold: true;
+$breadcrumb-uppercase: true;
+$breadcrumb-gap-content: '/';
+$breadcrumb-gap-width: 1.2em;
+&#45;&#45;&#62;
+
+&lt;ul am-breadcrumb&gt;
+  &lt;li&gt;&lt;a href=""&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;News&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="active"&gt;&lt;a href=""&gt;Local News&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+			</code></pre>
+		</div>
+	</div>
+	<div am-row="">
+		<div am-col="">
+			<h2 id="t6">pagination</h2>
+		</div>
+	</div>
+	<div am-row="">
+		<div am-col="">
+			<ul am-pagination>
+				<li class="prev"><a href=""></a></li>
+				<li class="active"><a href="">1</a></li>
+				<li><a href="">2</a></li>
+				<li class="ellipsis"><a href="">...</a></li>
+				<li><a href="">4</a></li>
+				<li><a href="">5</a></li>
+				<li class="next"><a href=""></a></li>
+			</ul>
+			<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; 
+setting.scss
+
+// pagination
+$pagination-fz: 14 !default;
+$pagination-a-padding: em(7, $pagination-fz) em(10, $pagination-fz) em(4, $pagination-fz) !default;
+$pagination-color: #212121 !default;
+$pagination-bg-color: #fff !default;
+$pagination-hover-color: #fff !default;
+$pagination-hover-bg-color: #212121 !default;
+$pagination-ellipsis-color: #999 !default;
+$pagination-text-align-center: true !default;
+$pagination-prev: '◄' !default;
+$pagination-next: '►' !default;
+&#45;&#45;&#62;
+
+&lt;ul am-pagination&gt;
+  &lt;li class="prev"&gt;&lt;a href=""&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="active"&gt;&lt;a href=""&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="ellipsis"&gt;&lt;a href=""&gt;...&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;5&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="next"&gt;&lt;a href=""&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+			</code></pre>
+		</div>
+	</div>
+
+	</div>
 	</div>
 </div>
 </body>
