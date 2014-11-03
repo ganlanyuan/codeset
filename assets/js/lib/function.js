@@ -1,3 +1,6 @@
+// Done: on off, click mouseover mouseout focus blur submit keydown keyup, hide show ,find eq first last parent prev next siblings prevAll nextAll, text html attr css addClass removeClass toggleClass hasClass, remove getWidth getHeight getTop getLeft
+// Undo: append, prepend, children, firstChild, lastChild
+
 // document.ready
 (function () {
 	var ie = !!(window.attachEvent && !window.opera);
@@ -65,18 +68,23 @@ if (typeof Array.prototype.indexOf !== 'function') {
 }
 
 // (function (window, undefined) {
+dome = function (args, el) {
+	if ( args.length > 0 ) {
+		for (var i = 0; i < args.length; i++) {
+			el[i] = args[i];
+		}
+		el.length = args.length;
+	}
+};
+
 var kit = function (selector) {
 	if ( window === this ) {return new kit(selector); }
-	var type = typeof selector;
+	var type = typeof selector,
+			nodetype = selector.nodeType;
 	if (type === 'string') {
 		var result = document.querySelectorAll(selector);
-		if ( result.length > 0 ) {
-			for (var i = 0; i < result.length; i++) {
-				this[i] = result[i];
-			}
-			this.length = result.length;
-		}
-	} else if (type === "object" && selector.nodeType !== "undefined" && selector.nodeType === 1) {
+		dome(result, this);
+	} else if (type === "object" && nodetype !== "undefined" && nodetype === 1) {
 		this[0] = selector;
 		this.length = 1;
 	}
@@ -171,9 +179,7 @@ kit.prototype.off = function (evt, fn) {
 	});
 };
 
-// var names = ("blur focus focusin focusout load resize scroll unload click dblclick " +
-//   "mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
-//   "change select submit keydown keypress keyup error contextmenu").split(" ");
+// Handle event binding
 kit.prototype.click = function(fn) {
 	return this.forEach(function (el) {
 		kit.addEvent(el, 'click', fn);
@@ -192,6 +198,36 @@ kit.prototype.mouseout = function(fn) {
 	});
 };
 
+kit.prototype.focus = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'focus', fn);
+	});
+};
+
+kit.prototype.blur = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'blur', fn);
+	});
+};
+
+kit.prototype.submit = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'submit', fn);
+	});
+};
+
+kit.prototype.keydown = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'keydown', fn);
+	});
+};
+
+kit.prototype.keyup = function(fn) {
+	return this.forEach(function (el) {
+		kit.addEvent(el, 'keyup', fn);
+	});
+};
+
 // ========== DOM MANIPULATION ==========
 kit.prototype.hide = function(fadespeed,fn) {
 	return this.forEach(function (el) {
@@ -204,77 +240,129 @@ kit.prototype.show = function(fadespeed,fn) {
 	});
 };
 
-// handle DOM
-kit.prototype.firstChild = function () {
-	var results = [];
-	for (var i = 0; i < this.length; i++) {
-		if (this[i].firstElementChild) {
-			results.push(this[i].firstElementChild);
-		} else{
-			var node = this[i].firstChild;
-			while (node.nodeType !== 1) {
-				node = node.nextSibling;
-			}
-			results.push(node);
+kit.prototype.find = function (selector) {
+	return this.forEach(function (el) {
+		var type = typeof selector;
+		if (type === 'string') {
+			var result = el.querySelectorAll(selector);
+			dome(result, this);
 		}
-	}
-	return new kit(results);
+		return this;
+	})
 };
 
-kit.prototype.lastChild = function () {
-	var results = [];
-	for (var i = 0; i < this.length; i++) {
-		if (this[i].lastElementChild) {
-			results.push(this[i].lastElementChild);
-		} else{
-			var node = this[i].lastChild;
-			while (node.nodeType !== 1) {
-				node = node.previousSibling;
-			}
-			results.push(node);
-		}
+kit.eq = function( args, i ) {
+	if (args.length > i) {
+		return kit(args[i]);
 	}
-	return new kit(results);
 };
 
-kit.prototype.children = function () {
-	var results = [];
-	for (var i = 0; i < this.length; i++) {
-		if (this[i].children) {
-			var children = this[i].children;
-			for (var j = 0; j < children.length; j++) {
-				results.push(children[j]);
-			}
-		} else{
-			var childNodes = this[i].childNodes;
-			for (var j = 0; j < childNodes.length; j++) {
-				if (childNodes[j].nodeType === 1) {
-					results.push(childNodes[j]);
-				}
-			}
-		}
-	}
-	return new kit(results);
+kit.prototype.eq = function (i) {
+	return kit.eq(this, i);
+};
+
+kit.prototype.first = function () {
+	return kit.eq(this, 0);
+};
+
+kit.prototype.last = function () {
+	return kit.eq(this, this.length-1);
 };
 
 kit.prototype.parent = function () {
 	var results = [];
-	for (var i = 0; i < this.length; i++) {
-		results.push(this[i].parentNode);
-	}
-	return new kit(results);
+	this.forEach(function (el) {
+		results.push(el.parentNode);
+	});
+
+	dome(results, this);
+	return this;
+};
+
+kit.prototype.prev = function () {
+	var results = [];
+	this.forEach(function (el) {
+		do { el = el.previousSibling; } while ( el && el.nodeType !== 1 );
+		results.push(el);
+	})
+
+	dome(results, this);
+	return this;
+};
+
+kit.prototype.next = function () {
+	var results = [];
+	this.forEach(function (el) {
+		do { el = el.nextSibling; } while ( el && el.nodeType !== 1 );
+		results.push(el);
+	})
+
+	dome(results, this);
+	return this;
 };
 
 kit.prototype.siblings = function () {
 	var results = [];
-	var allSiblings = this.parent().children();
-	for (var i = 0; i < allSiblings.length; i++) {
-		if (allSiblings[i] !== this[0]) {
-			results.push(allSiblings[i]);
+	this.forEach(function (el) {
+		var siblings = el.parentNode.children;
+		for (var i = 0; i < siblings.length; i++) {
+		  if (siblings[i] !== el) {
+		    results.push(siblings[i]);
+		  }
 		}
-	}
-	return new kit(results);
+	});
+
+	dome(results, this);
+	return this;
 };
+
+kit.index = function(obj, current){
+  for (var i = 0;i < obj.length; i++) {
+    if (obj[i] === current) {
+      return i;
+    }
+  }
+}
+
+kit.prototype.prevAll = function () {
+	var results = [];
+	this.forEach(function (el) {
+		var siblings = el.parentNode.children,
+				index = kit.index(siblings, el);
+		for (var i = 0; i < index; i++) {
+	    results.push(siblings[i]);
+		}
+	});
+
+	dome(results, this);
+	return this;
+};
+
+kit.prototype.nextAll = function () {
+	var results = [];
+	this.forEach(function (el) {
+		var siblings = el.parentNode.children,
+				index = kit.index(siblings, el);
+		for (var i = siblings.length-1; i > index; i--) {
+	    results.push(siblings[i]);
+		}
+	});
+
+	dome(results, this);
+	return this;
+};
+
+// kit.prototype.firstChild = function () {
+
+// };
+
+// kit.prototype.lastChild = function () {
+
+// };
+
+// kit.prototype.children = function () {
+
+// };
 
 // handle attr
 kit.prototype.text = function (text) {
@@ -349,7 +437,6 @@ kit.css = function(el, css, value) {
 		throw { message: "Invalid parameters passed to css()" };
 	}
 };
-
 
 kit.hasClass = function(el, value) {   
 	return (" " + el.className + " ").indexOf(" " + value + " ") > -1;
@@ -492,19 +579,11 @@ kit.prototype.append = function(data) {
 };
 
 // kit.prototype.append = function (els) {
-// 	return this.forEach(function (parEl, i) {
-// 		els.forEach(function (childEl) {
-// 			parEl.appendChild( (i > 0) ? childEl.cloneNode(true) : childEl);
-// 		});
-// 	});
+
 // };
 
 // kit.prototype.prepend = function (els) {
-// 	return this.forEach(function (parEl, i) {
-// 		for (var j = els.length -1; j > -1; j--) {
-// 			parEl.insertBefore((i > 0) ? els[j].cloneNode(true) : els[j], parEl.firstChild);
-// 		}
-// 	});
+
 // };
 
 
