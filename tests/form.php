@@ -102,23 +102,23 @@
 					<div am-row>
 						<div am-col="4">
 							<label>First Name</label>
-							<input type="text" am-input="fluid=">
+							<input type="text" am-input="fluid">
 						</div>
 						<div am-col="4">
 							<label>Password</label>
-							<input type="password" am-input="fluid=">
+							<input type="password" am-input="fluid">
 						</div>
 						<div am-col="4">
 							<label>E-Mail</label>
-							<input type="email" required am-input="fluid=">
+							<input type="email" required am-input="fluid">
 						</div>
 						<div am-col="4">
 							<label>City</label>
-							<input type="text" am-input="fluid=">
+							<input type="text" am-input="fluid">
 						</div>
 						<div am-col="4">
 							<label>State</label>
-							<select am-input="fluid=">
+							<select am-input="fluid">
 								<option>AL</option>
 								<option>CA</option>
 								<option>IL</option>
@@ -144,23 +144,23 @@
 		&lt;div am-row&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;First Name&lt;/label&gt;
-				&lt;input type="text" am-input="fluid="&gt;
+				&lt;input type="text" am-input="fluid"&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;Password&lt;/label&gt;
-				&lt;input type="password" am-input="fluid="&gt;
+				&lt;input type="password" am-input="fluid"&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;E-Mail&lt;/label&gt;
-				&lt;input type="email" required am-input="fluid="&gt;
+				&lt;input type="email" required am-input="fluid"&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;City&lt;/label&gt;
-				&lt;input type="text" am-input="fluid="&gt;
+				&lt;input type="text" am-input="fluid"&gt;
 			&lt;/div&gt;
 			&lt;div am-col="4"&gt;
 				&lt;label&gt;State&lt;/label&gt;
-				&lt;select am-input="fluid="&gt;
+				&lt;select am-input="fluid"&gt;
 					&lt;option&gt;AL&lt;/option&gt;
 					&lt;option&gt;CA&lt;/option&gt;
 					&lt;option&gt;IL&lt;/option&gt;
