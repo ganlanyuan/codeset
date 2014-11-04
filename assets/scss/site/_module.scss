@@ -5,6 +5,8 @@
 // article
 // fixed-columns
 // sidebar 
+// breadcrumb 
+// pagination 
 
 // flex video
 @function ratio($width, $height) {
@@ -334,7 +336,98 @@ body,
 	}
 }
 
+// breadcrumb 
+$breadcrumb-font-size: 12 !default;
+$breadcrumb-color: #212121 !default;
+$breadcrumb-active-color: #b4b4b4 !default;
+$breadcrumb-fw-bold: true !default;
+$breadcrumb-uppercase: true !default;
+$breadcrumb-gap-content: '/' !default;
+$breadcrumb-gap-width: 1.2em !default;
 
+#{am(breadcrumb)} {
+	letter-spacing: -0.33em;
+	li {
+		letter-spacing: 0;
+		display: inline-block;
+		@include rem(font-size, $breadcrumb-font-size);
+		@if $breadcrumb-uppercase {
+			text-transform: uppercase;
+		}
+		@if $breadcrumb-fw-bold {
+			font-weight: bold;
+		}
+		&:after {
+			content: $breadcrumb-gap-content;
+			width: $breadcrumb-gap-width;
+			text-align: center;
+			color: #b4b4b4;
+			display: inline-block;
+			font-weight: normal;
+		}
+	}
+	a {
+		color: $breadcrumb-color;
+		@extend %hover-tdn;
+		@extend %global-transition;
+		&:hover { color: lighten($breadcrumb-color, 10%);}
+	}
+	.active {
+		&:after {display: none;}
+		a {
+			color: $breadcrumb-active-color;
+			cursor: default;
+		}
+	}
+}
+
+// pagination
+$pagination-fz: 14 !default;
+$pagination-a-padding: em(7, $pagination-fz) em(10, $pagination-fz) em(4, $pagination-fz) !default;
+$pagination-color: #212121 !default;
+$pagination-bg-color: #fff !default;
+$pagination-hover-color: #fff !default;
+$pagination-hover-bg-color: #212121 !default;
+$pagination-ellipsis-color: #999 !default;
+$pagination-text-align-center: true !default;
+$pagination-prev: '◄' !default;
+$pagination-next: '►' !default;
+
+#{am(pagination)} {
+	letter-spacing: -0.33em;
+	@if $pagination-text-align-center {
+		text-align: center;
+	}
+	li {
+		letter-spacing: 0;
+		display: inline-block;
+		@include rem(font-size, $pagination-fz);
+		margin-right: em(4, $pagination-fz);
+		margin-bottom: em(4, $pagination-fz);
+	}
+	a {
+		padding: $pagination-a-padding;
+		border-radius: 3px;
+		color: $pagination-color;
+		background-color: $pagination-bg-color;
+		@extend %global-transition;
+		@extend %hover-tdn;
+	}
+	.active a, a:hover {
+		color: $pagination-hover-color;
+		background-color: $pagination-hover-bg-color;
+	}
+	.prev a:before { content: $pagination-prev; }
+	.next a:before { content: $pagination-next; }
+	.ellipsis a { 
+		color: $pagination-ellipsis-color;
+		cursor: default;
+		&:hover {
+			color: $pagination-ellipsis-color;
+			background-color: $pagination-bg-color;
+		}
+	}
+}
 
 
 

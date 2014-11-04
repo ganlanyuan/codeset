@@ -76,6 +76,27 @@ $menu-active-color: #fd5619;
 $menu-bg-color: #fff;
 $menu-inverted: false;
 
+// breadcrumb 
+$breadcrumb-font-size: 12;
+$breadcrumb-color: #212121;
+$breadcrumb-active-color: #b4b4b4;
+$breadcrumb-fw-bold: true;
+$breadcrumb-uppercase: true;
+$breadcrumb-gap-content: '/';
+$breadcrumb-gap-width: 1.2em;
+
+// pagination
+$pagination-fz: 14;
+$pagination-a-padding: em(7, $pagination-fz) em(10, $pagination-fz) em(4, $pagination-fz);
+$pagination-color: #212121;
+$pagination-bg-color: #fff;
+$pagination-hover-color: #fff;
+$pagination-hover-bg-color: #212121;
+$pagination-ellipsis-color: #999;
+$pagination-text-align-center: true;
+$pagination-prev: '◄'; // ←
+$pagination-next: '►'; // →
+
 // @mixins ----------------------
 @mixin replace($old-context, $contexts...) {
   @each $context in $contexts {
