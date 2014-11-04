@@ -770,9 +770,6 @@ kit.win = {
 // 	window.kit = kit;
 // })(window);
 
-document.ready(function () {
-	kit('p').before('<span am-button>button</span>');
-});
 
 // scroll to
 function scrollTo(element, to, duration) {
