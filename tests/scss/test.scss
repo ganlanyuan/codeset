@@ -1,4 +1,5 @@
 @charset "UTF-8";
+$font-path:"../../assets/fonts/icon-font";
 
 // global setting
 @import "../../assets/scss/bourbon/bourbon"; 
@@ -6,8 +7,8 @@
 
 // frameworks
 @import "../../assets/scss/normalize/normalize"; // css reset
-@import "../../assets/scss/font-awesome/font-awesome"; // icon font
-@import "test-icon-font"; // icon font
+// @import "../../assets/scss/font-awesome/font-awesome"; // icon font
+@import "../../assets/scss/site/icon-font"; // icon font
 // @import "../../assets/scss/OwlCarousel/OwlCarousel"; // slidershow
 // @import "../../assets/scss/animate/animate";
 @import "../../assets/scss/pure/pure";  // template

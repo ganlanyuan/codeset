@@ -1,4 +1,4 @@
-$font-path:"../../../assets/fonts/icon-font";
+$font-path:"../fonts/icon-font" !default;
 @font-face {
   font-family: "icon-font";
   src:url("#{$font-path}/icon-font.eot");
