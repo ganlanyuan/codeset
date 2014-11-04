@@ -16,7 +16,7 @@
 	</ul>
 </div>
 <div am-sidebar="left">
-	<div am-menu-close><i class="fa fa-remove"></i></div>
+	<div am-menu-close><i class="ic-close"></i></div>
 	<ul>
 		<li><a href="">item 1</a></li>
 		<li><a href="">item 2</a></li>

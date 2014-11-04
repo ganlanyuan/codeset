@@ -1,35 +1,55 @@
-// Done: on off, click mouseover mouseout focus blur submit keydown keyup, hide show ,find eq first last parent parents children, firstChild, lastChild prev next siblings prevAll nextAll, text html attr css addClass removeClass toggleClass hasClass, remove getWidth getHeight getTop getLeft
-// Undo: append, prepend, before, after
+// Done: on off, click mouseover mouseout focus blur submit keydown keyup, hide show ,find eq first last parent parents children, firstChild, lastChild prev next siblings prevAll nextAll, text html attr css addClass removeClass toggleClass hasClass, remove getWidth getHeight getTop getLeft, before, after,append, prepend
 
-// document.ready
-(function () {
-	var ie = !!(window.attachEvent && !window.opera);
-	var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && (RegExp.$1 < 525);
-	var fn = [];
-	var run = function () { for (var i = 0; i < fn.length; i++){fn[i]();} };
-	var d = document;
-	d.ready = function (f) {
-	if (!ie && !wk && d.addEventListener){
-		return d.addEventListener('DOMContentLoaded', f, false);
-	}
-	if (fn.push(f) > 1) {return;}
-	if (ie){
-		(function () {
-		try { d.documentElement.doScroll('left'); run(); }
-		catch (err) { setTimeout(arguments.callee, 0); }
-		})();
-	}else if (wk){
-		var t = setInterval(function () {
-		if (/^(loaded|complete)$/.test(d.readyState)){
-			clearInterval(t), run();
-		}
-		}, 0);
-	}
+// READY
+// HELPER FUNCTIONS
+// LANGUAGE EXTENSIONS
+// KIT START
+// DOM MANIPULATION
+// HANDLE ATTR
+// STYLE INSTANCE METHODS
+// STYLE INSTANCE METHODS
+// HANDLE NODE
+// GET ELEMENT SIZE
+// GET WINDOW SIZE
+// SCROLL TO
+// MODERNIZR
+
+// ========== READY ==========
+// Author: Diego Perini (diego.perini at gmail.com)
+// Summary: cross-browser wrapper for DOMContentLoaded
+// URL: https://github.com/dperini/ContentLoaded/blob/master/src/contentloaded.js
+function ready(fn) {
+	var win = window, 
+	done = false, 
+	top = true,
+	doc = win.document,
+	root = doc.documentElement,
+	modern = doc.addEventListener,
+	add = modern ? 'addEventListener' : 'attachEvent',
+	rem = modern ? 'removeEventListener' : 'detachEvent',
+	pre = modern ? '' : 'on',
+	init = function(e) {
+		if (e.type == 'readystatechange' && doc.readyState != 'complete') return;
+		(e.type == 'load' ? win : doc)[rem](pre + e.type, init, false);
+		if (!done && (done = true)) fn.call(win, e.type || e);
+	},
+	poll = function() {
+		try { root.doScroll('left'); } catch(e) { setTimeout(poll, 50); return; }
+		init('poll');
 	};
-})();
+	if (doc.readyState == 'complete') { fn.call(win, 'lazy'); }
+	else {
+		if (!modern && root.doScroll) {
+			try { top = !win.frameElement; } catch(e) { }
+			if (top) { poll(); }
+		}
+		doc[add](pre + 'DOMContentLoaded', init, false);
+		doc[add](pre + 'readystatechange', init, false);
+		win[add](pre + 'load', init, false);
+	}
+};
 
-// kit start
-/*** Helper Functions ***/
+// ========== HELPER FUNCTIONS ==========
 function toCamelCase(str) {
 	return str.replace(/-([a-z])/ig, function( all, letter ) {
 		return letter.toUpperCase();
@@ -48,8 +68,7 @@ var getStyle = (function() {
 	}
 }());
 
-
-/*** Language Extensions ***/
+// ========== LANGUAGE EXTENSIONS ==========
 if (typeof String.prototype.trim === "undefined") {
 	String.prototype.trim = function() {
 		return this.replace( /^\s+/, "" ).replace( /\s+$/, "" );
@@ -67,6 +86,7 @@ if (typeof Array.prototype.indexOf !== 'function') {
 	}; 
 }
 
+// ========== KIT START ==========
 // (function (window, undefined) {
 dome = function (args, el) {
 	if ( args.length > 0 ) {
@@ -92,6 +112,49 @@ var kit = function (selector) {
 };
 
 // ========= UTILS =========
+var whitespace = "[\\x20\\t\\r\\n\\f]",
+characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
+identifier = characterEncoding.replace( "w", "w#" ),
+attributes = "\\[" + whitespace + "*(" + characterEncoding + ")(?:" + whitespace +
+	"*([*^$|!~]?=)" + whitespace +
+	"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" + whitespace +
+	"*\\]",
+ID = new RegExp( "^#(" + characterEncoding + ")" ),
+CLASS = new RegExp( "^\\.(" + characterEncoding + ")" ),
+TAG = new RegExp( "^(" + characterEncoding.replace( "w", "w*" ) + ")" ),
+ATTR = new RegExp( "^" + attributes );
+
+kit.filter = function (selector, els) {
+	var match = [];
+	if (selector.match(TAG)) {
+		for (var i = 0; i < els.length; i++) {
+			if(els[i].tagName.toLowerCase() === selector.replace(/(^\s*)|(\s*$)/g, '')){
+				match.push(els[i]);
+			}
+		}
+	} else if(selector.match(CLASS)){
+		for (var i = 0; i < els.length; i++) {
+			if ((" " + els[i].className + " ").indexOf(" " + selector.replace(/(^\s*\.)|(\s*$)/g, '') + " ") > -1) {
+				match.push(els[i]);
+			}
+		}
+	} else if(selector.match(ID)){
+		for (var i = 0; i < els.length; i++) {
+			if ((" " + els[i].getAttribute('id') + " ").indexOf(" " + selector.replace(/(^\s*\#)|(\s*$)/g, '') + " ") > -1) {
+				match.push(els[i]);
+			}
+		}
+	} else if(selector.match(ATTR)){
+		for (var i = 0; i < els.length; i++) {
+			if (els[i].hasAttribute(selector.replace(/(^\s*\[)|(\]\s*$)/g, ''))) {
+				match.push(els[i]);
+			}
+		}
+	}
+
+	return match;
+};
+
 kit.prototype.map = function (callback) {
 	var results = [];
 	for (var i = 0; i < this.length; i++) {
@@ -110,7 +173,7 @@ kit.prototype.forEach = function (callback) {
 	return this; 
 };
 
-// ========= Event static methods =========
+// ========= EVENT STATIC METHODS =========
 if (typeof addEventListener !== "undefined") {
 	kit.addEvent = function(obj, evt, fn) {
 		obj.addEventListener(evt, fn, false);
@@ -166,7 +229,7 @@ if (typeof addEventListener !== "undefined") {
 	};
 }
 
-// ========= Event instance methods =========
+// ========= EVENT INSTANCE METHODS =========
 kit.prototype.on = function (evt, fn) {
 	return this.forEach(function (el) {
 		kit.addEvent(el, evt, fn);
@@ -179,7 +242,6 @@ kit.prototype.off = function (evt, fn) {
 	});
 };
 
-// Handle event binding
 kit.prototype.click = function(fn) {
 	return this.forEach(function (el) {
 		kit.addEvent(el, 'click', fn);
@@ -301,49 +363,6 @@ kit.prototype.next = function () {
 	return this;
 };
 
-var whitespace = "[\\x20\\t\\r\\n\\f]",
-characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
-identifier = characterEncoding.replace( "w", "w#" ),
-attributes = "\\[" + whitespace + "*(" + characterEncoding + ")(?:" + whitespace +
-	"*([*^$|!~]?=)" + whitespace +
-	"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" + whitespace +
-	"*\\]",
-ID = new RegExp( "^#(" + characterEncoding + ")" ),
-CLASS = new RegExp( "^\\.(" + characterEncoding + ")" ),
-TAG = new RegExp( "^(" + characterEncoding.replace( "w", "w*" ) + ")" ),
-ATTR = new RegExp( "^" + attributes );
-
-kit.filter = function (selector, els) {
-	var match = [];
-	if (selector.match(TAG)) {
-		for (var i = 0; i < els.length; i++) {
-			if(els[i].tagName.toLowerCase() === selector.replace(/(^\s*)|(\s*$)/g, '')){
-				match.push(els[i]);
-			}
-		}
-	} else if(selector.match(CLASS)){
-		for (var i = 0; i < els.length; i++) {
-			if ((" " + els[i].className + " ").indexOf(" " + selector.replace(/(^\s*\.)|(\s*$)/g, '') + " ") > -1) {
-				match.push(els[i]);
-			}
-		}
-	} else if(selector.match(ID)){
-		for (var i = 0; i < els.length; i++) {
-			if ((" " + els[i].getAttribute('id') + " ").indexOf(" " + selector.replace(/(^\s*\#)|(\s*$)/g, '') + " ") > -1) {
-				match.push(els[i]);
-			}
-		}
-	} else if(selector.match(ATTR)){
-		for (var i = 0; i < els.length; i++) {
-			if (els[i].hasAttribute(selector.replace(/(^\s*\[)|(\]\s*$)/g, ''))) {
-				match.push(els[i]);
-			}
-		}
-	}
-
-	return match;
-};
-
 kit.prototype.siblings = function (selector) {
 	var results = [],
 			type = typeof selector;
@@ -456,19 +475,7 @@ kit.prototype.nextAll = function () {
 	return this;
 };
 
-// kit.prototype.firstChild = function () {
-
-// };
-
-// kit.prototype.lastChild = function () {
-
-// };
-
-// kit.prototype.children = function () {
-
-// };
-
-// handle attr
+// ========== HANDLE ATTR ==========
 kit.prototype.text = function (text) {
 	if (typeof text !== "undefined") {
 		return this.forEach(function (el) {
@@ -513,7 +520,7 @@ kit.prototype.attr = function (attr, val) {
 	}
 };
 
-/*** Style instance methods ***/
+// ========== STYLE INSTANCE METHODS ==========
 kit.css = function(el, css, value) {
 	var cssType = typeof css,
 		valueType = typeof value,
@@ -592,7 +599,7 @@ kit.toggleClass = function(el, value) {
 	}
 };
 
-//*** Style instance methods ***/
+// ========== STYLE INSTANCE METHODS ==========
 kit.prototype.css = function(css, value) {
 	return this.forEach(function (el) {
 		return kit.css(el, css, value) || el;
@@ -623,7 +630,7 @@ kit.prototype.hasClass = function(value) {
 	})
 };
 
-// handle node
+// ========== HANDLE NODE ==========
 kit.createElement = function(obj) {
 	if (!obj || !obj.tagName) {
 		throw { message : "Invalid argument" };
@@ -656,6 +663,24 @@ kit.createElement = function(obj) {
 
 	return el;
 };
+// var el = kit.createElement({
+// 	tagName: 'div',
+// 	id: 'foo',
+// 	className: 'foo',
+// 	children: [{
+// 		tagName: 'div',
+// 		html: '<b>Hello, creatElement</b>',
+// 		attributes: {
+// 			'am-button': 'primary'
+// 		}
+// 	}]
+// });
+
+kit.prototype.clone = function () {
+	return this.forEach(function (el) {
+		el.cloneNode(true);
+	});
+};
 
 kit.prototype.remove = function () {
 	return this.forEach(function (el) {
@@ -665,30 +690,34 @@ kit.prototype.remove = function () {
 
 kit.prototype.append = function(data) {
 	if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
-		this.forEach(function (el) {
+		return this.forEach(function (el) {
 			el.appendChild(data);
-		})
-	} else if (data instanceof kit) {
-		this.mapOne(function (el) {
-			el.appendChild(data);
-		})
+		});
+	// } else if (data instanceof kit) {
+	// 	return this.forEach(function (el) {
+	// 		el.appendChild(data);
+	// 	});
+		// this.el.appendChild(data.el);
 	} else if (typeof data === "string") {
-		this.forEach(function (el) {
+		return this.forEach(function (el) {
 			var html = el.innerHTML;
 			el.innerHTML = html + data;
-		})
+		});
 	}
-
-	return this;
 };
 
-// kit.prototype.append = function (els) {
-
-// };
-
-// kit.prototype.prepend = function (els) {
-
-// };
+kit.prototype.prepend = function(data) {
+	if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
+		return this.forEach(function (el) {
+			el.insertBefore(data, el.firstChild);
+		});
+	} else if (typeof data === "string") {
+		return this.forEach(function (el) {
+			var html = el.innerHTML;
+			el.innerHTML = data + html;
+		});
+	}
+};
 
 kit.prototype.before = function (htmlString) {
 	return this.forEach(function (el) {
@@ -702,7 +731,7 @@ kit.prototype.after = function (htmlString) {
 	})
 };
 
-// get element size
+// ========== GET ELEMENT SIZE ==========
 kit.prototype.getWidth = function () {
 	return this.mapOne(function (el) {
 		var box = el.getBoundingClientRect();
@@ -741,6 +770,7 @@ kit.prototype.getLeft = function () {
 	});
 };
 
+// ========== GET WINDOW SIZE ==========
 kit.win = {
 	W: function  () {
 		var d = document, w = window,
@@ -770,8 +800,7 @@ kit.win = {
 // 	window.kit = kit;
 // })(window);
 
-
-// scroll to
+// ========== SCROLL TO ==========
 function scrollTo(element, to, duration) {
 	if (duration < 0) {return;}
 	var difference = to - element.scrollTop;
@@ -785,7 +814,7 @@ function scrollTo(element, to, duration) {
 }
 
 
-
+// ========== MODERNIZR ==========
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-boxshadow-flexbox-multiplebgs-opacity-cssanimations-cssgradients-csstransforms-csstransforms3d-csstransitions-inlinesvg-svg-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_calc
  */

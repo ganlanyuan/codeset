@@ -1,7 +1,7 @@
-// @codekit-prepend "lib/function.js"
+// @codekit-prepend "lib/kit.js"
 
 // show sidebar
-document.ready(function () {
+ready(function () {
 	function menuAddClass (obj, c) {
 		if (obj.className.indexOf(c) === -1) {
 			obj.className += ' ' + c;
@@ -29,7 +29,7 @@ document.ready(function () {
 		});
 });
 // hide mobile menu on desktop
-document.ready(function () {
+ready(function () {
 	window.onresize = function () {
 		var winW = kit.win.W();
 		if (winW > 1023) {
