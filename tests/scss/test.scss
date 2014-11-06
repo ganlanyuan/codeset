@@ -51,6 +51,7 @@ a {
 .test-wrap { @include fixed-col(left, 140px, 10px); }
 .fixed-sidebar { position: fixed; 
   margin-top: 100px;
+  left: 0;
   @include rem(font-size, 13);
   li { margin-bottom: 1px; }
   a {
@@ -118,8 +119,11 @@ a {
   .my-wrap-1 { @include fixed-col(right, 300px, 20px);}
   .my-wrap-2 { @include fixed-col3(200px, 300px, 20px);}
 }
-#{am(sidebar)} {
-  background-color: #022756;
+#{am(nav)} {
+  text-align: center;
+  #{am(nav-close)} {
+    padding: 10px;
+  }
   a {
     display: block;
     padding: 1em 2em;
@@ -131,23 +135,4 @@ a {
       background-color: rgba(255,255,255,.2);
     }
   }
-}
-#{am(menu-close)} {
-  @include position(absolute, 0px 0px null null);
-  @include size(50);
-  line-height: 50px;
-  background-color: lighten(#022756, 10%);
-  color: #fff;
-  font-size: 1.5em;
-  text-align: center;
-  display: block;
-  cursor: pointer;
-}
-#{am(menu-close, styled)}{
-  background: none;
-  width: auto;
-  height: auto;
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
 }

@@ -4,29 +4,169 @@
 	<meta charset="utf-8">
 	<title>module</title>
 	<?php include 'css.php'; ?>
+	<style>
+		[am-nav~="reveal-left"],
+    [am-nav~="reveal-right"] {display: none;}
+	</style>
+	<script>
+	ready(function () {
+		kit('[am-nav-icon]').mouseover(function() {
+				var style = kit(this).attr('data-style');
+				if (style === 'move-left' || style === 'move-right' || style === 'translate-left' || style === 'translate-right' || style === 'rotate-left' || style === 'rotate-right' || style === 'rotate-top' || style === 'rotate-bottom' || style=== 'scale-left' || style=== 'scale-right') {
+          kit('[am-nav~="reveal-left"]').hide();
+					kit('[am-nav~="reveal-right"]').hide();
+				}
+				kit('[am-content]').attr('am-content', style);
+				setTimeout(function() {
+					if(style === 'reveal-left' || style === 'reveal-right'){
+						kit('[am-nav~=' + style + ']').show();
+					}
+				},400);
+				if(style === 'scale-left' || style === 'scale-right'){
+					kit('body').css('background-color', '#000');
+				} else {
+					kit('body').css('background-color', '#fff');
+				}
+			});
+	});
+	</script>
 </head>
 <body>
-<div am-sidebar="below left">
-	<ul>
-		<li><a href="">item 1</a></li>
-		<li><a href="">item 2</a></li>
-		<li><a href="">item 3</a></li>
-		<li><a href="">item 4</a></li>
-		<li><a href="">item 5</a></li>
-	</ul>
-</div>
-<div am-sidebar="left">
-	<div am-menu-close><i class="ic-close"></i></div>
-	<ul>
-		<li><a href="">item 1</a></li>
-		<li><a href="">item 2</a></li>
-		<li><a href="">item 3</a></li>
-		<li><a href="">item 4</a></li>
-		<li><a href="">item 5</a></li>
-	</ul>
-</div>
 
-<div am-upper>
+<nav am-nav="move-left">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">move item 1</a></li>
+    <li><a href="">move item 2</a></li>
+    <li><a href="">move item 3</a></li>
+    <li><a href="">move item 4</a></li>
+    <li><a href="">move item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="move-right">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">move item 1</a></li>
+    <li><a href="">move item 2</a></li>
+    <li><a href="">move item 3</a></li>
+    <li><a href="">move item 4</a></li>
+    <li><a href="">move item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="translate-left">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">translate item 1</a></li>
+    <li><a href="">translate item 2</a></li>
+    <li><a href="">translate item 3</a></li>
+    <li><a href="">translate item 4</a></li>
+    <li><a href="">translate item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="translate-right">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">translate item 1</a></li>
+    <li><a href="">translate item 2</a></li>
+    <li><a href="">translate item 3</a></li>
+    <li><a href="">translate item 4</a></li>
+    <li><a href="">translate item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="reveal-left">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">reveal item 1</a></li>
+    <li><a href="">reveal item 2</a></li>
+    <li><a href="">reveal item 3</a></li>
+    <li><a href="">reveal item 4</a></li>
+    <li><a href="">reveal item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="reveal-right">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">reveal item 1</a></li>
+    <li><a href="">reveal item 2</a></li>
+    <li><a href="">reveal item 3</a></li>
+    <li><a href="">reveal item 4</a></li>
+    <li><a href="">reveal item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="rotate-left">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">rotate item 1</a></li>
+    <li><a href="">rotate item 2</a></li>
+    <li><a href="">rotate item 3</a></li>
+    <li><a href="">rotate item 4</a></li>
+    <li><a href="">rotate item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="rotate-right">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">rotate item 1</a></li>
+    <li><a href="">rotate item 2</a></li>
+    <li><a href="">rotate item 3</a></li>
+    <li><a href="">rotate item 4</a></li>
+    <li><a href="">rotate item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="rotate-top">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">rotate item 1</a></li>
+    <li><a href="">rotate item 2</a></li>
+    <li><a href="">rotate item 3</a></li>
+    <li><a href="">rotate item 4</a></li>
+    <li><a href="">rotate item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="rotate-bottom">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">rotate item 1</a></li>
+    <li><a href="">rotate item 2</a></li>
+    <li><a href="">rotate item 3</a></li>
+    <li><a href="">rotate item 4</a></li>
+    <li><a href="">rotate item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="scale-left">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">scale item 1</a></li>
+    <li><a href="">scale item 2</a></li>
+    <li><a href="">scale item 3</a></li>
+    <li><a href="">scale item 4</a></li>
+    <li><a href="">scale item 5</a></li>
+  </ul>
+</nav>
+
+<nav am-nav="scale-right">
+  <div am-nav-close=""><span class="ic-close"></span></div>
+  <ul>
+    <li><a href="">scale item 1</a></li>
+    <li><a href="">scale item 2</a></li>
+    <li><a href="">scale item 3</a></li>
+    <li><a href="">scale item 4</a></li>
+    <li><a href="">scale item 5</a></li>
+  </ul>
+</nav>
+
+<div am-content="reveal-left">
+<div am-content-cover=""></div>
 <div am-row="collapse full" class="topbar">
 	<div am-col class="topbar-col"><a href="grid.php">grid</a></div>
 	<div am-col class="topbar-col"><a href="button.php">button</a></div>
@@ -36,10 +176,10 @@
 	<div am-col class="topbar-col"><a href="icon-font.php">icon-font</a></div>
 </div>
 <div class="test-wrap">
-	<div am-col-aside="" class="fixed-sidebar">
+	<div class="fixed-sidebar">
 		<ul>
 			<li><a href="#t1">fixed columns</a></li>
-			<li><a href="#t2">sidebar</a></li>
+			<li><a href="#t2">mobile nav</a></li>
 			<li><a href="#t3">video</a></li>
 			<li><a href="#t4">article style</a></li>
 			<li><a href="#t5">breadcrumb</a></li>
@@ -133,23 +273,30 @@
 
 	<div am-row>
 		<div am-col>
-			<h2 id="t2">sidebar</h2>
+			<h2 id="t2">mobile nav</h2>
 			<h4>style 1: move</h4>
 		</div>
 	</div>
 	<div am-row>
 		<div am-col>
-			<div am-menu am-button data="move">am-menu: move</div>
+      <div am-nav-icon="" data-style="move-left" am-button="">Move-left</div>
+			<div am-nav-icon="" data-style="move-right" am-button="">Move-right</div>
 		</div>
 	</div>
 	<div am-row>
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
-&lt;div am-sidebar="left"&gt;
-  &lt;div am-menu-close&gt;&lt;/div&gt;
+&lt;nav am-nav="move-left"&gt;
+  &lt;div am-nav-close=""&gt;&lt;/div&gt;
+  &lt;div&gt;navigation&lt;/div&gt;
+&lt;/nav&gt;
+&lt;div am-content="move-left"&gt;
+  &lt;div am-content-cover=""&gt;&lt;/div&gt;
+  &lt;div am-nav-icon="" data-style="move-left"&gt;&lt;/div&gt;
+  &lt;div&gt;main content&lt;/div&gt;
 &lt;/div&gt;
-&lt;div am-menu data="move"&gt;&lt;/div&gt;
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 				</code></pre>
 			</div>
 		</div>
@@ -162,15 +309,24 @@
 	</div>
 	<div am-row>
 		<div am-col>
-			<div am-menu am-button data="translate-left">am-menu: translate-left</div>
+      <div am-nav-icon="" data-style="translate-left" am-button="">translate-left</div>
+			<div am-nav-icon="" data-style="translate-right" am-button="">translate-right</div>
 		</div>
 	</div>
 	<div am-row>
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
-&lt;div am-sidebar="left"&gt;&lt;/div&gt;
-&lt;div am-menu data="translate-left"&gt;&lt;/div&gt;
+&lt;nav am-nav="translate-left"&gt;
+  &lt;div am-nav-close=""&gt;&lt;/div&gt;
+  &lt;div&gt;navigation&lt;/div&gt;
+&lt;/nav&gt;
+&lt;div am-content="translate-left"&gt;
+  &lt;div am-content-cover=""&gt;&lt;/div&gt;
+  &lt;div am-nav-icon="" data-style="translate-left"&gt;&lt;/div&gt;
+  &lt;div&gt;main content&lt;/div&gt;
+&lt;/div&gt;
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 				</code></pre>
 			</div>
 		</div>
@@ -183,18 +339,86 @@
 	</div>
 	<div am-row>
 		<div am-col>
-			<div am-menu am-button data="reveal-left">am-menu: reveal-left</div>
+      <div am-nav-icon="" data-style="reveal-left" am-button="">reveal-left</div>
+			<div am-nav-icon="" data-style="reveal-right" am-button="">reveal-right</div>
 		</div>
 	</div>
 	<div am-row>
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
-&lt;div am-sidebar="below left"&gt;&lt;/div&gt;
-&lt;div am-upper&gt;
-  &lt;div am-menu data="reveal-left"&gt;&lt;/div&gt;
-	...
+&lt;nav am-nav="reveal-left"&gt;
+  &lt;div am-nav-close=""&gt;&lt;/div&gt;
+  &lt;div&gt;navigation&lt;/div&gt;
+&lt;/nav&gt;
+&lt;div am-content="reveal-left"&gt;
+  &lt;div am-content-cover=""&gt;&lt;/div&gt;
+  &lt;div am-nav-icon="" data-style="reveal-left"&gt;&lt;/div&gt;
+  &lt;div&gt;main content&lt;/div&gt;
 &lt;/div&gt;
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
+				</code></pre>
+			</div>
+		</div>
+	</div>
+
+	<div am-row>
+		<div am-col>
+			<h4>style 4: rotate</h4>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+      <div am-nav-icon="" data-style="rotate-left" am-button="">rotate-left</div>
+      <div am-nav-icon="" data-style="rotate-right" am-button="">rotate-right</div>
+      <div am-nav-icon="" data-style="rotate-top" am-button="">rotate-top</div>
+			<div am-nav-icon="" data-style="rotate-bottom" am-button="">rotate-bottom</div>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+			<div class="code">
+				<pre><code class="language-markup">
+&lt;nav am-nav="rotate-left"&gt;
+  &lt;div am-nav-close=""&gt;&lt;/div&gt;
+  &lt;div&gt;navigation&lt;/div&gt;
+&lt;/nav&gt;
+&lt;div am-content="rotate-left"&gt;
+  &lt;div am-content-cover=""&gt;&lt;/div&gt;
+  &lt;div am-nav-icon="" data-style="rotate-left"&gt;&lt;/div&gt;
+  &lt;div&gt;main content&lt;/div&gt;
+&lt;/div&gt;
+&lt;&#33;&#45;&#45; left, right, top, bottom are available &#45;&#45;&#62;
+				</code></pre>
+			</div>
+		</div>
+	</div>
+
+	<div am-row>
+		<div am-col>
+			<h4>style 4: scale</h4>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+      <div am-nav-icon="" data-style="scale-left" am-button="">scale-left</div>
+			<div am-nav-icon="" data-style="scale-right" am-button="">scale-right</div>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+			<div class="code">
+				<pre><code class="language-markup">
+&lt;nav am-nav="scale-left"&gt;
+  &lt;div am-nav-close=""&gt;&lt;/div&gt;
+  &lt;div&gt;navigation&lt;/div&gt;
+&lt;/nav&gt;
+&lt;div am-content="scale-left"&gt;
+  &lt;div am-content-cover=""&gt;&lt;/div&gt;
+  &lt;div am-nav-icon="" data-style="scale-left"&gt;&lt;/div&gt;
+  &lt;div&gt;main content&lt;/div&gt;
+&lt;/div&gt;
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 				</code></pre>
 			</div>
 		</div>
@@ -207,17 +431,17 @@
 	</div>
 	<div am-row>
 		<div am-col>
-			<div am-menu="styled" data="reveal-left"><span></span></div>
-			<div am-menu-close="styled"><span></span></div>
+			<div am-nav-icon="styled"><span></span></div>
+			<div am-nav-icon-close="styled"><span></span></div>
 		</div>
 	</div>
 	<div am-row>
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
-&lt;&#33;&#45;&#45; setting.scss: $menu-active-color &#45;&#45;&#62;
-&lt;div am-menu="styled" data="reveal-left"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-&lt;div am-menu-close="styled"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;&#33;&#45;&#45; setting.scss: $nav-icon-active-color &#45;&#45;&#62;
+&lt;div am-nav-icon="styled" data="reveal-left"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div am-nav-icon-close="styled"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
 				</code></pre>
 			</div>
 		</div>
@@ -230,8 +454,8 @@
 			</div>
 		</div>
 		<div am-row>
-			<div am-col="9 centered">
-				<div class="flex-video">
+			<div am-col="centered">
+				<div am-flex-video="">
 					<iframe width="560" height="315" src="//www.youtube.com/embed/Y1JPtngL17M" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
@@ -240,7 +464,7 @@
 			<div am-col>
 				<div class="code">
 					<pre><code class="language-markup">
-&lt;div class="flex-video"&gt;
+&lt;div am-flex-video=""&gt;
   &lt;iframe width="560" height="315" src="//www.youtube.com/embed/Y1JPtngL17M" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 					</code></pre>
@@ -253,8 +477,8 @@
 			</div>
 		</div>
 		<div am-row>
-			<div am-col="9 centered">
-				<div class="fixed-video">
+			<div am-col="centered">
+				<div am-fixed-video="">
 					<iframe width="560" height="315" src="//www.youtube.com/embed/Y1JPtngL17M" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
@@ -263,7 +487,7 @@
 			<div am-col>
 				<div class="code">
 					<pre><code class="language-markup">
-&lt;div class="fixed-video"&gt;
+&lt;div am-fixed-video=""&gt;
   &lt;iframe width="560" height="315" src="//www.youtube.com/embed/Y1JPtngL17M" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 					</code></pre>
