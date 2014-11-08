@@ -1,4 +1,9 @@
-// Done: on off, click mouseover mouseout focus blur submit keydown keyup, hide show ,find eq first last parent parents children, firstChild, lastChild prev next siblings prevAll nextAll, text html attr css addClass removeClass toggleClass hasClass, remove getWidth getHeight getTop getLeft, before, after,append, prepend
+// on off click mouseover mouseout focus blur submit keydown keyup
+// find eq filter first last parent parents children firstChild lastChild siblings prev prevAll next nextAll
+// hide show fadeIn remove 
+// text html attr css addClass removeClass toggleClass hasClass 
+// outerWidth outerHeight getTop getLeft offset(left top)
+// before after append prepend
 
 // READY
 // HELPER FUNCTIONS
@@ -28,15 +33,15 @@ function ready(fn) {
 	rem = modern ? 'removeEventListener' : 'detachEvent',
 	pre = modern ? '' : 'on',
 	init = function(e) {
-		if (e.type == 'readystatechange' && doc.readyState != 'complete') return;
-		(e.type == 'load' ? win : doc)[rem](pre + e.type, init, false);
-		if (!done && (done = true)) fn.call(win, e.type || e);
+		if (e.type === 'readystatechange' && doc.readyState !== 'complete') {return;}
+		(e.type === 'load' ? win : doc)[rem](pre + e.type, init, false);
+		if (!done && (done = true)) {fn.call(win, e.type || e);}
 	},
 	poll = function() {
 		try { root.doScroll('left'); } catch(e) { setTimeout(poll, 50); return; }
 		init('poll');
 	};
-	if (doc.readyState == 'complete') { fn.call(win, 'lazy'); }
+	if (doc.readyState === 'complete') { fn.call(win, 'lazy'); }
 	else {
 		if (!modern && root.doScroll) {
 			try { top = !win.frameElement; } catch(e) { }
@@ -46,7 +51,7 @@ function ready(fn) {
 		doc[add](pre + 'readystatechange', init, false);
 		win[add](pre + 'load', init, false);
 	}
-};
+}
 
 // ========== HELPER FUNCTIONS ==========
 function toCamelCase(str) {
@@ -87,7 +92,7 @@ if (typeof Array.prototype.indexOf !== 'function') {
 
 // ========== KIT START ==========
 // (function (window, undefined) {
-dome = function (args, el) {
+var dome = function (args, el) {
 	if ( args.length > 0 ) {
 		for (var i = 0; i < args.length; i++) {
 			el[i] = args[i];
@@ -132,21 +137,21 @@ kit.filter = function (selector, els) {
 			}
 		}
 	} else if(selector.match(CLASS)){
-		for (var i = 0; i < els.length; i++) {
-			if ((" " + els[i].className + " ").indexOf(" " + selector.replace(/(^\s*\.)|(\s*$)/g, '') + " ") > -1) {
-				match.push(els[i]);
+		for (var j = 0; j < els.length; j++) {
+			if ((" " + els[j].className + " ").indexOf(" " + selector.replace(/(^\s*\.)|(\s*$)/g, '') + " ") > -1) {
+				match.push(els[j]);
 			}
 		}
 	} else if(selector.match(ID)){
-		for (var i = 0; i < els.length; i++) {
-			if ((" " + els[i].getAttribute('id') + " ").indexOf(" " + selector.replace(/(^\s*\#)|(\s*$)/g, '') + " ") > -1) {
-				match.push(els[i]);
+		for (var k = 0; k < els.length; k++) {
+			if ((" " + els[k].getAttribute('id') + " ").indexOf(" " + selector.replace(/(^\s*\#)|(\s*$)/g, '') + " ") > -1) {
+				match.push(els[k]);
 			}
 		}
 	} else if(selector.match(ATTR)){
-		for (var i = 0; i < els.length; i++) {
-			if (els[i].hasAttribute(selector.replace(/(^\s*\[)|(\]\s*$)/g, ''))) {
-				match.push(els[i]);
+		for (var q = 0; q < els.length; q++) {
+			if (els[q].hasAttribute(selector.replace(/(^\s*\[)|(\]\s*$)/g, ''))) {
+				match.push(els[q]);
 			}
 		}
 	}
@@ -170,6 +175,15 @@ kit.prototype.mapOne = function (callback) {
 kit.prototype.forEach = function (callback) {
 	this.map(callback);
 	return this; 
+};
+
+kit.prototype.filter = function (selector) {
+	var results = kit.filter(selector, this);
+
+	if (results.length > 0) {
+		dome(results, this);
+		return this;
+	} else { throw "Nothing match, please check your selector!"; }
 };
 
 // ========= EVENT STATIC METHODS =========
@@ -223,7 +237,7 @@ if (typeof addEventListener !== "undefined") {
 		obj["on" + evt] = fn;
 	};
 
-	kit.removeEvent = function(obj, evt, fn) {
+	kit.removeEvent = function(obj, evt) {
 		obj["on" + evt] = null;
 	};
 }
@@ -290,13 +304,13 @@ kit.prototype.keyup = function(fn) {
 };
 
 // ========== DOM MANIPULATION ==========
-kit.prototype.hide = function(fadespeed,fn) {
+kit.prototype.hide = function() {
 	return this.forEach(function (el) {
 		el.style.display = 'none';
 	});
 };
 
-kit.prototype.show = function(fadespeed,fn) {
+kit.prototype.show = function() {
 	return this.forEach(function (el) {
 		el.style.display = 'inherit';
 	});
@@ -334,7 +348,7 @@ kit.prototype.find = function (selector) {
 			dome(result, this);
 		}
 		return this;
-	})
+	});
 };
 
 kit.eq = function( args, i ) {
@@ -370,7 +384,7 @@ kit.prototype.prev = function () {
 	this.forEach(function (el) {
 		do { el = el.previousSibling; } while ( el && el.nodeType !== 1 );
 		results.push(el);
-	})
+	});
 
 	dome(results, this);
 	return this;
@@ -381,7 +395,7 @@ kit.prototype.next = function () {
 	this.forEach(function (el) {
 		do { el = el.nextSibling; } while ( el && el.nodeType !== 1 );
 		results.push(el);
-	})
+	});
 
 	dome(results, this);
 	return this;
@@ -431,8 +445,9 @@ kit.prototype.children = function (selector) {
 			type = typeof selector;
 	this.forEach(function (el) {
 		for (var i=el.children.length; i--;){
-			if (el.children[i].nodeType === 1)
+			if (el.children[i].nodeType === 1){
 				children.unshift(el.children[i]);
+			}
 		}
 	});
 	if (type !== 'undefined' && type === 'string') {
@@ -446,7 +461,7 @@ kit.prototype.children = function (selector) {
 };
 
 kit.prototype.firstChild = function (selector) {
-	type = typeof selector;
+	var type = typeof selector;
 	if (type !== 'undefined' && type === 'string') {
 		return this.children(selector).eq(0);
 	} else if(type === 'undefined'){
@@ -455,7 +470,7 @@ kit.prototype.firstChild = function (selector) {
 };
 
 kit.prototype.lastChild = function (selector) {
-	type = typeof selector;
+	var type = typeof selector;
 	if (type !== 'undefined' && type === 'string') {
 		return this.children(selector).last();
 	} else if(type === 'undefined'){
@@ -469,7 +484,7 @@ kit.index = function(obj, current){
 			return i;
 		}
 	}
-}
+};
 
 kit.prototype.prevAll = function () {
 	var results = [];
@@ -627,31 +642,31 @@ kit.toggleClass = function(el, value) {
 kit.prototype.css = function(css, value) {
 	return this.forEach(function (el) {
 		return kit.css(el, css, value) || el;
-	})
+	});
 };
 
 kit.prototype.addClass = function(value) {
 	return this.forEach(function (el) {
 		kit.addClass(el, value);
-	})
+	});
 };
 
 kit.prototype.removeClass = function(value) {
 	return this.forEach(function (el) {
 		kit.removeClass(el, value);
-	})
+	});
 };
 
 kit.prototype.toggleClass = function(value) {
 	return this.forEach(function (el) {
 		kit.toggleClass(el, value);
-	})
+	});
 };
 
 kit.prototype.hasClass = function(value) {
 	return this.forEach(function (el) {
 		kit.hasClass(el, value);
-	})
+	});
 };
 
 // ========== HANDLE NODE ==========
@@ -752,11 +767,11 @@ kit.prototype.before = function (htmlString) {
 kit.prototype.after = function (htmlString) {
 	return this.forEach(function (el) {
 		el.insertAdjacentHTML('afterend', htmlString);
-	})
+	});
 };
 
 // ========== GET ELEMENT SIZE ==========
-kit.prototype.getWidth = function () {
+kit.prototype.outerWidth = function () {
 	return this.mapOne(function (el) {
 		var box = el.getBoundingClientRect();
 		var ow = box.width || (box.right - box.left);
@@ -764,7 +779,7 @@ kit.prototype.getWidth = function () {
 	});
 };
 
-kit.prototype.getHeight = function () {
+kit.prototype.outerHeight = function () {
 	return this.mapOne(function (el) {
 		var box = el.getBoundingClientRect();
 		var oh = box.height || (box.bottom - box.top);
@@ -791,6 +806,17 @@ kit.prototype.getLeft = function () {
 		current = current.offsetParent;
 		}
 		return actualLeft;
+	});
+};
+
+kit.prototype.offset = function () {
+	return this.mapOne(function (el) {
+		var rect = el.getBoundingClientRect();
+		var offset = {
+		  top: rect.top + document.body.scrollTop,
+		  left: rect.left + document.body.scrollLeft
+		};
+		return offset;
 	});
 };
 
