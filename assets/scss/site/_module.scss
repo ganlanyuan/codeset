@@ -384,7 +384,7 @@ $am-nav-width: 200px !default;
 	.scale-right &,
 	.scale-right & {
 		background-color: rgba(0,0,0,0.2);
-		z-index: nth($z-index, 1);
+		@if $z-index { z-index: nth($z-index, 2); } @else { z-index: 200; }
 		cursor: pointer;
 	}
 }

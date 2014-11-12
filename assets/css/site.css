@@ -1020,6 +1020,15 @@ legend {
 .ic-angle-up:before {
   content: "i"; }
 
+.ic-pinterest:before {
+  content: "R"; }
+
+.ic-pinterest-1:before {
+  content: "S"; }
+
+.ic-pinterest-square:before {
+  content: "T"; }
+
 [am-flex-video] {
   position: relative;
   padding-bottom: 56.25%;
@@ -1402,7 +1411,7 @@ blockquote {
   background-color: transparent; }
   .move-show [am-content-cover], .translate-left [am-content-cover], .translate-right [am-content-cover], .reveal-left [am-content-cover], .reveal-right [am-content-cover], .rotate-left [am-content-cover], .rotate-right [am-content-cover], .scale-left [am-content-cover], .scale-right [am-content-cover], .scale-right [am-content-cover] {
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 900;
     cursor: pointer; }
 
 @media screen and (min-width: 28.125em) {
