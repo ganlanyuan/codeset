@@ -16,7 +16,6 @@
 // HANDLE NODE
 // GET ELEMENT SIZE
 // GET WINDOW SIZE
-// SCROLL TO
 
 // ========== READY ==========
 // Author: Diego Perini (diego.perini at gmail.com)
@@ -101,14 +100,13 @@ var dome = function (args, el) {
 	}
 };
 
-var kit = function (selector) {
-	if ( window === this ) {return new kit(selector); }
-	var type = typeof selector,
-			nodetype = selector.nodeType;
+var k = function (selector) {
+	if ( window === this ) {return new k(selector); }
+	var type = typeof selector;
 	if (type === 'string') {
 		var result = document.querySelectorAll(selector);
 		dome(result, this);
-	} else if (type === "object" && nodetype !== "undefined" && nodetype === 1) {
+	} else if (type === "object" && selector.nodeType !== "undefined" && selector.nodeType === 1) {
 		this[0] = selector;
 		this.length = 1;
 	}
@@ -128,7 +126,7 @@ CLASS = new RegExp( "^\\.(" + characterEncoding + ")" ),
 TAG = new RegExp( "^(" + characterEncoding.replace( "w", "w*" ) + ")" ),
 ATTR = new RegExp( "^" + attributes );
 
-kit.filter = function (selector, els) {
+k.filter = function (selector, els) {
 	var match = [];
 	if (selector.match(TAG)) {
 		for (var i = 0; i < els.length; i++) {
@@ -159,7 +157,7 @@ kit.filter = function (selector, els) {
 	return match;
 };
 
-kit.prototype.map = function (callback) {
+k.prototype.map = function (callback) {
 	var results = [];
 	for (var i = 0; i < this.length; i++) {
 		results.push(callback.call(this, this[i], i));
@@ -167,18 +165,18 @@ kit.prototype.map = function (callback) {
 	return results;
 };
 
-kit.prototype.mapOne = function (callback) {
+k.prototype.mapOne = function (callback) {
 	var m = this.map(callback);
 	return m.length > 1 ? m : m[0];
 };
 
-kit.prototype.forEach = function (callback) {
+k.prototype.forEach = function (callback) {
 	this.map(callback);
 	return this; 
 };
 
-kit.prototype.filter = function (selector) {
-	var results = kit.filter(selector, this);
+k.prototype.filter = function (selector) {
+	var results = k.filter(selector, this);
 
 	if (results.length > 0) {
 		dome(results, this);
@@ -188,15 +186,15 @@ kit.prototype.filter = function (selector) {
 
 // ========= EVENT STATIC METHODS =========
 if (typeof addEventListener !== "undefined") {
-	kit.addEvent = function(obj, evt, fn) {
+	k.addEvent = function(obj, evt, fn) {
 		obj.addEventListener(evt, fn, false);
 	};
 
-	kit.removeEvent = function(obj, evt, fn) {
+	k.removeEvent = function(obj, evt, fn) {
 		obj.removeEventListener(evt, fn, false);
 	};
 } else if (typeof attachEvent !== "undefined") {
-	kit.addEvent = function(obj, evt, fn) {
+	k.addEvent = function(obj, evt, fn) {
 		var fnHash = "e_" + evt + fn;
 
 		obj[fnHash] = function() {
@@ -224,7 +222,7 @@ if (typeof addEventListener !== "undefined") {
 		obj.attachEvent("on" + evt, obj[fnHash]);
 	};
 
-	kit.removeEvent = function(obj, evt, fn) {
+	k.removeEvent = function(obj, evt, fn) {
 		var fnHash = "e_" + evt + fn;
 
 		if (typeof obj[fnHash] !== "undefined") {
@@ -233,90 +231,90 @@ if (typeof addEventListener !== "undefined") {
 		}
 	};
 } else {
-	kit.addEvent = function(obj, evt, fn) {
+	k.addEvent = function(obj, evt, fn) {
 		obj["on" + evt] = fn;
 	};
 
-	kit.removeEvent = function(obj, evt) {
+	k.removeEvent = function(obj, evt) {
 		obj["on" + evt] = null;
 	};
 }
 
 // ========= EVENT INSTANCE METHODS =========
-kit.prototype.on = function (evt, fn) {
+k.prototype.on = function (evt, fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, evt, fn);
+		k.addEvent(el, evt, fn);
 	});
 };
 
-kit.prototype.off = function (evt, fn) {
+k.prototype.off = function (evt, fn) {
 	return this.forEach(function (el) {
-		kit.removeEvent(el, evt, fn);
+		k.removeEvent(el, evt, fn);
 	});
 };
 
-kit.prototype.click = function(fn) {
+k.prototype.click = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'click', fn);
+		k.addEvent(el, 'click', fn);
 	});
 };
 
-kit.prototype.mouseover = function(fn) {
+k.prototype.mouseover = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'mouseover', fn);
+		k.addEvent(el, 'mouseover', fn);
 	});
 };
 
-kit.prototype.mouseout = function(fn) {
+k.prototype.mouseout = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'mouseout', fn);
+		k.addEvent(el, 'mouseout', fn);
 	});
 };
 
-kit.prototype.focus = function(fn) {
+k.prototype.focus = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'focus', fn);
+		k.addEvent(el, 'focus', fn);
 	});
 };
 
-kit.prototype.blur = function(fn) {
+k.prototype.blur = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'blur', fn);
+		k.addEvent(el, 'blur', fn);
 	});
 };
 
-kit.prototype.submit = function(fn) {
+k.prototype.submit = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'submit', fn);
+		k.addEvent(el, 'submit', fn);
 	});
 };
 
-kit.prototype.keydown = function(fn) {
+k.prototype.keydown = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'keydown', fn);
+		k.addEvent(el, 'keydown', fn);
 	});
 };
 
-kit.prototype.keyup = function(fn) {
+k.prototype.keyup = function(fn) {
 	return this.forEach(function (el) {
-		kit.addEvent(el, 'keyup', fn);
+		k.addEvent(el, 'keyup', fn);
 	});
 };
 
 // ========== DOM MANIPULATION ==========
-kit.prototype.hide = function() {
+k.prototype.hide = function() {
 	return this.forEach(function (el) {
 		el.style.display = 'none';
 	});
 };
 
-kit.prototype.show = function() {
+k.prototype.show = function() {
 	return this.forEach(function (el) {
 		el.style.display = 'inherit';
 	});
 };
 
-kit.prototype.fadeIn = function (time) {
+k.prototype.fadeIn = function (time) {
 	return this.forEach(function (el) {
 		var opacity = 0;
 
@@ -340,7 +338,7 @@ kit.prototype.fadeIn = function (time) {
 	});
 };
 
-kit.prototype.find = function (selector) {
+k.prototype.find = function (selector) {
 	return this.forEach(function (el) {
 		var type = typeof selector;
 		if (type === 'string') {
@@ -351,25 +349,25 @@ kit.prototype.find = function (selector) {
 	});
 };
 
-kit.eq = function( args, i ) {
+k.eq = function( args, i ) {
 	if (args.length > i) {
-		return kit(args[i]);
+		return k(args[i]);
 	}
 };
 
-kit.prototype.eq = function (i) {
-	return kit.eq(this, i);
+k.prototype.eq = function (i) {
+	return k.eq(this, i);
 };
 
-kit.prototype.first = function () {
-	return kit.eq(this, 0);
+k.prototype.first = function () {
+	return k.eq(this, 0);
 };
 
-kit.prototype.last = function () {
-	return kit.eq(this, this.length-1);
+k.prototype.last = function () {
+	return k.eq(this, this.length-1);
 };
 
-kit.prototype.parent = function () {
+k.prototype.parent = function () {
 	var results = [];
 	this.forEach(function (el) {
 		results.push(el.parentNode);
@@ -379,7 +377,7 @@ kit.prototype.parent = function () {
 	return this;
 };
 
-kit.prototype.prev = function () {
+k.prototype.prev = function () {
 	var results = [];
 	this.forEach(function (el) {
 		do { el = el.previousSibling; } while ( el && el.nodeType !== 1 );
@@ -390,7 +388,7 @@ kit.prototype.prev = function () {
 	return this;
 };
 
-kit.prototype.next = function () {
+k.prototype.next = function () {
 	var results = [];
 	this.forEach(function (el) {
 		do { el = el.nextSibling; } while ( el && el.nodeType !== 1 );
@@ -401,7 +399,7 @@ kit.prototype.next = function () {
 	return this;
 };
 
-kit.prototype.siblings = function (selector) {
+k.prototype.siblings = function (selector) {
 	var results = [],
 			type = typeof selector;
 	this.forEach(function (el) {
@@ -413,7 +411,7 @@ kit.prototype.siblings = function (selector) {
 		}
 	});
 	if (type === 'string') {
-		results = kit.filter(selector, results);
+		results = k.filter(selector, results);
 	}
 
 	if (results.length > 0) {
@@ -422,7 +420,7 @@ kit.prototype.siblings = function (selector) {
 	} else { throw "Nothing match, please check your selector!"; }
 };
 
-kit.prototype.parents = function (selector) {
+k.prototype.parents = function (selector) {
 	if (typeof selector !== 'string') {return;}
 	var results = [],
 			parent = [];
@@ -432,7 +430,7 @@ kit.prototype.parents = function (selector) {
 			el = el.parentNode;
 		}
 	});
-	results = kit.filter(selector, parent);
+	results = k.filter(selector, parent);
 
 	if (results.length > 0) {
 		dome(results, this);
@@ -440,7 +438,7 @@ kit.prototype.parents = function (selector) {
 	} else { throw "Nothing match, please check your selector!"; }
 };
 
-kit.prototype.children = function (selector) {
+k.prototype.children = function (selector) {
 	var children = [],
 			type = typeof selector;
 	this.forEach(function (el) {
@@ -451,7 +449,7 @@ kit.prototype.children = function (selector) {
 		}
 	});
 	if (type !== 'undefined' && type === 'string') {
-		children = kit.filter(selector, children);
+		children = k.filter(selector, children);
 	}
 
 	if (children.length > 0) {
@@ -460,7 +458,7 @@ kit.prototype.children = function (selector) {
 	} else { throw "Nothing match, please check your selector!"; }
 };
 
-kit.prototype.firstChild = function (selector) {
+k.prototype.firstChild = function (selector) {
 	var type = typeof selector;
 	if (type !== 'undefined' && type === 'string') {
 		return this.children(selector).eq(0);
@@ -469,7 +467,7 @@ kit.prototype.firstChild = function (selector) {
 	}
 };
 
-kit.prototype.lastChild = function (selector) {
+k.prototype.lastChild = function (selector) {
 	var type = typeof selector;
 	if (type !== 'undefined' && type === 'string') {
 		return this.children(selector).last();
@@ -478,7 +476,7 @@ kit.prototype.lastChild = function (selector) {
 	}
 };
 
-kit.index = function(obj, current){
+k.index = function(obj, current){
 	for (var i = 0;i < obj.length; i++) {
 		if (obj[i] === current) {
 			return i;
@@ -486,11 +484,11 @@ kit.index = function(obj, current){
 	}
 };
 
-kit.prototype.prevAll = function () {
+k.prototype.prevAll = function () {
 	var results = [];
 	this.forEach(function (el) {
 		var siblings = el.parentNode.children,
-				index = kit.index(siblings, el);
+				index = k.index(siblings, el);
 		for (var i = 0; i < index; i++) {
 			results.push(siblings[i]);
 		}
@@ -500,11 +498,11 @@ kit.prototype.prevAll = function () {
 	return this;
 };
 
-kit.prototype.nextAll = function () {
+k.prototype.nextAll = function () {
 	var results = [];
 	this.forEach(function (el) {
 		var siblings = el.parentNode.children,
-				index = kit.index(siblings, el);
+				index = k.index(siblings, el);
 		for (var i = siblings.length-1; i > index; i--) {
 			results.push(siblings[i]);
 		}
@@ -515,7 +513,7 @@ kit.prototype.nextAll = function () {
 };
 
 // ========== HANDLE ATTR ==========
-kit.prototype.text = function (text) {
+k.prototype.text = function (text) {
 	if (typeof text !== "undefined") {
 		return this.forEach(function (el) {
 			if (el.textContent) {
@@ -535,7 +533,7 @@ kit.prototype.text = function (text) {
 	}
 };
 
-kit.prototype.html = function (html) {
+k.prototype.html = function (html) {
 	if (typeof html !== "undefined") {
 		return this.forEach(function (el) {
 			el.innerHTML = html;
@@ -547,7 +545,7 @@ kit.prototype.html = function (html) {
 	}
 };
 
-kit.prototype.attr = function (attr, val) {
+k.prototype.attr = function (attr, val) {
 	if (typeof val !== 'undefined') {
 		return this.forEach(function(el) {
 			el.setAttribute(attr, val);
@@ -560,7 +558,7 @@ kit.prototype.attr = function (attr, val) {
 };
 
 // ========== STYLE INSTANCE METHODS ==========
-kit.css = function(el, css, value) {
+k.css = function(el, css, value) {
 	var cssType = typeof css,
 		valueType = typeof value,
 		elStyle = el.style;
@@ -588,11 +586,11 @@ kit.css = function(el, css, value) {
 	}
 };
 
-kit.hasClass = function(el, value) {   
+k.hasClass = function(el, value) {   
 	return (" " + el.className + " ").indexOf(" " + value + " ") > -1;
 };
 
-kit.addClass = function(el, value) {
+k.addClass = function(el, value) {
 	var className = el.className;
 	
 	if (!className) {
@@ -611,7 +609,7 @@ kit.addClass = function(el, value) {
 	}
 };
 
-kit.removeClass = function(el, value) {
+k.removeClass = function(el, value) {
 	if (value) {
 		var classNames = value.split(/\s+/),
 			className = " " + el.className + " ",
@@ -628,7 +626,7 @@ kit.removeClass = function(el, value) {
 	}
 };
 
-kit.toggleClass = function(el, value) {
+k.toggleClass = function(el, value) {
 	var classNames = value.split(/\s+/),
 		i = 0,
 		className;
@@ -639,38 +637,38 @@ kit.toggleClass = function(el, value) {
 };
 
 // ========== STYLE INSTANCE METHODS ==========
-kit.prototype.css = function(css, value) {
+k.prototype.css = function(css, value) {
 	return this.forEach(function (el) {
-		return kit.css(el, css, value) || el;
+		return k.css(el, css, value) || el;
 	});
 };
 
-kit.prototype.addClass = function(value) {
+k.prototype.addClass = function(value) {
 	return this.forEach(function (el) {
-		kit.addClass(el, value);
+		k.addClass(el, value);
 	});
 };
 
-kit.prototype.removeClass = function(value) {
+k.prototype.removeClass = function(value) {
 	return this.forEach(function (el) {
-		kit.removeClass(el, value);
+		k.removeClass(el, value);
 	});
 };
 
-kit.prototype.toggleClass = function(value) {
+k.prototype.toggleClass = function(value) {
 	return this.forEach(function (el) {
-		kit.toggleClass(el, value);
+		k.toggleClass(el, value);
 	});
 };
 
-kit.prototype.hasClass = function(value) {
+k.prototype.hasClass = function(value) {
 	return this.forEach(function (el) {
-		kit.hasClass(el, value);
+		k.hasClass(el, value);
 	});
 };
 
 // ========== HANDLE NODE ==========
-kit.createElement = function(obj) {
+k.createElement = function(obj) {
 	if (!obj || !obj.tagName) {
 		throw { message : "Invalid argument" };
 	}
@@ -702,7 +700,7 @@ kit.createElement = function(obj) {
 
 	return el;
 };
-// var el = kit.createElement({
+// var el = k.createElement({
 // 	tagName: 'div',
 // 	id: 'foo',
 // 	className: 'foo',
@@ -715,24 +713,24 @@ kit.createElement = function(obj) {
 // 	}]
 // });
 
-kit.prototype.clone = function () {
+k.prototype.clone = function () {
 	return this.forEach(function (el) {
 		el.cloneNode(true);
 	});
 };
 
-kit.prototype.remove = function () {
+k.prototype.remove = function () {
 	return this.forEach(function (el) {
 		return el.parentNode.removeChild(el);
 	});
 };
 
-kit.prototype.append = function(data) {
+k.prototype.append = function(data) {
 	if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
 		return this.forEach(function (el) {
 			el.appendChild(data);
 		});
-	// } else if (data instanceof kit) {
+	// } else if (data instanceof k) {
 	// 	return this.forEach(function (el) {
 	// 		el.appendChild(data);
 	// 	});
@@ -745,7 +743,7 @@ kit.prototype.append = function(data) {
 	}
 };
 
-kit.prototype.prepend = function(data) {
+k.prototype.prepend = function(data) {
 	if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
 		return this.forEach(function (el) {
 			el.insertBefore(data, el.firstChild);
@@ -758,20 +756,20 @@ kit.prototype.prepend = function(data) {
 	}
 };
 
-kit.prototype.before = function (htmlString) {
+k.prototype.before = function (htmlString) {
 	return this.forEach(function (el) {
 		el.insertAdjacentHTML('beforebegin', htmlString);
 	});
 };
 
-kit.prototype.after = function (htmlString) {
+k.prototype.after = function (htmlString) {
 	return this.forEach(function (el) {
 		el.insertAdjacentHTML('afterend', htmlString);
 	});
 };
 
 // ========== GET ELEMENT SIZE ==========
-kit.prototype.outerWidth = function () {
+k.prototype.outerWidth = function () {
 	return this.mapOne(function (el) {
 		var box = el.getBoundingClientRect();
 		var ow = box.width || (box.right - box.left);
@@ -779,7 +777,7 @@ kit.prototype.outerWidth = function () {
 	});
 };
 
-kit.prototype.outerHeight = function () {
+k.prototype.outerHeight = function () {
 	return this.mapOne(function (el) {
 		var box = el.getBoundingClientRect();
 		var oh = box.height || (box.bottom - box.top);
@@ -787,7 +785,7 @@ kit.prototype.outerHeight = function () {
 	});
 };
 
-kit.prototype.getTop = function () {
+k.prototype.getTop = function () {
 	return this.mapOne(function (el) {
 		var actualTop = el.offsetTop, current = el.offsetParent;
 		while (current !== null){
@@ -798,7 +796,7 @@ kit.prototype.getTop = function () {
 	});
 };
 
-kit.prototype.getLeft = function () {
+k.prototype.getLeft = function () {
 	return this.mapOne(function (el) {
 		var actualLeft = el.offsetLeft, current = el.offsetParent;
 		while (current !== null){
@@ -809,7 +807,7 @@ kit.prototype.getLeft = function () {
 	});
 };
 
-kit.prototype.offset = function () {
+k.prototype.offset = function () {
 	return this.mapOne(function (el) {
 		var rect = el.getBoundingClientRect();
 		var offset = {
@@ -821,7 +819,7 @@ kit.prototype.offset = function () {
 };
 
 // ========== GET WINDOW SIZE ==========
-kit.win = {
+k.win = {
 	W: function  () {
 		var d = document, w = window,
 		winW = w.innerWidth || d.documentElement.clientWidth || d.body.clientWidth;
@@ -847,18 +845,5 @@ kit.win = {
 	}
 };
 
-// 	window.kit = kit;
+// 	window.k = k;
 // })(window);
-
-// ========== SCROLL TO ==========
-function scrollTo(element, to, duration) {
-	if (duration < 0) {return;}
-	var difference = to - element.scrollTop;
-	var perTick = difference / duration * 10;
-
-	setTimeout(function() {
-	element.scrollTop = element.scrollTop + perTick;
-	if (element.scrollTop === to) {return;}
-	scrollTo(element, to, duration - 10);
-	}, 10);
-}

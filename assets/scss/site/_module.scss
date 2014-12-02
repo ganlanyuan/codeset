@@ -384,7 +384,7 @@ $am-nav-width: 200px !default;
 	.scale-right &,
 	.scale-right & {
 		background-color: rgba(0,0,0,0.2);
-		z-index: nth($z-index, 1);
+		@if $z-index { z-index: nth($z-index, 2); } @else { z-index: 200; }
 		cursor: pointer;
 	}
 }
@@ -454,7 +454,15 @@ $nav-icon-inverted: false !default;
 	&:before {margin-top: -5px; }
 	&:after {margin-top: 5px; }
 }
-[am-nav-icon~="styled"].am-nav-icon-active,
+.move-show [am-nav-icon~="styled"],
+.translate-left [am-nav-icon~="styled"],
+.translate-right [am-nav-icon~="styled"],
+.reveal-left [am-nav-icon~="styled"],
+.reveal-right [am-nav-icon~="styled"],
+.rotate-left [am-nav-icon~="styled"],
+.rotate-right [am-nav-icon~="styled"],
+.scale-left [am-nav-icon~="styled"],
+.scale-right [am-nav-icon~="styled"],
 #{am(nav-icon-close, styled)} {
 	span { display: none; }
 	&:before,

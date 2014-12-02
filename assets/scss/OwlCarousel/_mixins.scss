@@ -12,7 +12,7 @@
 	border-radius: $value;
 }
 
-@mixin transform($prop){
+@mixin owl-transform($prop){
 	-webkit-transition: $prop;
 	-moz-transition: $prop;
 	-ms-transition: $prop;

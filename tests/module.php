@@ -10,22 +10,22 @@
 	</style>
 	<script>
 	ready(function () {
-		kit('[am-nav-icon]').mouseover(function() {
-				var style = kit(this).attr('data-style');
+		k('[am-nav-icon]').mouseover(function() {
+				var style = k(this).attr('data-style');
 				if (style === 'move-left' || style === 'move-right' || style === 'translate-left' || style === 'translate-right' || style === 'rotate-left' || style === 'rotate-right' || style === 'rotate-top' || style === 'rotate-bottom' || style=== 'scale-left' || style=== 'scale-right') {
-          kit('[am-nav~="reveal-left"]').hide();
-					kit('[am-nav~="reveal-right"]').hide();
+          k('[am-nav~="reveal-left"]').hide();
+					k('[am-nav~="reveal-right"]').hide();
 				}
-				kit('[am-content]').attr('am-content', style);
+				k('[am-content]').attr('am-content', style);
 				setTimeout(function() {
 					if(style === 'reveal-left' || style === 'reveal-right'){
-						kit('[am-nav~=' + style + ']').show();
+						k('[am-nav~=' + style + ']').show();
 					}
 				},400);
 				if(style === 'scale-left' || style === 'scale-right'){
-					kit('body').css('background-color', '#000');
+					k('body').css('background-color', '#000');
 				} else {
-					kit('body').css('background-color', '#fff');
+					k('body').css('background-color', '#fff');
 				}
 			});
 	});
