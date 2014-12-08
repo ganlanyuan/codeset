@@ -1,11 +1,29 @@
 // setting
 //-----------------------------
+// @functions
+// @mixins
 // site
 // pure
 // module
-// @mixins
-// %-placeholder
 
+// functions -------------------------
+@function analogous($color, $degree) {
+  @if lightness($color) >= 50% { @return darken($color, $degree); }
+  @else { @return lighten($color, $degree); }
+}
+@function complementary($color) {
+  @if lightness($color) >= 50% { @return #000; }
+  @else { @return #fff; }
+}
+
+// @mixins ----------------------
+@mixin replace($old-context, $contexts...) {
+  @each $context in $contexts {
+    @at-root #{selector-replace(&, $old-context, $context)} {
+      @content;  
+    }
+  }  
+}
 
 // site -------------------------
 // color
@@ -28,6 +46,34 @@ $z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
 %global-transition {
   -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
+
+// placeholder
+%ff-header {font-family: $ff-g; }
+%ff-content {font-family: $ff-a; }
+%hover-tdn {&:hover { text-decoration: none; } }
+%li-style {
+  padding-top: em(10);
+  padding-bottom: em(10);
+  border-top: 1px solid $border-color;
+  :last-child { margin-bottom: 0; }
+}
+%img-left, %img-right { @extend %clearfix; }
+%img-left img {float: left; margin-right: em(15); }
+%img-right img {float: right; margin-left: em(15); }
+%justify {
+  text-align: justify;
+  line-height: 0;
+  margin-bottom: -5px;
+  > li, > div, > span {
+    line-height: 1;
+    display: inline-block;
+  }
+  &:after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+  }
 }
 
 // pure -----------------------
@@ -81,59 +127,43 @@ $nav-icon-bg-color: #fff !default;
 $nav-icon-inverted: false !default;
 
 // breadcrumb 
-$breadcrumb-font-size: 12;
-$breadcrumb-color: #212121;
-$breadcrumb-active-color: #b4b4b4;
-$breadcrumb-fw-bold: true;
-$breadcrumb-uppercase: true;
-$breadcrumb-gap-content: '/';
-$breadcrumb-gap-width: 1.2em;
+$breadcrumb-font-size: 12 !default;
+$breadcrumb-color: #212121 !default;
+$breadcrumb-active-color: #b4b4b4 !default;
+$breadcrumb-fw-bold: true !default;
+$breadcrumb-uppercase: true !default;
+$breadcrumb-gap-content: '/' !default;
+$breadcrumb-gap-width: 1.2em !default;
 
 // pagination
-$pagination-fz: 14;
-$pagination-a-padding: em(7, $pagination-fz) em(10, $pagination-fz) em(4, $pagination-fz);
-$pagination-color: #212121;
-$pagination-bg-color: #fff;
-$pagination-hover-color: #fff;
-$pagination-hover-bg-color: #212121;
-$pagination-ellipsis-color: #999;
-$pagination-text-align-center: true;
-$pagination-prev: '◄'; // ←
-$pagination-next: '►'; // →
+$pagination-fz: 14 !default;
+$pagination-a-padding: em(7, $pagination-fz) em(10, $pagination-fz) em(4, $pagination-fz) !default;
+$pagination-color: #212121 !default;
+$pagination-bg-color: #fff !default;
+$pagination-hover-color: #fff !default;
+$pagination-hover-bg-color: #212121 !default;
+$pagination-ellipsis-color: #999 !default;
+$pagination-text-align-center: true !default;
+$pagination-prev: '◄' !default; // ←
+$pagination-next: '►' !default; // →
 
-// @mixins ----------------------
-@mixin replace($old-context, $contexts...) {
-  @each $context in $contexts {
-    @at-root #{selector-replace(&, $old-context, $context)} {
-      @content;  
-    }
-  }  
-}
+// dropdown 
+$dropdown-css: true !default;
+$dropdown-menu-bgc: #fff !default;
+$dropdown-menu-border: 1px solid #dbdbdb !default;
+$dropdown-menu-shadow: rgba(0,0,0,0.15) 0px 6px 12px !default;
+$dropdown-menu-link-padding: 0.31em 1.25em !default;
 
-// %-placeholder -----------------
-%ff-header {font-family: $ff-g; }
-%ff-content {font-family: $ff-a; }
-%hover-tdn {&:hover { text-decoration: none; } }
-%li-style {
-  padding-top: em(10);
-  padding-bottom: em(10);
-  border-top: 1px solid $border-color;
-  :last-child { margin-bottom: 0; }
-}
-%img-left, %img-right { @extend %clearfix; }
-%img-left img {float: left; margin-right: em(15); }
-%img-right img {float: right; margin-left: em(15); }
-%justify {
-  text-align: justify;
-  line-height: 0;
-  margin-bottom: -5px;
-  > li, > div, > span {
-    line-height: 1;
-    display: inline-block;
-  }
-  &:after {
-    content: "";
-    width: 100%;
-    display: inline-block;
-  }
-}
+// tooltip
+$tooltip-bgc: #212121 !default;
+$tooltip-border: false !default;
+$tooltip-border-radius: 0.25em !default;
+$tooltip-arrow-size: 6px !default;
+$tooltip-width: 17em !default;
+$alerts:(
+  success: #3A945B,
+  info: #2270C1,
+  warning: #DE770F,
+  alert: #DE2D0F
+) !default;
+

@@ -183,7 +183,9 @@
 			<li><a href="#t3">video</a></li>
 			<li><a href="#t4">article style</a></li>
 			<li><a href="#t5">breadcrumb</a></li>
-			<li><a href="#t6">pagination</a></li>
+      <li><a href="#t6">pagination</a></li>
+      <li><a href="#t7">dropdown</a></li>
+			<li><a href="#t8">tooltip</a></li>
 		</ul>
 	</div>
 	<div am-col-main="">
@@ -584,23 +586,23 @@ $breadcrumb-gap-width: 1.2em;
 			</code></pre>
 		</div>
 	</div>
-	<div am-row="">
-		<div am-col="">
-			<h2 id="t6">pagination</h2>
-		</div>
-	</div>
-	<div am-row="">
-		<div am-col="">
-			<ul am-pagination>
-				<li class="prev"><a href=""></a></li>
-				<li class="active"><a href="">1</a></li>
-				<li><a href="">2</a></li>
-				<li class="ellipsis"><a href="">...</a></li>
-				<li><a href="">4</a></li>
-				<li><a href="">5</a></li>
-				<li class="next"><a href=""></a></li>
-			</ul>
-			<pre><code class="language-markup">
+  <div am-row="">
+    <div am-col="">
+      <h2 id="t6">pagination</h2>
+    </div>
+  </div>
+  <div am-row="">
+    <div am-col="">
+      <ul am-pagination>
+        <li class="prev"><a href=""></a></li>
+        <li class="active"><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li class="ellipsis"><a href="">...</a></li>
+        <li><a href="">4</a></li>
+        <li><a href="">5</a></li>
+        <li class="next"><a href=""></a></li>
+      </ul>
+      <pre><code class="language-markup">
 &lt;&#33;&#45;&#45; 
 setting.scss
 
@@ -626,9 +628,169 @@ $pagination-next: '►' !default;
   &lt;li&gt;&lt;a href=""&gt;5&lt;/a&gt;&lt;/li&gt;
   &lt;li class="next"&gt;&lt;a href=""&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+      </code></pre>
+    </div>
+  </div>
+	<div am-row="">
+		<div am-col="">
+			<h2 id="t7">dropdown</h2>
+		</div>
+	</div>
+  <div am-row="">
+    <div am-col="">
+      <div am-dropdown="">
+        <div>dropdown <span class="ic-triangle-down"></span></div>
+        <ul am-dropdown-menu>
+          <li><a href="">item 01</a></li>
+          <li><a href="">item 02</a></li>
+          <li><a href="">item 03</a></li>
+        </ul>
+      </div>
+      <pre><code class="language-markup">
+&lt;&#33;&#45;&#45; 
+setting.scss
+
+// dropdown
+$dropdown-css: true !default;
+$dropdown-menu-bgc: #fff !default;
+$dropdown-menu-border: 1px solid #dbdbdb !default;
+$dropdown-menu-shadow: rgba(0,0,0,0.15) 0px 6px 12px !default;
+$dropdown-menu-link-padding: 0.31em 1.25em !default;
+&#45;&#45;&#62;
+
+&lt;div am-dropdown=""&gt;
+  &lt;div&gt;dropdown &lt;span class="ic-triangle-down"&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;ul am-dropdown-menu&gt;
+    &lt;li&gt;&lt;a href=""&gt;item 01&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;item 02&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;item 03&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+      </code></pre>
+    </div>
+  </div>
+  <div am-row="">
+    <div am-col="">
+      <p>By default, the dropdown-menu will show on hover. If you want it shows only on click, just remove <code>[am-dropdown]</code> and add <code>[am-dropdown-toggle]</code></p>
+      <div>
+        <div am-dropdown-toggle="">dropdown <span class="ic-triangle-down"></span></div>
+        <ul am-dropdown-menu>
+          <li><a href="">item 01</a></li>
+          <li><a href="">item 02</a></li>
+          <li><a href="">item 03</a></li>
+        </ul>
+      </div>
+      <pre><code class="language-markup">
+&lt;&#33;&#45;&#45; shows on click &#45;&#45;&#62;
+&lt;div&gt;
+  &lt;div am-dropdown-toggle&gt;dropdown &lt;span class="ic-triangle-down"&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;ul am-dropdown-menu&gt;
+    &lt;li&gt;&lt;a href=""&gt;item 01&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;item 02&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;item 03&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+      </code></pre>
+    </div>
+  </div>
+  <p>Customize</p>
+	<div am-row="">
+		<div am-col="">
+      <ul class="my-dropdown-menu-1">
+        <li><a href="">item 01</a></li>
+        <li><a href="">item 02</a></li>
+        <li><a href="">item 03</a></li>
+      </ul>
+      <ul class="my-dropdown-menu-2">
+        <li><a href="">item 01</a></li>
+        <li class="current"><a href="">item 02</a></li>
+        <li><a href="">item 03</a></li>
+      </ul>
+			<pre><code class="language-css">
+.my-dropdown-menu-1 { @extend %dropdown-menu;}
+
+@mixin dropdown-menu(
+  $background-color: #fff,
+  $border: 1px solid #dbdbdb,
+  $border-radius: 0.19em,
+  $a-padding: 0.31em 1.25em
+  ){...}
+
+.my-dropdown-menu-2 { @include dropdown-menu(#0c43cd,false,false,5px);} &#47;&#47; remove border & border-radius
 			</code></pre>
 		</div>
 	</div>
+  <div am-row="">
+    <div am-col="">
+      <h2 id="t8">tooltip</h2>
+    </div>
+  </div>
+  <div am-row="">
+    <div am-col="">
+      <div style="padding:50px">
+        <div data-tooltip="left" data-title="I'm on the left!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">left</div>
+        <div data-tooltip="top" data-title="I'm on the top!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">top</div>
+        <div data-tooltip="bottom" data-title="I'm on the bottom!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">bottom</div>
+        <div data-tooltip="right" data-title="I'm on the right!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">right</div>
+        <div data-tooltip="right" data-title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, eligendi!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">I got a lot of text.</div>
+      </div>
+    <pre><code class="language-markup">
+&lt;div data-tooltip="left" data-title="I'm on the left!"&gt;left&lt;/div&gt;
+&lt;div data-tooltip="top" data-title="I'm on the top!"&gt;top&lt;/div&gt;
+&lt;div data-tooltip="bottom" data-title="I'm on the bottom!"&gt;bottom&lt;/div&gt;
+&lt;div data-tooltip="right" data-title="I'm on the right!"&gt;right&lt;/div&gt;
+      </code></pre>
+    </div>
+  </div>
+  <div am-row="">
+    <div am-col="">
+      <div style="padding:50px">
+        <div data-tooltip="success left" data-title="I'm a success tooltip!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">success</div>
+        <div data-tooltip="info right" data-title="I'm a info tooltip!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">info</div>
+        <div data-tooltip="warning top" data-title="I'm a warning tooltip!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">warning</div>
+        <div data-tooltip="alert bottom" data-title="I'm a alert tooltip!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">alert</div>
+      </div>
+      <pre><code class="language-markup">
+&lt;&#33;&#45;&#45; 
+alerts
+&#45;&#45;&#62;
+
+&lt;div data-tooltip="success left" data-title="I'm a success tooltip!"&gt;success&lt;/div&gt;
+&lt;div data-tooltip="info right" data-title="I'm a info tooltip!"&gt;info&lt;/div&gt;
+&lt;div data-tooltip="warning top" data-title="I'm a warning tooltip!"&gt;warning&lt;/div&gt;
+&lt;div data-tooltip="alert bottom" data-title="I'm a alert tooltip!"&gt;alert&lt;/div&gt;
+      </code></pre>
+    </div>
+  </div>
+  <div am-row="">
+    <div am-col="">
+      <p>Customize</p>
+      <div style="padding: 50px">
+        <div am-tooltip="left" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a left tooltip. Lorem ipsum dolor. Lorem ipsum dolor.</div>
+        <div am-tooltip="top" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a top tooltip. Lorem ipsum dolor. Lorem ipsum dolor sit amet, consectetur adipisicing.</div>
+        <div am-tooltip="bottom" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a bottom tooltip. Lorem ipsum dolor sit amet.</div>
+        <div am-tooltip="right" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a right tooltip. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, explicabo.</div>
+      </div>
+      <pre><code class="language-markup">
+&lt;&#33;&#45;&#45; 
+setting.scss
+
+// tooltip
+$tooltip-bgc: #212121 !default;
+$tooltip-border: false !default;
+$tooltip-border-radius: 0.25em !default;
+$tooltip-arrow-size: 6px !default;
+$tooltip-width: 17em !default;
+$alerts:(
+  success: #3A945B,
+  info: #2270C1,
+  warning: #DE770F,
+  alert: #DE2D0F
+) !default;
+&#45;&#45;&#62;
+      </code></pre>
+    </div>
+  </div>
 
 	</div>
 	</div>

@@ -136,3 +136,19 @@ a {
     }
   }
 }
+.my-dropdown-menu-1 { 
+  @extend %dropdown-menu; 
+  -ms-transform: scaleY(1);
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  display: inline-block !important;
+  position: static;
+}
+.my-dropdown-menu-2 { 
+  @include dropdown-menu(#0c43cd,false,false);
+  -ms-transform: scaleY(1);
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  display: inline-block !important;
+  position: static;
+}

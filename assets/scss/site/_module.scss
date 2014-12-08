@@ -8,6 +8,8 @@
 // nav-icon-styled
 // breadcrumb 
 // pagination 
+// dropdown
+// tooltip
 
 // ======= flex video ======= //
 @function ratio($width, $height) {
@@ -584,11 +586,139 @@ $pagination-next: '►' !default;
 	}
 }
 
+// ======= dropdown ======= //
+%dropdown { position: relative; cursor: pointer; }
+%dropdown-menu {
+	position: absolute;
+	padding: .31em 0;
+	background-color: $dropdown-menu-bgc;
+	border: $dropdown-menu-border;
+	border-radius: 0.19em;
+	@if $dropdown-menu-shadow { box-shadow: $dropdown-menu-shadow; }
+	z-index: nth($z-index, 4);
+	-ms-transform: scaleY(0);
+	-webkit-transform: scaleY(0);
+	transform: scaleY(0);
+	-ms-transform-origin: top;
+	-webkit-transform-origin: top;
+	transform-origin: top;
+	@extend %global-transition;
+	.no-csstransforms & { display: none; }
+	li { @extend %global-transition; }
+	.current a,li:hover a { background-color: analogous($dropdown-menu-bgc, 15%);}
+	a { 
+		display: block;
+		color: complementary($dropdown-menu-bgc);
+		padding: $dropdown-menu-link-padding;
+		@extend %hover-tdn;
+	}
+}
+%dropdown-menu-open {
+	-ms-transform: scaleY(1);
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1);
+	.no-csstransforms & { display: block; }
+}
+@mixin dropdown-menu(
+	$background-color: #fff,
+	$border: 1px solid #dbdbdb,
+	$border-radius: 0.19em,
+	$a-padding: 0.31em 1.25em
+	){
+	position: absolute;
+	padding: .31em 0;
+	@if $background-color { background-color: $background-color; }
+	@if $border { border: $dropdown-menu-border; }
+	@if $border-radius { border-radius: $border-radius;}
+	@if $dropdown-menu-shadow { box-shadow: $dropdown-menu-shadow; }
+	z-index: nth($z-index, 4);
+	-ms-transform: scaleY(0);
+	-webkit-transform: scaleY(0);
+	transform: scaleY(0);
+	-ms-transform-origin: top;
+	-webkit-transform-origin: top;
+	transform-origin: top;
+	@extend %global-transition;
+	.no-csstransforms & { display: none; }
+	li { @extend %global-transition; }
+	.current a,li:hover a { background-color: analogous($background-color, 15%);}
+	a { 
+		display: block;
+		color: complementary($background-color);
+		@if $a-padding { padding: $a-padding; }
+		@extend %hover-tdn;
+	}
+}
+
+@if $dropdown-css {
+	#{am(dropdown)} { 
+		@extend %dropdown; 
+	}
+	#{am(dropdown-menu)}{ @extend %dropdown-menu; }
+	#{am(dropdown)}:hover,
+	.dropdown-open {
+		#{am(dropdown-menu)} {@extend %dropdown-menu-open; }
+	}
+}
 
 
+// ======= tooltip ======= //
+#{am(tooltip)} {
+	background-color: $tooltip-bgc;
+	color: complementary($tooltip-bgc);
+	position: absolute;
+	z-index: nth($z-index, 4);
+	@include rem(font-size, 12);
+	padding: 6px 12px;
+	line-height: 1.43;
+	max-width: $tooltip-width;
+	opacity: 0;
+	-webkit-transition: opacity .4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+	transition: opacity .4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+	@if $tooltip-border { border: $tooltip-border; }
+	@if $tooltip-border-radius { border-radius: $tooltip-border-radius; }
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 0;
+		height: 0;
+		border-width: $tooltip-arrow-size;
+		border-style: solid;
+		border-color: transparent;
+		position: absolute;
+	}
+}
+.tooltip-show { opacity: 1; }
+#{am(tooltip, left)},
+#{am(tooltip, right)} {
+	&:before {
+		top: 50%;
+		margin-top: - $tooltip-arrow-size;
+	}
+}
+#{am(tooltip, top)},
+#{am(tooltip, bottom)} {
+	&:before {
+		left: 50%;
+		margin-left: - $tooltip-arrow-size;
+	}
+}
+@each $direction in left, right, top, bottom {
+	#{am(tooltip, $direction)}:before { border-#{$direction}-color: $tooltip-bgc;}
+}
+#{am(tooltip, left)}:before { right: - ($tooltip-arrow-size+6px); }
+#{am(tooltip, right)}:before { left: - ($tooltip-arrow-size+6px); }
+#{am(tooltip, top)}:before { bottom: - ($tooltip-arrow-size+6px); }
+#{am(tooltip, bottom)}:before { top: - ($tooltip-arrow-size+6px); }
 
-
-
+[data-tooltip]{ position: relative; }
+@each $status, $color in $alerts {
+	[data-tooltip~='#{$status}'] #{am(tooltip)} { background-color: $color;}
+	[data-tooltip~='#{$status}'] #{am(tooltip, left)}:before { border-left-color: $color;}
+	[data-tooltip~='#{$status}'] #{am(tooltip, right)}:before { border-right-color: $color;}
+	[data-tooltip~='#{$status}'] #{am(tooltip, top)}:before { border-top-color: $color;}
+	[data-tooltip~='#{$status}'] #{am(tooltip, bottom)}:before { border-bottom-color: $color;}
+}
 
 
 

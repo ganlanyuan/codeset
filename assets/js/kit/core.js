@@ -181,7 +181,7 @@ k.prototype.filter = function (selector) {
 	if (results.length > 0) {
 		dome(results, this);
 		return this;
-	} else { throw "Nothing match, please check your selector!"; }
+	} else { return; }
 };
 
 // ========= EVENT STATIC METHODS =========
@@ -339,14 +339,19 @@ k.prototype.fadeIn = function (time) {
 };
 
 k.prototype.find = function (selector) {
-	return this.forEach(function (el) {
-		var type = typeof selector;
-		if (type === 'string') {
-			var result = el.querySelectorAll(selector);
-			dome(result, this);
-		}
+	var results = [];
+	if (typeof selector === 'string') {
+		this.forEach(function (el) {
+			var selection = el.querySelectorAll(selector);
+			for (var i = 0; i < selection.length; i++) {
+				results.push(selection[i]);
+			}
+		});
+	}
+	if (results.length > 0) {
+		dome(results, this);
 		return this;
-	});
+	} else { return; }
 };
 
 k.eq = function( args, i ) {
@@ -373,8 +378,10 @@ k.prototype.parent = function () {
 		results.push(el.parentNode);
 	});
 
-	dome(results, this);
-	return this;
+	if (results.length > 0) {
+		dome(results, this);
+		return this;
+	} else { return; }
 };
 
 k.prototype.prev = function () {
@@ -384,8 +391,10 @@ k.prototype.prev = function () {
 		results.push(el);
 	});
 
-	dome(results, this);
-	return this;
+	if (results.length > 0) {
+		dome(results, this);
+		return this;
+	} else { return; }
 };
 
 k.prototype.next = function () {
@@ -395,8 +404,10 @@ k.prototype.next = function () {
 		results.push(el);
 	});
 
-	dome(results, this);
-	return this;
+	if (results.length > 0) {
+		dome(results, this);
+		return this;
+	} else { return; }
 };
 
 k.prototype.siblings = function (selector) {
@@ -417,7 +428,7 @@ k.prototype.siblings = function (selector) {
 	if (results.length > 0) {
 		dome(results, this);
 		return this;
-	} else { throw "Nothing match, please check your selector!"; }
+	} else { return; }
 };
 
 k.prototype.parents = function (selector) {
@@ -435,7 +446,7 @@ k.prototype.parents = function (selector) {
 	if (results.length > 0) {
 		dome(results, this);
 		return this;
-	} else { throw "Nothing match, please check your selector!"; }
+	} else { return; }
 };
 
 k.prototype.children = function (selector) {
@@ -455,7 +466,7 @@ k.prototype.children = function (selector) {
 	if (children.length > 0) {
 		dome(children, this);
 		return this;
-	} else { throw "Nothing match, please check your selector!"; }
+	} else { return; }
 };
 
 k.prototype.firstChild = function (selector) {
@@ -494,8 +505,10 @@ k.prototype.prevAll = function () {
 		}
 	});
 
-	dome(results, this);
-	return this;
+	if (results.length > 0) {
+		dome(results, this);
+		return this;
+	} else { return; }
 };
 
 k.prototype.nextAll = function () {
@@ -508,8 +521,10 @@ k.prototype.nextAll = function () {
 		}
 	});
 
-	dome(results, this);
-	return this;
+	if (results.length > 0) {
+		dome(results, this);
+		return this;
+	} else { return; }
 };
 
 // ========== HANDLE ATTR ==========
