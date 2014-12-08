@@ -11,18 +11,18 @@ ready(function() {
     return sum;
   };
 
-  k('[data-tooltip]').mouseover(function(e) {
+  k('[data-tooltip]').mouseover(function() {
     if (!k(this).find('[am-tooltip]')) {
       // prepend tooltip
       var direction = k(this).attr('data-tooltip'),
           thisTitle = k(this).attr('data-title'),
           thisTitleLength = checkLength(thisTitle.replace(/(\n)|(\r\n)/g,'')),
-          tooltip = "<div am-tooltip='" + direction + "'>" + thisTitle + "</div>",
+          tooltipHtml = "<div am-tooltip='" + direction + "'>" + thisTitle + "</div>",
           tTop = '0px', 
           tMarginTop = '0px', 
           tLeft = '0px', 
           tMarginLeft = '0px';
-      k(this).prepend(tooltip);
+      k(this).prepend(tooltipHtml);
       
       if (thisTitleLength > 30) {
         k(this).find('[am-tooltip]').css('width', '17em');
@@ -60,7 +60,7 @@ ready(function() {
         'margin-top': tMarginTop
       }).addClass('tooltip-show');
     }
-  }).mouseout(function(e) {
+  }).mouseout(function() {
     // remove tooltip
     k(this).find('[am-tooltip]').remove();
   });

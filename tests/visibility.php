@@ -30,9 +30,9 @@
     <div am-col>
       <h1>Visibility</h1>
       <h4 id="t1">visible</h4>
-      <p am-visible="mb">only visible on mobile</p>
-      <p am-visible="tl">only visible on tablet</p>
-      <p am-visible="dt">only visible on desktop</p>
+      <p am-visible="mb">only visible on <strong>mobile</strong></p>
+      <p am-visible="tl">only visible on <strong>tablet</strong></p>
+      <p am-visible="dt">only visible on <strong>desktop</strong></p>
       <div class="code"><!--  -->
         <pre><code class="language-markup">
 &lt;&#33;&#45;&#45; mb = mobile, tl = tablet, dt = desktop &#45;&#45;&#62;
@@ -42,9 +42,9 @@
         </code></pre>
       </div>
       <h4 id="t2">hidden</h4>
-      <p am-hidden="mb">only hidden on mobile</p>
-      <p am-hidden="tl">only hidden on tablet</p>
-      <p am-hidden="dt">only hidden on desktop</p>
+      <p am-hidden="mb">only hidden on <strong>mobile</strong></p>
+      <p am-hidden="tl">only hidden on <strong>tablet</strong></p>
+      <p am-hidden="dt">only hidden on <strong>desktop</strong></p>
       <div class="code">
         <pre><code class="language-markup">
 &lt;p am-hidden="mb"&gt;only hidden on mobile&lt;/p&gt;
