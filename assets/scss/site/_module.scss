@@ -211,20 +211,35 @@ $article-link-color: #0C97D2;
 }
 
 // ======= am-nav ======= //
-$am-nav-color: #fff !default;
 $am-nav-bg: #000 !default;
 $am-nav-width: 200px !default;
+$am-nav-fontsize: 14 !default;
+$am-nav-a-padding: .9em 1.6em !default;
 // *** normal style ***
 #{am(nav)} {
 	position: fixed;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	color: $am-nav-color;
+	color: complementary($am-nav-bg);
 	background: $am-nav-bg;
 	height: 100%;
 	@if $z-index { z-index: nth($z-index, 1); } @else { z-index: 300; }
 	@extend %global-transition;
-	a { color: $am-nav-color;}
+	li {
+		@include rem(font-size, $am-nav-fontsize);
+	}
+	a { 
+		display: block;
+		padding: $am-nav-a-padding;
+		color: complementary($am-nav-bg);
+		@extend %hover-tdn;
+		@extend %global-transition;
+	}
+	.active > a,
+	.current > a { background-color: analogous($am-nav-bg, 23%); }
+	#{am(navback)},
+	#{am(icon-haschild)}:hover,
+	a:hover { background-color: analogous($am-nav-bg, 15%); }
 }
 #{am(nav,move-left)},
 #{am(nav,move-right)},
@@ -391,6 +406,30 @@ $am-nav-width: 200px !default;
 	}
 }
 
+// *** am-subnav ***
+#{am(subnav)} {
+	position: absolute;
+	left: $am-nav-width;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: $am-nav-bg;
+	-webkit-transition: left .3s $global-bezier 0s;
+	transition: left .3s $global-bezier 0s;
+}
+.am-subnav-show { left: 0; }
+#{am(icon-haschild)} {
+	display: inline-block;
+	padding: $am-nav-a-padding;
+	padding-left: 1em;
+	padding-right: 1em;
+	float: right;
+	cursor: pointer;
+}
+#{am(navback)} {
+	padding: $am-nav-a-padding;
+	cursor: pointer;
+}
 // *** mq ***
 @include mq-min(450) {
 	#{am(nav, scale-left)},
@@ -587,6 +626,12 @@ $pagination-next: '►' !default;
 }
 
 // ======= dropdown ======= //
+$dropdown-css: true !default;
+$dropdown-menu-bgc: #fff !default;
+$dropdown-menu-border: 1px solid #dbdbdb !default;
+$dropdown-menu-shadow: rgba(0,0,0,0.15) 0px 6px 12px !default;
+$dropdown-menu-link-padding: 0.31em 1.25em !default;
+
 %dropdown { position: relative; cursor: pointer; }
 %dropdown-menu {
 	position: absolute;
@@ -663,6 +708,18 @@ $pagination-next: '►' !default;
 
 
 // ======= tooltip ======= //
+$tooltip-bgc: #212121 !default;
+$tooltip-border: false !default;
+$tooltip-border-radius: 0.25em !default;
+$tooltip-arrow-size: 6px !default;
+$tooltip-width: 17em !default;
+$alerts:(
+  success: #3A945B,
+  info: #2270C1,
+  warning: #DE770F,
+  alert: #DE2D0F
+) !default;
+
 #{am(tooltip)} {
 	background-color: $tooltip-bgc;
 	color: complementary($tooltip-bgc);

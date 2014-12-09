@@ -43,6 +43,7 @@ $ff-a: Arial, serif;
 // z-index
 $z-index: 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100;
 // transition
+$global-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
 %global-transition {
   -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
@@ -116,9 +117,10 @@ $social: (
 
 // module ---------------------
 // am-nav
-$am-nav-color: #fff !default;
 $am-nav-bg: #000 !default;
 $am-nav-width: 200px !default;
+$am-nav-fontsize: 14 !default;
+$am-nav-a-padding: .9em 1.6em !default;
 
 // nav-icon-styled
 $nav-icon-color: #333 !default;

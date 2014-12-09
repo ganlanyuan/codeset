@@ -37,7 +37,28 @@
   <div am-nav-close=""><span class="ic-close"></span></div>
   <ul>
     <li><a href="">move item 1</a></li>
-    <li><a href="">move item 2</a></li>
+    <li>
+      <span am-icon-haschild class="ic-triangle-right"></span>
+      <a href="">Autem, soluta</a>
+      <ul am-subnav="">
+        <li am-navback=""><span class="ic-triangle-left"></span>back</li>
+        <li class="current"><a href="">Lorem ipsum</a></li>
+        <li><a href="">Vitae, reprehenderit</a></li>
+        <li>
+          <span am-icon-haschild class="ic-triangle-right"></span>
+          <a href="">Fuga, velit</a>
+          <ul am-subnav="">
+            <li am-navback=""><span class="ic-triangle-left"></span>back</li>
+            <li><a href="">Voluptate, fugit</a></li>
+            <li><a href="">Reiciendis, quaerat</a></li>
+            <li><a href="">Reiciendis, minima</a></li>
+            <li><a href="">Ab, ex</a></li>
+          </ul>
+        </li>
+        <li><a href="">Voluptatibus, cupiditate</a></li>
+        <li><a href="">Repellat, esse</a></li>
+      </ul>
+    </li>
     <li><a href="">move item 3</a></li>
     <li><a href="">move item 4</a></li>
     <li><a href="">move item 5</a></li>
@@ -289,16 +310,29 @@
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 &lt;nav am-nav="move-left"&gt;
-  &lt;div am-nav-close=""&gt;&lt;/div&gt;
+  &lt;div am-nav-close&gt;&lt;/div&gt;
   &lt;div&gt;navigation&lt;/div&gt;
 &lt;/nav&gt;
 &lt;div am-content="move-left"&gt;
-  &lt;div am-content-cover=""&gt;&lt;/div&gt;
-  &lt;div am-nav-icon="" data-style="move-left"&gt;&lt;/div&gt;
+  &lt;div am-content-cover&gt;&lt;/div&gt;
+  &lt;div am-nav-icon data-style="move-left"&gt;&lt;/div&gt;
   &lt;div&gt;main content&lt;/div&gt;
 &lt;/div&gt;
-&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
+
+&lt;&#33;&#45;&#45; subnav &#45;&#45;&#62;
+&lt;li&gt;
+  &lt;span am-icon-haschild class="ic-triangle-right"&gt;&lt;/span&gt;
+  &lt;a href=""&gt;Fuga, velit&lt;/a&gt;
+  &lt;ul am-subnav&gt;
+    &lt;li am-navback&gt;&lt;span class="ic-triangle-left"&gt;&lt;/span&gt;back&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;Voluptate, fugit&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;Reiciendis, quaerat&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;Reiciendis, minima&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=""&gt;Ab, ex&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/li&gt;
 				</code></pre>
 			</div>
 		</div>

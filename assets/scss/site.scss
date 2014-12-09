@@ -1,20 +1,20 @@
 @charset "UTF-8";
 
-// global setting
 @import "bourbon/bourbon"; 
-@import "site/setting"; // varaibles and settings
+
+// global setting
+@import "site/setting"; // varaibles, mixins & placeholder
 
 // frameworks
 @import "normalize/normalize"; // css reset
-// @import "font-awesome/font-awesome"; // icon font
 // @import "OwlCarousel/OwlCarousel"; // slidershow
 // @import "animate/animate";
+// @import "font-awesome/font-awesome"; // icon font
+@import "site/icon-font"; // icon font
 @import "pure/pure";  // template
-
+@import "site/module"; // components
 
 // common style
-@import "site/icon-font"; // icon font
-@import "site/module";
 @import "site/common";
 
 // individual pages
