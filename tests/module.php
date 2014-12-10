@@ -199,14 +199,13 @@
 <div class="test-wrap">
 	<div class="fixed-sidebar">
 		<ul>
-			<li><a href="#t1">fixed columns</a></li>
-			<li><a href="#t2">mobile nav</a></li>
-			<li><a href="#t3">video</a></li>
-			<li><a href="#t4">article style</a></li>
-			<li><a href="#t5">breadcrumb</a></li>
-      <li><a href="#t6">pagination</a></li>
-      <li><a href="#t7">dropdown</a></li>
-			<li><a href="#t8">tooltip</a></li>
+			<li><a href="#t1">mobile nav</a></li>
+			<li><a href="#t2">video</a></li>
+			<li><a href="#t3">article style</a></li>
+			<li><a href="#t4">breadcrumb</a></li>
+      <li><a href="#t5">pagination</a></li>
+      <li><a href="#t6">dropdown</a></li>
+			<li><a href="#t7">tooltip</a></li>
 		</ul>
 	</div>
 	<div am-col-main="">
@@ -217,86 +216,7 @@
 	</div>
 	<div am-row>
 		<div am-col>
-			<h2 id="t1">fixed columns</h2>
-			<h4>2 columns</h4>
-		</div>
-	</div>
-	<div am-row>
-		<div am-col>
-			<div class="my-wrap-1">
-				<div am-col-main>
-					<div class="content">am-col-main: flexible</div>
-				</div>
-				<div am-col-aside>
-					<div class="content">am-col-aside: 300px</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div am-row>
-		<div am-col>
-			<div class="code">
-				<pre><code class="language-markup">
-&lt;div class="my-wrap-1"&gt;
-  &lt;div am-col-main&gt;
-  &lt;/div&gt;
-  &lt;div am-col-aside&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-				</code><code class="language-scss">
-@media screen and (min-width: 640px){
-  .my-wrap-1 { @include fixed-col(right, 300px, 20px);}
-}
-				</code></pre>
-			</div>
-		</div>
-	</div>
-
-	<div am-row>
-		<div am-col>
-			<h4>3 columns</h4>
-		</div>
-	</div>
-
-	<div am-row>
-		<div am-col>
-			<div class="my-wrap-2">
-				<div am-col-left>
-					<div class="content">am-col-left: 200px</div>
-				</div>
-				<div am-col-main>
-					<div class="content">am-col-main: flexible</div>
-				</div>
-				<div am-col-right>
-					<div class="content">am-col-right: 300px</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div am-row>
-		<div am-col>
-			<div class="code">
-				<pre><code class="language-markup">
-&lt;div class="my-wrap-2"&gt;
-  &lt;div am-col-left&gt;
-  &lt;/div&gt;
-  &lt;div am-col-main&gt;
-  &lt;/div&gt;
-  &lt;div am-col-right&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-				</code><code class="language-scss">
-@media screen and (min-width: 640px){
-	.my-wrap-2 { @include fixed-col3(200px, 300px, 20px);}
-}
-				</code></pre>
-			</div>
-		</div>
-	</div>
-
-	<div am-row>
-		<div am-col>
-			<h2 id="t2">mobile nav</h2>
+			<h2 id="t1">mobile nav</h2>
 			<h4>style 1: move</h4>
 		</div>
 	</div>
@@ -353,6 +273,7 @@
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 &lt;nav am-nav="translate-left"&gt;
   &lt;div am-nav-close=""&gt;&lt;/div&gt;
   &lt;div&gt;navigation&lt;/div&gt;
@@ -362,7 +283,6 @@
   &lt;div am-nav-icon="" data-style="translate-left"&gt;&lt;/div&gt;
   &lt;div&gt;main content&lt;/div&gt;
 &lt;/div&gt;
-&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 				</code></pre>
 			</div>
 		</div>
@@ -383,6 +303,7 @@
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 &lt;nav am-nav="reveal-left"&gt;
   &lt;div am-nav-close=""&gt;&lt;/div&gt;
   &lt;div&gt;navigation&lt;/div&gt;
@@ -392,7 +313,6 @@
   &lt;div am-nav-icon="" data-style="reveal-left"&gt;&lt;/div&gt;
   &lt;div&gt;main content&lt;/div&gt;
 &lt;/div&gt;
-&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 				</code></pre>
 			</div>
 		</div>
@@ -415,6 +335,7 @@
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; left, right, top, bottom are available &#45;&#45;&#62;
 &lt;nav am-nav="rotate-left"&gt;
   &lt;div am-nav-close=""&gt;&lt;/div&gt;
   &lt;div&gt;navigation&lt;/div&gt;
@@ -424,7 +345,6 @@
   &lt;div am-nav-icon="" data-style="rotate-left"&gt;&lt;/div&gt;
   &lt;div&gt;main content&lt;/div&gt;
 &lt;/div&gt;
-&lt;&#33;&#45;&#45; left, right, top, bottom are available &#45;&#45;&#62;
 				</code></pre>
 			</div>
 		</div>
@@ -445,6 +365,7 @@
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
+&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 &lt;nav am-nav="scale-left"&gt;
   &lt;div am-nav-close=""&gt;&lt;/div&gt;
   &lt;div&gt;navigation&lt;/div&gt;
@@ -454,7 +375,6 @@
   &lt;div am-nav-icon="" data-style="scale-left"&gt;&lt;/div&gt;
   &lt;div&gt;main content&lt;/div&gt;
 &lt;/div&gt;
-&lt;&#33;&#45;&#45; left, right are available &#45;&#45;&#62;
 				</code></pre>
 			</div>
 		</div>
@@ -475,7 +395,7 @@
 		<div am-col>
 			<div class="code">
 				<pre><code class="language-markup">
-&lt;&#33;&#45;&#45; setting.scss: $nav-icon-active-color &#45;&#45;&#62;
+&lt;&#33;&#45;&#45; assets/scss/pure/components/_pure-variables.scss: $nav-icon-active-color &#45;&#45;&#62;
 &lt;div am-nav-icon="styled" data="reveal-left"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
 &lt;div am-nav-icon-close="styled"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
 				</code></pre>
@@ -485,7 +405,7 @@
 
 		<div am-row>
 			<div am-col>
-				<h2 id="t3">video</h2>
+				<h2 id="t2">video</h2>
 				<h4>flex video</h4>
 			</div>
 		</div>
@@ -533,7 +453,7 @@
 
 	<div am-row>
 		<div am-col>
-			<h2 id="t4">article style</h2>
+			<h2 id="t3">article style</h2>
 		</div>
 	</div>
 	<div am-row>
@@ -588,7 +508,7 @@
 	</div>
 	<div am-row="">
 		<div am-col="">
-			<h2 id="t5">breadcrumb</h2>
+			<h2 id="t4">breadcrumb</h2>
 		</div>
 	</div>
 	<div am-row="">
@@ -599,8 +519,7 @@
 				<li class="active"><a href="">Local News</a></li>
 			</ul>
 			<pre><code class="language-markup">
-&lt;&#33;&#45;&#45;
-setting.scss
+&lt;&#33;&#45;&#45; assets/scss/pure/components/_pure-variables.scss
 
 // breadcrumb 
 $breadcrumb-font-size: 12;
@@ -622,7 +541,7 @@ $breadcrumb-gap-width: 1.2em;
 	</div>
   <div am-row="">
     <div am-col="">
-      <h2 id="t6">pagination</h2>
+      <h2 id="t5">pagination</h2>
     </div>
   </div>
   <div am-row="">
@@ -637,8 +556,7 @@ $breadcrumb-gap-width: 1.2em;
         <li class="next"><a href=""></a></li>
       </ul>
       <pre><code class="language-markup">
-&lt;&#33;&#45;&#45; 
-setting.scss
+&lt;&#33;&#45;&#45; assets/scss/pure/components/_pure-variables.scss
 
 // pagination
 $pagination-fz: 14 !default;
@@ -667,7 +585,7 @@ $pagination-next: '►' !default;
   </div>
 	<div am-row="">
 		<div am-col="">
-			<h2 id="t7">dropdown</h2>
+			<h2 id="t6">dropdown</h2>
 		</div>
 	</div>
   <div am-row="">
@@ -681,8 +599,7 @@ $pagination-next: '►' !default;
         </ul>
       </div>
       <pre><code class="language-markup">
-&lt;&#33;&#45;&#45; 
-setting.scss
+&lt;&#33;&#45;&#45; assets/scss/pure/components/_pure-variables.scss
 
 // dropdown
 $dropdown-css: true !default;
@@ -740,7 +657,7 @@ $dropdown-menu-link-padding: 0.31em 1.25em !default;
         <li class="current"><a href="">item 02</a></li>
         <li><a href="">item 03</a></li>
       </ul>
-			<pre><code class="language-css">
+			<pre><code class="language-scss">
 .my-dropdown-menu-1 { @extend %dropdown-menu;}
 
 @mixin dropdown-menu(
@@ -756,7 +673,7 @@ $dropdown-menu-link-padding: 0.31em 1.25em !default;
 	</div>
   <div am-row="">
     <div am-col="">
-      <h2 id="t8">tooltip</h2>
+      <h2 id="t7">tooltip</h2>
     </div>
   </div>
   <div am-row="">
@@ -785,9 +702,7 @@ $dropdown-menu-link-padding: 0.31em 1.25em !default;
         <div data-tooltip="alert bottom" data-title="I'm a alert tooltip!" style="display: inline-block; padding: 5px 10px; margin-right: 5px;">alert</div>
       </div>
       <pre><code class="language-markup">
-&lt;&#33;&#45;&#45; 
-alerts
-&#45;&#45;&#62;
+&lt;&#33;&#45;&#45; alerts &#45;&#45;&#62;
 
 &lt;div data-tooltip="success left" data-title="I'm a success tooltip!"&gt;success&lt;/div&gt;
 &lt;div data-tooltip="info right" data-title="I'm a info tooltip!"&gt;info&lt;/div&gt;
@@ -800,14 +715,13 @@ alerts
     <div am-col="">
       <p>Customize</p>
       <div style="padding: 50px">
-        <div am-tooltip="left" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a left tooltip. Lorem ipsum dolor. Lorem ipsum dolor.</div>
-        <div am-tooltip="top" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a top tooltip. Lorem ipsum dolor. Lorem ipsum dolor sit amet, consectetur adipisicing.</div>
-        <div am-tooltip="bottom" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a bottom tooltip. Lorem ipsum dolor sit amet.</div>
-        <div am-tooltip="right" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px">I'm a right tooltip. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, explicabo.</div>
+        <div am-tooltip="left" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px; margin-bottom: 10px;">I'm a left tooltip. Lorem ipsum dolor. Lorem ipsum dolor.</div>
+        <div am-tooltip="top" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px; margin-bottom: 10px;">I'm a top tooltip. Lorem ipsum dolor. Lorem ipsum dolor sit amet, consectetur adipisicing.</div>
+        <div am-tooltip="bottom" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px; margin-bottom: 10px;">I'm a bottom tooltip. Lorem ipsum dolor sit amet.</div>
+        <div am-tooltip="right" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px; margin-bottom: 10px;">I'm a right tooltip. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, explicabo.</div>
       </div>
       <pre><code class="language-markup">
-&lt;&#33;&#45;&#45; 
-setting.scss
+&lt;&#33;&#45;&#45; assets/scss/pure/components/_pure-variables.scss
 
 // tooltip
 $tooltip-bgc: #212121 !default;

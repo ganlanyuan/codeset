@@ -52,6 +52,26 @@
 &lt;p am-hidden="dt"&gt;only hidden on desktop&lt;/p&gt;
         </code></pre>
       </div>
+      <h4 id="t1">Customize</h4>
+      <p class="visible0"><strong>visible0</strong> from 0px to 600px</p>
+      <p class="visible1"><strong>visible1</strong> between 600px and 1024px</p> 
+      <p class="visible2"><strong>visible2</strong> on 600px and up</p>
+      <p class="hidden0"><strong>hidden0</strong> from 0px to 600px</p>
+      <p class="hidden1"><strong>hidden1</strong> between 600px and 1024px</p> 
+      <p class="hidden2"><strong>hidden2</strong> on 600px and up</p>
+      <p class="code"><!--  -->
+        <pre><code class="language-scss">
+&#47;&#47; visible
+.visible0 { @include visible(0, 600); } &#47;&#47; 0-600
+.visible1 { @include visible(600, 1024); } &#47;&#47; 600-1024
+.visible2 { @include visible(600); } &#47;&#47; 600-oo
+
+&#47;&#47; hidden
+.hidden0 { @include hidden(0, 600); } &#47;&#47; 0-600
+.hidden1 { @include hidden(600, 1024); } &#47;&#47; 600-1024
+.hidden2 { @include hidden(600); } &#47;&#47; 600-oo
+        </code></pre>
+      </p>
     </div>
   </div>
 </div>

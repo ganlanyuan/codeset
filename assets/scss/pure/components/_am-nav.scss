@@ -1,0 +1,321 @@
+// ======= am-nav ======= //
+$am-nav-bg: #000 !default;
+$am-nav-width: 200px !default;
+$am-nav-fontsize: 14 !default;
+$am-nav-a-padding: .9em 1.6em !default;
+// *** normal style ***
+#{am(nav)} {
+  position: fixed;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: complementary($am-nav-bg);
+  background: $am-nav-bg;
+  height: 100%;
+  @if $z-index { z-index: nth($z-index, 1); } @else { z-index: 300; }
+  @extend %global-transition;
+  li {
+    @include rem(font-size, $am-nav-fontsize);
+  }
+  a { 
+    display: block;
+    padding: $am-nav-a-padding;
+    color: complementary($am-nav-bg);
+    @extend %hover-tdn;
+    @extend %global-transition;
+  }
+  .active > a,
+  .current > a { background-color: analogous($am-nav-bg, 23%); }
+  #{am(navback)},
+  #{am(icon-haschild)}:hover,
+  a:hover { background-color: analogous($am-nav-bg, 15%); }
+}
+#{am(nav,move-left)},
+#{am(nav,move-right)},
+#{am(nav,translate-left)},
+#{am(nav,translate-right)},
+#{am(nav,reveal-left)},
+#{am(nav,reveal-right)},
+#{am(nav,rotate-left)},
+#{am(nav,rotate-right)},
+#{am(nav,scale-left)},
+#{am(nav,scale-right)},
+.no-csstransforms #{am(nav,scale-left)},
+.no-csstransforms #{am(nav,scale-right)} {
+  width: $am-nav-width;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+@each $direction in left, right {
+  #{am(nav, move-#{$direction})},
+  #{am(nav, translate-#{$direction})}, 
+  #{am(nav, reveal-#{$direction})},
+  #{am(nav, rotate-#{$direction})},
+  #{am(nav, scale-#{$direction})} { 
+    #{$direction}: 0; 
+  }
+  #{am(nav, move-#{$direction})},
+  #{am(nav, translate-#{$direction})} { 
+    margin-#{$direction}: -$am-nav-width; 
+  }
+  #{am(nav, rotate-#{$direction})} { 
+    @include transform-origin(#{$direction} center);
+  }
+  #{am(nav, scale-#{$direction})} { 
+    @include transform-origin(#{$direction} top);
+  }
+}
+@each $direction in top, bottom {
+  #{am(nav, rotate-#{$direction})} { 
+    @include transform-origin(center #{$direction});
+  }
+}
+#{am(nav, reveal-left)},
+#{am(nav, reveal-right)},
+#{am(nav, rotate-left)},
+#{am(nav, rotate-right)},
+.no-csstransforms #{am(nav, scale-left)},
+.no-csstransforms #{am(nav, scale-right)} {
+  @if $z-index { z-index: nth($z-index, 3); } @else { z-index: 100; }
+}
+#{am(nav, reveal-left)},
+#{am(nav, reveal-right)} {
+  margin: 0 !important; 
+}
+#{am(nav, rotate-top)},
+#{am(nav, rotate-bottom)} { width: 100%; }
+#{am(nav, rotate-left)} {
+  @include transform(perspective(1000px) rotateY(90deg));
+}
+#{am(nav, rotate-right)} {
+  @include transform(perspective(1000px) rotateY(-90deg));
+}
+#{am(nav, rotate-top)} {
+  @include transform(perspective(1000px) rotateX(-90deg));
+}
+#{am(nav, rotate-bottom)} {
+  @include transform(perspective(1000px) rotateX(90deg));
+}
+.no-csstransforms3d {
+  #{am(nav, rotate-top)},
+  #{am(nav, rotate-bottom)} {
+    display: none;
+  }
+}
+#{am(nav, scale-left)},
+#{am(nav, scale-right)} {
+  width: 70%;
+  @include transform(scale(0)); 
+  background: none;
+}
+
+#{am(content)} {
+  @extend %global-transition;
+  position: relative;
+}
+#{am(content, reveal-left)},
+#{am(content, reveal-right)},
+#{am(content, rotate-left)},
+#{am(content, rotate-right)},
+.no-csstransforms3d #{am(content, scale-left)},
+.no-csstransforms3d #{am(content, scale-right)} {
+  min-width: 320px;
+  background-color: #fff;
+  @if $z-index { z-index: nth($z-index, 2); } @else { z-index: 200; }
+}
+#{am(content, scale-left)},
+#{am(content, scale-right)} {
+  background-color: #fff;
+  @include transform(scaleX(1));
+}
+#{am(content, scale-left)} {
+  @include transform-origin(right top);
+}
+#{am(content, scale-right)} {
+  @include transform-origin(left top);
+}
+@each $direction in left, right {
+  #{am(content, translate-#{$direction})},
+  #{am(content, reveal-#{$direction})},
+  #{am(content, scale-#{$direction})},
+  #{am(content, rotate-#{$direction})} { #{$direction}: 0; }
+}
+
+// *** active style ***
+@each $direction in left, right {
+  .translate-#{$direction},
+  .reveal-#{$direction},
+  .no-csstransforms .scale-#{$direction},
+  .rotate-#{$direction} { #{$direction}: $am-nav-width; }
+}
+.scale-left,
+.scale-right { @include transform(scaleX(.3)); }
+.nav- {
+  &move-show {margin: 0; }
+  &rotate-left,
+  &rotate-right { @include transform(perspective(1000px) rotateY(0deg)); }
+  &rotate-top,
+  &rotate-bottom { @include transform(perspective(1000px) rotateX(0deg)); }
+  &scale-left,
+  &scale-right { @include transform(scale(1)); }
+}
+.no-csstransforms3d {
+  .nav- {
+    &rotate-top,
+    &rotate-bottom { display: block; }
+  }
+}
+// *** am-nav-close ***
+#{am(nav-close)},
+#{am(nav-icon)} {cursor: pointer; }
+
+// *** am-content-cover ***
+#{am(content-cover)} {
+  display: block;
+  @include size(100%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background-color: rgba(0,0,0,0);
+  @extend %global-transition;
+  .move-show &,
+  .translate-left &,
+  .translate-right &,
+  .reveal-left &,
+  .reveal-right &,
+  .rotate-left &,
+  .rotate-right &,
+  .scale-left &,
+  .scale-right &,
+  .scale-right & {
+    background-color: rgba(0,0,0,0.2);
+    @if $z-index { z-index: nth($z-index, 2); } @else { z-index: 200; }
+    cursor: pointer;
+  }
+}
+
+// *** am-subnav ***
+#{am(subnav)} {
+  position: absolute;
+  left: $am-nav-width;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $am-nav-bg;
+  -webkit-transition: left .3s $global-bezier 0s;
+  transition: left .3s $global-bezier 0s;
+}
+.am-subnav-show { left: 0; }
+#{am(icon-haschild)} {
+  display: inline-block;
+  padding: $am-nav-a-padding;
+  padding-left: 1em;
+  padding-right: 1em;
+  float: right;
+  cursor: pointer;
+}
+#{am(navback)} {
+  padding: $am-nav-a-padding;
+  cursor: pointer;
+}
+// *** mq ***
+@include mq-min(450) {
+  #{am(nav, scale-left)},
+  #{am(nav, scale-right)} {width: 50%; }
+  .scale-left,
+  .scale-right { @include transform(scaleX(.5)); }
+}
+@include mq-min(640) {
+  #{am(nav, scale-left)},
+  #{am(nav, scale-right)} {width: 40%; }
+  .scale-left,
+  .scale-right { @include transform(scaleX(.6)); }
+}
+@include mq-min(800) {
+  #{am(nav, scale-left)},
+  #{am(nav, scale-right)} {width: 30%; }
+  .scale-left,
+  .scale-right { @include transform(scaleX(.7)); }
+}
+@include mq-min(1024) {
+  #{am(nav, scale-left)},
+  #{am(nav, scale-right)} {width: 25%; }
+  .scale-left,
+  .scale-right { @include transform(scaleX(.75)); }
+}
+@include mq-min(1200) {
+  #{am(nav, scale-left)},
+  #{am(nav, scale-right)} {width: 20%; }
+  .scale-left,
+  .scale-right { @include transform(scaleX(.8)); }
+}
+
+// ======= nav-icon-styled ======= //
+$nav-icon-color: #333 !default;
+$nav-icon-active-color: #fd5619 !default;
+$nav-icon-bg-color: #fff !default;
+$nav-icon-inverted: false !default;
+
+%nav-icon-line {
+  display: block;
+  position: absolute;
+  top: 15px;
+  @include size(18 2);
+  background-color: $nav-icon-color;
+  @extend %global-transition;
+}
+#{am(nav-icon, styled)},
+#{am(nav-icon-close, styled)} {
+  display: inline-block;
+  position: relative;
+  padding: 10px 9px;
+  @include size(18 12);
+  background-color: $nav-icon-bg-color;
+  box-sizing: content-box;
+  cursor: pointer;
+  @extend %global-transition;
+  &:hover {
+    span, &:before, &:after { background-color: $nav-icon-active-color;}
+  }
+  span {@extend %nav-icon-line; }
+  &:before,
+  &:after {content: ''; @extend %nav-icon-line; }
+  &:before {margin-top: -5px; }
+  &:after {margin-top: 5px; }
+}
+.move-show [am-nav-icon~="styled"],
+.translate-left [am-nav-icon~="styled"],
+.translate-right [am-nav-icon~="styled"],
+.reveal-left [am-nav-icon~="styled"],
+.reveal-right [am-nav-icon~="styled"],
+.rotate-left [am-nav-icon~="styled"],
+.rotate-right [am-nav-icon~="styled"],
+.scale-left [am-nav-icon~="styled"],
+.scale-right [am-nav-icon~="styled"],
+#{am(nav-icon-close, styled)} {
+  span { display: none; }
+  &:before,
+  &:after { 
+    width: 20px; 
+    margin-left: -1px; 
+    margin-top: 0; 
+    -webkit-transform-origin: center center; 
+    -ms-transform-origin: center center; 
+    transform-origin: center center; 
+    .no-csstransforms & { display: none; }
+  }
+  &:before { 
+    -webkit-transform: rotate(45deg); 
+    -ms-transform: rotate(45deg); 
+    transform: rotate(45deg); 
+  }
+  &:after { 
+    -webkit-transform: rotate(-45deg); 
+    -ms-transform: rotate(-45deg); 
+    transform: rotate(-45deg); 
+  }
+  .no-csstransforms & { 
+    @if $nav-icon-inverted {background: url('data:image/gif;base64,R0lGODlhEAAQAPAAAP///wAAACH5BAEAAAEALAAAAAAQABAAAAIoDIKpeOC7XHvQUHviZVtWj1WclIlYaZLmCH5Uq8BwqJVz4t3xg4pHAQA7') center center no-repeat; }
+    @else {background: url('data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABEREQAAAAAAACH5BAEAAAIALAAAAAAQABAAAAIpFISpeOC7XHvQUHviZVtWj1WclIlYaUqBOYIf5SpxHGolnXi4/KDiUQAAOw==') center center no-repeat; }
+  }
+}

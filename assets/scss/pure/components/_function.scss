@@ -1,46 +1,23 @@
-//generate css
-$generate-grid: true !default;
-$generate-grid-block: false !default;
-$generate-checkbox: false !default;
-// support IE7
-$IE7: false !default;
-// grid
-$grid-number: 12 !default;
-$row-w: em(1200) !default;
-$gutter-w: em(30) !default;
-$block-grid-number: 8 !default;
-$block-gutter-w: $gutter-w !default;
-$sm: em(568) !default;
-$md: em(768) !default;
-$lg: em(1024) !default;
-$xl: em(1280) !default;
-// form
-$focus-border-color: #129FEA !default;
-$focus-invalid-color: #b94a48 !default;
-$focus-invalid-border-color: #ee5f5b !default;
-// button
-$basic-color: #e6e6e6 !default;
-$simply-border-color: #ddd !default;
-$social: (
-	facebook: #4462B1, 
-	twitter: #4E9EDB, 
-	google: #567EF0, 
-	google-plus: #DA4835, 
-	linkedin: #005987, 
-	rss: #EF922F, 
-	email: #1D90DD, 
-	primary: #0078E7
-) !default;
-// table
-$table-border-color: #cbcbcb;
-$thead-bg-color: #e0e0e0;
-$striping-bg-color: #f2f2f2;
+// functions -------------------------
+// color
+// em
+// am
+// @mixins ----------------------
+// replace
+// media query
 
-%pure-transition {
-	-webkit-transition: all 0.3s ease;
-	transition: all 0.3s ease;
+// functions -------------------------
+// color
+@function analogous($color, $degree) {
+  @if lightness($color) >= 50% { @return darken($color, $degree); }
+  @else { @return lighten($color, $degree); }
+}
+@function complementary($color) {
+  @if lightness($color) >= 50% { @return #000; }
+  @else { @return #fff; }
 }
 
+// em
 // Convert pixels to ems
 // eg. for a relational value of 12px write em(12) when the parent is 16px
 // if the parent is another value say 24px write em(12, 24)
@@ -76,6 +53,15 @@ $em-base: 16px !default;
   }
 }
 
+// @mixins ----------------------
+// replace
+@mixin replace($old-context, $contexts...) {
+  @each $context in $contexts {
+    @at-root #{selector-replace(&, $old-context, $context)} {
+      @content;  
+    }
+  }  
+}
 // media query
 @mixin mq-min($min, $media: false){
   @if $media {

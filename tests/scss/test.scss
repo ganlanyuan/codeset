@@ -3,16 +3,15 @@ $font-path:"../../assets/fonts/icon-font";
 
 // global setting
 @import "../../assets/scss/bourbon/bourbon"; 
-@import "../../assets/scss/site/setting"; // varaibles and settings
+@import "../../assets/scss/site/site-variables"; 
+@import "../../assets/scss/site/site-placeholders";
 
 // frameworks
 @import "../../assets/scss/normalize/normalize"; // css reset
 // @import "../../assets/scss/font-awesome/font-awesome"; // icon font
-@import "../../assets/scss/site/icon-font"; // icon font
 // @import "../../assets/scss/OwlCarousel/OwlCarousel"; // slidershow
 // @import "../../assets/scss/animate/animate";
 @import "../../assets/scss/pure/pure";  // template
-@import "../../assets/scss/site/module";  // module
 
 
 // css goes here
@@ -152,3 +151,11 @@ a {
   display: inline-block !important;
   position: static;
 }
+
+// visibility
+.visible0 { @include visible(0, 600); }
+.visible1 { @include visible(600, 1024); }
+.visible2 { @include visible(600); }
+.hidden0 { @include hidden(0, 600); }
+.hidden1 { @include hidden(600, 1024); }
+.hidden2 { @include hidden(600); }

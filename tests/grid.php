@@ -131,7 +131,7 @@
 			<div am-col>
 				<pre><code class="language-markup">
 &lt;&#33;&#45;&#45; Total 12 columns by default &#45;&#45;&#62;
-&lt;&#33;&#45;&#45; assets/scss/site/setting.scss: $grid-number &#45;&#45;&#62;
+&lt;&#33;&#45;&#45; assets/scss/pure/components/_pure-variables.scss: $grid-number &#45;&#45;&#62;
 
 &lt;div am-row&gt;
   &lt;div am-col="1"&gt;&lt;/div&gt; &lt;div am-col="11"&gt;&lt;/div&gt;
@@ -510,6 +510,86 @@
 			</div>
 		</div>
 	</div>
+
+	<div am-row>
+		<div am-col>
+			<h2>fixed columns</h2>
+			<h4>2 columns</h4>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+			<div class="my-wrap-1">
+				<div am-col-main>
+					<div class="content">am-col-main: flexible</div>
+				</div>
+				<div am-col-aside>
+					<div class="content">am-col-aside: 300px</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+			<div class="code">
+				<pre><code class="language-markup">
+&lt;div class="my-wrap-1"&gt;
+  &lt;div am-col-main&gt;
+  &lt;/div&gt;
+  &lt;div am-col-aside&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+				</code><code class="language-scss">
+@media screen and (min-width: 640px){
+  .my-wrap-1 { @include fixed-col(right, 300px, 20px);}
+}
+				</code></pre>
+			</div>
+		</div>
+	</div>
+
+	<div am-row>
+		<div am-col>
+			<h4>3 columns</h4>
+		</div>
+	</div>
+
+	<div am-row>
+		<div am-col>
+			<div class="my-wrap-2">
+				<div am-col-left>
+					<div class="content">am-col-left: 200px</div>
+				</div>
+				<div am-col-main>
+					<div class="content">am-col-main: flexible</div>
+				</div>
+				<div am-col-right>
+					<div class="content">am-col-right: 300px</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div am-row>
+		<div am-col>
+			<div class="code">
+				<pre><code class="language-markup">
+&lt;div class="my-wrap-2"&gt;
+  &lt;div am-col-left&gt;
+  &lt;/div&gt;
+  &lt;div am-col-main&gt;
+  &lt;/div&gt;
+  &lt;div am-col-right&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+				</code><code class="language-scss">
+@media screen and (min-width: 640px){
+	.my-wrap-2 { @include fixed-col3(200px, 300px, 20px);}
+}
+				</code></pre>
+			</div>
+		</div>
+	</div>
+
 </div>
 </body>
 </html>

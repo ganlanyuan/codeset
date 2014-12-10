@@ -1,0 +1,80 @@
+// ======= dropdown ======= //
+$dropdown-css: true !default;
+$dropdown-menu-bgc: #fff !default;
+$dropdown-menu-border: 1px solid #dbdbdb !default;
+$dropdown-menu-shadow: rgba(0,0,0,0.15) 0px 6px 12px !default;
+$dropdown-menu-link-padding: 0.31em 1.25em !default;
+
+%dropdown { position: relative; cursor: pointer; }
+%dropdown-menu {
+  position: absolute;
+  padding: .31em 0;
+  background-color: $dropdown-menu-bgc;
+  border: $dropdown-menu-border;
+  border-radius: 0.19em;
+  @if $dropdown-menu-shadow { box-shadow: $dropdown-menu-shadow; }
+  z-index: nth($z-index, 4);
+  -ms-transform: scaleY(0);
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -ms-transform-origin: top;
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  @extend %global-transition;
+  .no-csstransforms & { display: none; }
+  li { @extend %global-transition; }
+  .current a,li:hover a { background-color: analogous($dropdown-menu-bgc, 15%);}
+  a { 
+    display: block;
+    color: complementary($dropdown-menu-bgc);
+    padding: $dropdown-menu-link-padding;
+    @extend %hover-tdn;
+  }
+}
+%dropdown-menu-open {
+  -ms-transform: scaleY(1);
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  .no-csstransforms & { display: block; }
+}
+@mixin dropdown-menu(
+  $background-color: #fff,
+  $border: 1px solid #dbdbdb,
+  $border-radius: 0.19em,
+  $a-padding: 0.31em 1.25em
+  ){
+  position: absolute;
+  padding: .31em 0;
+  @if $background-color { background-color: $background-color; }
+  @if $border { border: $dropdown-menu-border; }
+  @if $border-radius { border-radius: $border-radius;}
+  @if $dropdown-menu-shadow { box-shadow: $dropdown-menu-shadow; }
+  z-index: nth($z-index, 4);
+  -ms-transform: scaleY(0);
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -ms-transform-origin: top;
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  @extend %global-transition;
+  .no-csstransforms & { display: none; }
+  li { @extend %global-transition; }
+  .current a,li:hover a { background-color: analogous($background-color, 15%);}
+  a { 
+    display: block;
+    color: complementary($background-color);
+    @if $a-padding { padding: $a-padding; }
+    @extend %hover-tdn;
+  }
+}
+
+@if $dropdown-css {
+  #{am(dropdown)} { 
+    @extend %dropdown; 
+  }
+  #{am(dropdown-menu)}{ @extend %dropdown-menu; }
+  #{am(dropdown)}:hover,
+  .dropdown-open {
+    #{am(dropdown-menu)} {@extend %dropdown-menu-open; }
+  }
+}
