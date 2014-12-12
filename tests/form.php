@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<div am-row="collapse full" class="topbar">
+<div am-row="no-gutter full" class="topbar">
 	<div am-col class="topbar-col"><a href="grid.php">grid</a></div>
 	<div am-col class="topbar-col"><a href="button.php">button</a></div>
 	<div am-col class="topbar-col active"><a href="form.php">form</a></div>
@@ -23,7 +23,7 @@
 			<li><a href="#t1">Invalid Inputs</a></li>
 			<li><a href="#t2">Disabled Inputs</a></li>
 			<li><a href="#t3">Readonly Inputs</a></li>
-			<li><a href="#t4">Customise</a></li>
+			<li><a href="#t4">Customization</a></li>
 			<li><a href="#t5">Default Form</a></li>
 			<li><a href="#t6">Multi-Column Form with Grids</a></li>
 			<li><a href="#t7">Stacked Form</a></li>
@@ -60,7 +60,7 @@
 			<pre><code class="language-markup">
 &lt;input type="text" placeholder="Readonly input here..." value="Foo bar baz" readonly&gt;
 			</code></pre>
-			<h3 id="t4">Customise</h3>
+			<h3 id="t4">Customization</h3>
 			<input type="text" am-input="bold" placeholder="bold"> <br>
 			<input type="text" placeholder="normal"> <br>
 			<input type="text" am-input="thin" placeholder="thin"> <br>

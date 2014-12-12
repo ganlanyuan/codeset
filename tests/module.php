@@ -188,7 +188,7 @@
 
 <div am-content="reveal-left">
 <div am-content-cover=""></div>
-<div am-row="collapse full" class="topbar">
+<div am-row="no-gutter full" class="topbar">
 	<div am-col class="topbar-col"><a href="grid.php">grid</a></div>
 	<div am-col class="topbar-col"><a href="button.php">button</a></div>
 	<div am-col class="topbar-col"><a href="form.php">form</a></div>
@@ -197,7 +197,7 @@
 	<div am-col class="topbar-col"><a href="icon-font.php">icon-font</a></div>
 </div>
 <div class="test-wrap">
-	<div class="fixed-sidebar">
+	<div class="fixed-sidebar" am-col-aside>
 		<ul>
 			<li><a href="#t1">mobile nav</a></li>
 			<li><a href="#t2">video</a></li>
@@ -253,6 +253,35 @@
     &lt;li&gt;&lt;a href=""&gt;Ab, ex&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/li&gt;
+        </code><code class="language-scss">
+// assets/scss/pure/components/_pure-variables.scss: default setting
+// am-nav
+$generate-nav-css: (
+  move: true,  // style
+  translate: false,
+  reveal: false,
+  rotate: false,
+  scale: false,
+
+  left: true,  // direction
+  right: false,
+  top: false,
+  bottom: false,
+
+  subnav: true,
+  styled-icon: true
+) !default;
+
+$am-nav-bg: #000 !default;
+$am-nav-width: 200px !default;
+$am-nav-fontsize: 14 !default;
+$am-nav-a-padding: .9em 1.6em !default;
+$am-cover-bg: rgba(0,0,0,.35) !default;
+
+$nav-icon-color: #333 !default;
+$nav-icon-active-color: #fd5619 !default;
+$nav-icon-bg-color: #fff !default;
+$nav-icon-inverted: false !default;
 				</code></pre>
 			</div>
 		</div>
@@ -464,27 +493,19 @@
 					<div class="credit">Photo PA</div>
 					<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
 				</figure>
-				<p>Secularists have condemned communities secretary Eric Pickles for implying that "aggressive secularism" has contributed to the religious conflicts raging in the Middle East and elsewhere.</p>
-				<p>In an article in The Daily Telegraph, Pickles says religion is not the problem, but political extremism is.</p>
-				<p>He reflects on a summer of seeing Christians being systematically persecuted and murdered in the Middle East, antisemitic attacks in response to Gaza, the fall-out from sexual abuse against children by Pakistani Muslims and murders carried out by Islamic State terrorists who may have included Britons indoctrinated to preach evil at home and enact it abroad.</p>
-				<p>ADVERTISEMENT</p>
 				<p>"The common theme is the politics of division and hate: attitudes and mantras that seek to divide rather than unite," he writes. "Aggressive secularists would advocate the suppression of religion in the public sphere. Yet this would only perpetuate the message of intolerance towards others. Religion is the not the problem – political and religious extremism is."</p>
 				<figure class="left">
 					<img class="full" src="http://d.christiantoday.com/en/full/14561/eric-pickles-has-signed-an-order-bringing-into-power-a-part-of-the.jpg?w=370&h=460&l=50&t=40" alt="" width="370" height="290">
 					<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="credit">Photo <a href="">PA</a></span></figcaption>
 				</figure>
 				<p>He argues that Britain has long been a safe haven for persecuted people, whether French Protestants during the Wars of Religion in the 17th century, European Jews fleeing Nazism, or Bosnian Muslims following the break-up of Yugoslavia. He does not however address the criticisms made previously by Vicar of Baghdad Andrew White, who has condemned Britain for failing to take in a single Christian fleeing persecution in northern Iraq.</p>
-				<p>He says individuals can take responsibility through personal belief that discrimination and persecution is wrong and should not be tolerated.</p>
 				<p><a href="">Pickles</a>, who also has Cabinet responsibility for faith, continues: "It has been easy this summer to feel pessimistic about the consequences of violent events erupting across the world, and worry about them being echoed here. That's why we must all rally and support our hard-fought British values – tolerance, freedom and the rule of law.</p>
-				<p>"This can happen in many ways – from the Jewish and Muslim groups issuing an unprecedented joint statement last week condemning anti-Semitism and anti-Muslim hatred, to the 77-year-old nun who got out a step ladder to take down the jihadi flag flying over her Tower Hamlets housing estate.</p>
 				<figure class="right">
 					<img class="full" src="http://d.christiantoday.com/en/full/14561/eric-pickles-has-signed-an-order-bringing-into-power-a-part-of-the.jpg?w=370&h=460&l=50&t=40" alt="" width="370" height="290">
 					<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="credit">Photo <a href="">PA</a></span></figcaption>
 				</figure>
 				<p>"But government can only do so much. The state governs by consent, not coercion. Every law-abiding Briton across class, colour and creed needs to stand up for the liberties that continue to define our nation."</p>
-				<p>"Secularism does not seek to destroy religion, it seeks to protect it, but also to ensure that no particular religion has temporal power. For that is when the trouble starts. Mr Pickles recommends that we embrace and promote his particular religion, aggressive Christianity one might say, but that just perpetuates the problem that is tearing the world apart – the desire of one religion to dominate all others.</p>
 				<blockquote>"Secularism protects, it does not destroy. It respects all religions equally and it demands that none of them seek to take political power. It is the only way we are going to save ourselves from more conflict."</blockquote>
-				<p>Writing in The Spectator blogs section, Damian Thompson questions whether Britain is losing its traditional tolerance towards Muslims. "It feels as if we are on the verge of an anti-Muslim backlash that could spread beyond the strongholds of the aggrieved white working class in Barking and Rochdale and into the home counties."</p>
 				<p>He writes that the BNP had popularised the idea that the sexual appetites of Pakistani thugs were fuelled by Islam. Thompson continues: "American conservatives picked over the Koran looking for parallels between the violence of gang rape and the violence of jihad. Islamic scholars dismissed this as a violation of their scriptures. Inconveniently for them, however, 'Muslim' street gangs in Europe and America started playing the same game, arguing that the Koran permitted any assault against the kuffar (non-believers).</p>
 				<div class="article-info">"Now British public opinion has woken up, thanks to an explosion of headlines about crucifixions in Iraq and unspeakable assaults on girls in Yorkshire. Some of those headlines are a good thing, in so far as they mark the failure of the liberal establishment to distract our attention towards more fashionable subjects (Gaza)."</div>
 			</article>
@@ -644,7 +665,7 @@ $dropdown-menu-link-padding: 0.31em 1.25em !default;
       </code></pre>
     </div>
   </div>
-  <p>Customize</p>
+  <p>Customization</p>
 	<div am-row="">
 		<div am-col="">
       <ul class="my-dropdown-menu-1">
@@ -713,7 +734,7 @@ $dropdown-menu-link-padding: 0.31em 1.25em !default;
   </div>
   <div am-row="">
     <div am-col="">
-      <p>Customize</p>
+      <p>Customization</p>
       <div style="padding: 50px">
         <div am-tooltip="left" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px; margin-bottom: 10px;">I'm a left tooltip. Lorem ipsum dolor. Lorem ipsum dolor.</div>
         <div am-tooltip="top" style="position: relative; display: inline-block; opacity: 1; margin-right: 10px; margin-bottom: 10px;">I'm a top tooltip. Lorem ipsum dolor. Lorem ipsum dolor sit amet, consectetur adipisicing.</div>

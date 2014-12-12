@@ -21,8 +21,8 @@ $alerts:(
   line-height: 1.43;
   max-width: $tooltip-width;
   opacity: 0;
-  -webkit-transition: opacity .4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-  transition: opacity .4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  -webkit-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
   @if $tooltip-border { border: $tooltip-border; }
   @if $tooltip-border-radius { border-radius: $tooltip-border-radius; }
   &:before {

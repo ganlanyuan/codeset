@@ -6,14 +6,11 @@
 // fixed columns
 
 // basis
-%row-common {
+%row {
   letter-spacing: -0.33em; 
   @if $IE7 {*letter-spacing: normal; *word-spacing: -0.43em; }
-  max-width: $row-w;
-  margin-left: auto;
-  margin-right: auto;
 }
-%col-common {
+%col {
   display: inline-block;
   @if $IE7 {*display: inline; zoom: 1; word-spacing: normal; }
   letter-spacing: normal;
@@ -22,116 +19,127 @@
   box-sizing: border-box;
   width: 100%;
 }
+%no-x-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 // grids
-%grid-col {
-  @extend %col-common;
-  padding-left: ($gutter-w/2);
-  padding-right: ($gutter-w/2);
+@mixin row(
+  $row: false,
+  $gutter: false,
+  $common: true,
+  $inside-row: false
+){
+  @if $common { @extend %row; }
+  @if $row and $row != 100% {
+    max-width: $row;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @if $gutter and $inside-row {
+    margin-left: (-$gutter/2);
+    margin-right: (-$gutter/2);
+    @extend %no-x-padding;
+  }
+  @else if $gutter {
+    padding-left: ($gutter/2);
+    padding-right: ($gutter/2);
+  }
 }
-@mixin row {
-  letter-spacing: -0.33em; 
-  @if $IE7 {*letter-spacing: normal; *word-spacing: -0.43em; }
-  max-width: $row-w;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 @mixin col(
-  $col-number, 
-  $total-columns: $grid-number,
-  $collapse: false, 
+  $col, 
+  $cols: $cols,
+  $gutter: false, 
+  $common: true,
+  $pull: false,
+  $push: false,
+  $offset: false,
   $centered: false
-  ){
-  width: percentage(($col-number/$total-columns));
-  @at-root (without: media){ @extend %grid-col; }
-  @if $collapse {
-    padding-left: 0;
-    padding-right: 0;
+){
+  width: percentage(($col/$cols));
+  @if $common { @at-root (without: media){ @extend %col; } }
+  @if $gutter {
+    padding-left: ($gutter/2);
+    padding-right: ($gutter/2);
+  }
+  @if $pull {
+    position: relative;
+    left: percentage((-$pull/$cols));
+  }
+  @if $push {
+    position: relative;
+    left: percentage(($push/$cols));
+  }
+  @if $offset {
+    margin-left: percentage(($offset/$cols));
   }
   @if $centered {
-    @include col-centered;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
-@mixin col-centered {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-@mixin col-push($col-number, $total-columns: $grid-number){
-  position: relative;
-  left: percentage(($col-number/$total-columns));
-}
-@mixin col-pull($col-number, $total-columns: $grid-number){
-  position: relative;
-  left: percentage((-$col-number/$total-columns));
-}
-@mixin col-offset($col-number, $total-columns: $grid-number){
-  margin-left: percentage(($col-number/$total-columns));
-}
-
-@include am(row) {@extend %row-common; }
-@include am(row, full) { max-width: none; }
-@include am(row, collapse) { 
-  > #{am(col)} {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-@include am(row) {
-  #{am(row)} {
-    margin-left: (-$gutter-w/2);
-    margin-right: (-$gutter-w/2);
-  }
-  #{am(row, collapse)} {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-@include am(col) { @extend %grid-col; }
-@include am(col,centered) { @include col-centered; }
 
 @if $generate-grid {
-  @for $i from 1 through $grid-number {
-    @include am(col, $i) { width: percentage(($i/$grid-number)); }
+  #{am(row)} { @include row($row, $gutter); }
+  #{am(row, full)} { max-width: none; }
+  #{am(row, no-gutter)} { 
+    padding-left: 0;
+    padding-right: 0;
+    > #{am(col)} {
+      @extend %no-x-padding;
+    }
+  }
+  #{am(row)} {
+    #{am(row)} {
+      @include row(100%, $gutter, $common:false, $inside-row: true);
+    }
+  }
+  #{am(col)} { @include col(12,12,$gutter); }
+  @for $i from 1 through $cols {
+    #{am(col, $i)} { @include col($i, $cols, $gutter: false, $common: false); }
   }
   $mq-width:(
-    // sm: $sm,
     md: $md,
     lg: $lg,
     xl: $xl
   );
   @each $name, $value in $mq-width {
     @media screen and (min-width: $value){
-      @for $i from 1 through $grid-number {
-        @include am(col, #{$name}-#{$i}) { width: percentage(($i/$grid-number)); }
+      @for $i from 1 through $cols {
+        #{am(col, #{$name}-#{$i})} { @include col($i, $cols, $gutter: false, $common: false); }
       }
     }
   }
 }
 
 // block grid
-%block-col {
-  @extend %col-common;
-  @include rem(padding-left, ($block-gutter-w/2));
-  @include rem(padding-right, ($block-gutter-w/2));
-  @include rem(margin-bottom, $block-gutter-w);
-  > :last-child { margin-bottom: 0 !important; }
-}
-@mixin block($block-number) {
+@mixin block(
+  $block, 
+  $gutter: false
+){
   @at-root (without: media) { 
-    @extend %row-common; 
-    #{am(row)} & {
-      margin-left: (-$block-gutter-w/2);
-      margin-right: (-$block-gutter-w/2);
-    }
+    @if $gutter { @include row(100%, $gutter, $inside-row:true); }
+    @else { @include row(100%); }
+    #{am(row)} & { @extend %no-x-padding; }
   }
   > li {
-    width: percentage((1/$block-number));
-    @at-root (without: media){ @extend %block-col; }
+    @if $gutter {
+      @include col(1, $block, $gutter);
+      margin-bottom: $gutter;
+    }
+    @else {
+      @include col(1, $block);
+    }
+    > :last-child { margin-bottom: 0 !important; }
   }
+  img { width: 100%; }
 }
+
 @if $generate-grid-block {
-  @for $i from 1 through $block-grid-number {
+  @for $i from 1 through $block {
     .block-#{$i} { @include block($i); }
     @media screen and (min-width: $sm) {
       .block-sm-#{$i} { @include block($i); }

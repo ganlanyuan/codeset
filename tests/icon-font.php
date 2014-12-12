@@ -37,7 +37,7 @@
   </style>
 </head>
 <body>
-<div am-row="collapse full" class="topbar">
+<div am-row="no-gutter full" class="topbar">
   <div am-col class="topbar-col"><a href="grid.php">grid</a></div>
   <div am-col class="topbar-col"><a href="button.php">button</a></div>
   <div am-col class="topbar-col"><a href="form.php">form</a></div>

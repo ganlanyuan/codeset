@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div am-row="collapse full" class="topbar">
+<div am-row="no-gutter full" class="topbar">
 	<div am-col class="topbar-col"><a href="grid.php">grid</a></div>
 	<div am-col class="topbar-col active"><a href="button.php">button</a></div>
 	<div am-col class="topbar-col"><a href="form.php">form</a></div>
@@ -25,7 +25,7 @@
 			<li><a href="#t4">Customizing Buttons</a></li>
 			<li><a href="#t5">Grouped buttons</a></li>
 			<li><a href="#t6">Combined with input</a></li>
-			<li><a href="#t7">Customize with SASS</a></li>
+			<li><a href="#t7">Customization with SASS</a></li>
 		</ul>
 	</div>
 	<div am-col-main="">
@@ -102,7 +102,7 @@
 &lt;/div&gt;
 			</code></pre>
 			
-			<h3 id="t7">Customize with SASS</h3>
+			<h3 id="t7">Customization with SASS</h3>
 			<ul class="styled">
 				<li> <a href="" class="purple-button">purple-button</a> </li>
 				<li> <a href="" class="thin-button">thin-button</a> </li>
@@ -111,6 +111,15 @@
 				<li> <a href="" class="small-button">small-button</a> </li>
 			</ul>
 			<pre><code class="language-scss">
+@include button(
+	$color: false,  // background-color
+	$thin: false,  // thin
+	$bold: false,  // bold
+	$fluid: false,  // 100% width
+	$simple: false,  // only border
+	$disabled: false  // disabled
+);
+
 .purple-button { @include button(#a80051); }
 .thin-button { @include button(#333, $thin:true); }
 .simple-button { @include button($color:false, $simple:true); }

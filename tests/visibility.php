@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<div am-row="collapse full" class="topbar">
+<div am-row="no-gutter full" class="topbar">
   <div am-col class="topbar-col"><a href="grid.php">grid</a></div>
   <div am-col class="topbar-col"><a href="button.php">button</a></div>
   <div am-col class="topbar-col"><a href="form.php">form</a></div>
@@ -52,7 +52,7 @@
 &lt;p am-hidden="dt"&gt;only hidden on desktop&lt;/p&gt;
         </code></pre>
       </div>
-      <h4 id="t1">Customize</h4>
+      <h4 id="t1">Customization</h4>
       <p class="visible0"><strong>visible0</strong> from 0px to 600px</p>
       <p class="visible1"><strong>visible1</strong> between 600px and 1024px</p> 
       <p class="visible2"><strong>visible2</strong> on 600px and up</p>

@@ -45,12 +45,9 @@ textarea {
 		border-color: #ccc;
 		&:focus { border-color: #ccc; }
 	}
-	&:invalid {
+	&:invalid:focus {
 		color: $focus-invalid-color;
 		border: 1px solid $focus-invalid-border-color;
-		&:focus {
-			border-color: #e9322d;
-		}
 	}
 }
 
