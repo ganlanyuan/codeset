@@ -1,9 +1,0 @@
-// optional max-width argument, default max-width is 100%
-// @include ellipsis(50%);
-@mixin ellipsis($width: 100%) {
-  display: inline-block;
-  max-width: $width;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}

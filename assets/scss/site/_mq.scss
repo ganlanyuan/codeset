@@ -5,32 +5,32 @@
 // max
 
 // min
-@include mq-min(640) {
+@include bp-mi(640) {
 	// 
 }
-@include mq-min(768) {
+@include bp-mi(768) {
 	// 
 }
-@include mq-min(1024) {
+@include bp-mi(1024) {
 	// 
 }
-@include mq-min(1200) {
+@include bp-mi(1200) {
 	// 
 }
 
 
 // min & max
-@include mq-mm(500, 640) {
+@include bp-mm(499, 640) {
 	// 
 }
 
 // max
-@include mq-max(1024) {
+@include bp-ma(1023) {
 	// 
 }
-@include mq-max(768) {
+@include bp-ma(767) {
 	// 
 }
-@include mq-max(640) {
+@include bp-ma(639) {
 	// 
 }

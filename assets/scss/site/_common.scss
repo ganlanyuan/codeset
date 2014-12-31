@@ -7,7 +7,7 @@
 
 // typography
 h1, h2, h3, h4, h5, h6, p { margin: 0; }
-time { @include rem(font-size, 12); color: #666; }
+time { @include rems(font-size, 12); color: #666; }
 
 // common style
 body { overflow-x: hidden; }
@@ -21,9 +21,34 @@ a {
   color: $text-color;
   &:hover { text-decoration: underline; }
 }
+button,
+input,
+select { line-height: normal !important; }
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {outline: 0; }
+button { border: none; }
+blockquote {
+  margin: 0 2em 2em 1.5em;
+  padding-left: 1.2em;
+  line-height: 1.5;
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: #777;
+  border-left: 2px solid #888;
+  .auther { 
+    color: #333; 
+    text-transform: capitalize;
+    margin-left: .5em; 
+    // &:before {
+    //  content: '_';
+    // }
+  }
+}
 .caps { 
   text-transform: uppercase; 
-  @include rem(font-size, 14); 
+  @include rems(font-size, 14); 
   font-weight: normal; 
 }
 .hidden { display:none; }
@@ -38,5 +63,4 @@ a {
 
 
 // site header
-
 // site footer

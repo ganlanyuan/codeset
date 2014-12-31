@@ -3,15 +3,15 @@
 @import "bourbon/bourbon"; 
 
 // global setting
-@import "site/site-variables"; 
-@import "site/site-placeholders";
+@import "site/variables"; 
+@import "site/placeholders";
 
 // frameworks
 @import "normalize/normalize"; // css reset
 // @import "OwlCarousel/OwlCarousel"; // slidershow
 // @import "animate/animate";
 // @import "font-awesome/font-awesome"; // icon font
-@import "pure/pure";  // template
+@import "codeset/codeset";  // template
 
 // common style
 @import "site/common";
