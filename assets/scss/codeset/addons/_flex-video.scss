@@ -13,11 +13,11 @@
 }
 
 @mixin flex-video(
-  $child-tag: 'iframe',
+  $child: 'iframe',
   $ratio: 9/16
 ){
   @extend %flex-video-container;
   @if unitless($ratio) { $ratio: percentage($ratio); }
   padding-bottom: $ratio;
-  > #{$child-tag} { @extend %flex-video; }
+  > #{$child} { @extend %flex-video; }
 }

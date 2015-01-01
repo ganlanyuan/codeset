@@ -4,7 +4,6 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 *.DS_Store
-/.sass-cache/
 /.codekit-cache/
 /design/
 README.md

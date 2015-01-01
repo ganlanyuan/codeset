@@ -4,6 +4,8 @@
 // list style
 // transition
 
+%clearfix { @include clearfix; }
+
 // font
 %ff-header {font-family: $ff-g; }
 %ff-content {font-family: $ff-a; }
@@ -19,20 +21,6 @@
 %img-left, %img-right { @extend %clearfix; }
 %img-left img {float: left; margin-right: em(15); }
 %img-right img {float: right; margin-left: em(15); }
-%justify {
-  text-align: justify;
-  line-height: 0;
-  margin-bottom: -5px;
-  > li, > div, > span {
-    line-height: 1;
-    display: inline-block;
-  }
-  &:after {
-    content: "";
-    width: 100%;
-    display: inline-block;
-  }
-}
 
 // transition
 %global-transition {

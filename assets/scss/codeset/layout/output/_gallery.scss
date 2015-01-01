@@ -2,12 +2,12 @@
   $per-row,
   $columns: map-get($layout, columns),
   $gutter: false,
-  $child-tag: false,
+  $child: false,
   $position: center
 ){
   $selector: null;
-  @if not $child-tag { $selector: '*'; }
-  @else { $selector: $child-tag; }
+  @if not $child { $selector: '*'; }
+  @else { $selector: $child; }
 
   @include wrap($columns,$gutter);
   > #{$selector} {

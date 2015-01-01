@@ -1,5 +1,5 @@
 @mixin center(
-	$child-tag: '*',
+	$child: '*',
 	$align: left
 ){
 	@include display(flex);
@@ -15,7 +15,7 @@
 			margin-right: -.25em; // adjusts for spacing
 		}
 	}
-	> #{$child-tag} {
+	> #{$child} {
 		.no-flexbox & {
 			display: inline-block;
 			vertical-align: middle;

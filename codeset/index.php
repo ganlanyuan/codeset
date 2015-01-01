@@ -191,12 +191,35 @@
           </div>
           <div class="content-aside">
             <pre><code class="language-scss">
-@include gallery($per-row, $columns, $gutter, $child-tag, $position);
+@include gallery($per-row, $columns, $gutter, $child, $position);
 // $per-row: num
 // $columns: num
 // $gutter: num | px | em | rem | 1/20 | 5% | 0.1
-// $child-tag: div | span | ...
+// $child: div | span | ...
 // $position: center | bottom
+            </code></pre>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3 id="justify">justify</h3>
+        <p><code>Justify</code> is for creating <code>text-align: justify;</code> list.</p>
+        <div class="content">
+          <div class="content-main">
+            <div class="example">
+              <ul class="example-justify">
+                <li><a href="">Lorem</a></li>
+                <li><a href="">Internet</a></li>
+                <li><input type="search" placeholder="Click me!"></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content-aside">
+            <pre><code class="language-scss">
+@include justify-flex();
+.no-flexbox {
+  @inclue justify($child); // for old browsers
+}
             </code></pre>
           </div>
         </div>
@@ -217,8 +240,8 @@
           </div>
           <div class="content-aside">
             <pre><code class="language-scss">
-@include center($child-tag, $align)
-// $child-tag: div | li | span | ...
+@include center($child, $align)
+// $child: div | li | span | ...
 // $align: left | center
             </code></pre>
           </div>
@@ -466,8 +489,8 @@ nav { @include mb-nav ($style, $direction, $font-size, $padding, $bg); }
           </div>
           <div class="content-aside">
             <pre><code class="language-scss">
-@include flex-video($child-tag, $ratio);
-// $child-tag: iframe | video | ...
+@include flex-video($child, $ratio);
+// $child: iframe | video | ...
 // $ratio: 9/16 | ...
             </code></pre>
           </div>
