@@ -25,9 +25,9 @@ $cover-bg: rgba(0,0,0,.35) !default;
     @extend %hover-tdn;
     @extend %global-transition;
     &:hover { background-color: analogous($bgc, 15%); }
-    .active > &,
-    .current > & { background-color: analogous($bgc, 23%); }
   }
+  .active > a,
+  .current > a { background-color: analogous($bgc, 23%); }
   @if $style == move {
     .mb-nav-show & { margin-#{$direction}: 0; }
   }

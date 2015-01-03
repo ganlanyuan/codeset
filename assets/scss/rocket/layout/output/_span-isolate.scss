@@ -18,6 +18,6 @@
       margin-#{nth($margin, 3)}: nth($margin, 4);
     }
   }
-  @if not $last { margin-#{opposite($float)}: -100%; }
+  @if $last { margin-#{opposite($float)}: -100%; }
 }
 
