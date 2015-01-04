@@ -12,7 +12,7 @@ $cover-bg: rgba(0,0,0,.35) !default;
 ){
   position: fixed;
   height: 100%;
-  color: complementary($bgc);
+  color: contrast($bgc);
   background: $bgc;
   z-index: 300;
   box-sizing: border-box;
@@ -21,7 +21,7 @@ $cover-bg: rgba(0,0,0,.35) !default;
   a { 
     display: block;
     padding: $padding;
-    color: complementary($bgc);
+    color: contrast($bgc);
     @extend %hover-tdn;
     @extend %global-transition;
     &:hover { background-color: analogous($bgc, 15%); }

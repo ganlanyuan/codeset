@@ -46,7 +46,7 @@
     .current a,li:hover a { background-color: analogous($bgc, 15%);}
     a { 
       padding: $padding;
-      color: complementary($bgc);
+      color: contrast($bgc);
     }
   }
   @if $open == hover {

@@ -28,7 +28,7 @@
 	}
 	@if length($button) >= 4 and nth($button, 4) != null {
 		background-color: nth($button, 4);
-		color: complementary(nth($button, 4));
+		color: contrast(nth($button, 4));
 		&:hover { background-color: analogous(nth($button, 4), 10%); }
 	}
 	@if length($button) >= 5 and nth($button, 5) != null {
